@@ -214,7 +214,7 @@
 						<li><a href="#">공동구매</a></li>
 						<li><a href="#">구독</a></li>
 						<li><a href="#">랭킹</a></li>
-						<li><a href="#">이벤트</a></li>
+						<li><a href="event.jsp">이벤트</a></li>
 						<li><a href="customer_center.jsp">고객센터</a></li>
 					</ul>
 					<!-- /NAV -->
