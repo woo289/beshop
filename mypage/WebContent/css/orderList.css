@@ -1,16 +1,27 @@
-#mainFram{
-    width: 100%;
+#mainFram {
+    border: 1px solid black;
+    width: 1300px;
+    height: 1300px;
+    text-align: center;
+    margin: auto;
+    clear: both;
+    margin-top: 100px;
+    `
 }
-#mainFram h3{padding:10px;}
 
 #orderSearch {
+    border: 1px solid black;
+    width: 1300px;
     height: 300px;
+    margin-top: 50px;
 
 }
 
 #orderHistory {
-    width: 100%;
-
+    border: 1px solid black;
+    width: 1300px;
+    height: 300px;
+    margin-top: 50px;
 }
 
 #orderSearch_title {
@@ -18,7 +29,9 @@
 
 }
 
-#orderHistory{padding:10px 0; border-top: 1px solid black;}
+#orderHistory_title {
+    text-align: left;
+}
 
 .xans-myshop-orderhistoryhead fieldset {
     margin: 20px 0 0;
@@ -45,7 +58,7 @@
     padding: 0 6px;
     border: 1px solid #d5d5d5;
     line-height: 22px;
-
+    font-family: verdana, sans-serif;
     font-size: 11px;
 }
 
@@ -70,12 +83,13 @@
 /* Default */
 input[type=text],
 input[type=password] {
-    
+    font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
 }
 
 * {
     margin: 0;
     padding: 0;
+    font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
 }
 
 body {
@@ -263,9 +277,3 @@ article {
     background: url(images/btn_calendar.gif) center center no-repeat;
     text-indent: -999em
 }
-.orderlist{
-    text-align: center;
-    font-size: 13px;
-}
-.orderlist thead{border-bottom: 1px solid #444; border-top: 2px solid #444}
-.orderlist td{padding:8px 0; }
