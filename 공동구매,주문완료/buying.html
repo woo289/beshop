@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-    
-    <script>
-        window.onfocus = function() {}
-        window.onload = function() {
-            window.focus();
-            window.moveTo(0, 0);
-            window.resizeTo(590, 590);
-            window.scrollTo(0, 250);
-        }
-    </script>
+
+
     <style type="text/css">
         .bar {
             width: 100%;
@@ -20,114 +12,111 @@
             display: block;
         }
 
-    #top {
-    border: 2px solid #000;
-    width: 590px;
-    height: 590px;
-    
-    border-radius: 10px;
-    border-color: #00a8b3;
-
-    }
-
-    #mid {
-    margin-top: 20px;
-    
-    }
-    .price {
-
-    border: 2px solid #000;
-    font-size: 30px;
-
-    }
-    #price-center {
-    text-align: center;
-    word-spacing: 30px;
-    }
-    .point {
-    font-size: 20px;
-
-    }
-    .bid {
-    width: 300px;
-    height: 50px;
-    border-radius: 10px;
-    }
-
-    .btnbid {
-    position: absolute;
-    height: 56px;
-    width: 150px;
-    background-color: #00a8b3;
-    border-radius: 10px;
-
-    }
-
-    .gg {
-    padding-top: 30px;
-    }
-        .o_price
-        {
-            font-size: 25px;
+        .product_price div{
+            font-size: 20px;
             font-weight: 600;
+            float: left;
+
         }
-        .o_finishtime
-        {
-            font-size: 17px;
-            font-weight: 600;
+
+
+        .shipping {
+            font-size: 15px;
+            font-weight: 500;
         }
-        .notice
-        {
-            font-size: 14px;
-            font-weight: 500
+
+        .firstline div{
+            margin-bottom: 20px;
+
         }
-        #mid
+
+        .sencondline div
         {
-            background-color: aliceblue;
-            width: 100%;
+        float: left;
+            display: block;
         }
         
-    </style>
-    
+        .have_point
+        {
+            float: left;
+        }
+        .btn
+        {
+            float: left
+        }
+        .total
+        {
+            border: 3px solid #00a8b3;
+            border-radius: 10px;
+            width: 100% auto;
+        }
+        </style>
 
-    
+
+
 
 </head>
 <!--o=oction-->
+
 <body>
-    <div id="top">
-       <div class="o_top_con" style="margin-bottom: 20px;">
-        <span class="o_price"><span class="o_price_con"> 1.230.000</span> 원 </span><span class="o_price">|</span>
-        <!--상품판매비용-->
-        <span><strong>무료배송</strong></span><br>
-        </div>
-        <!--상품배송상태-->
-        <span class="o_finishtime">경매종료까지 <span class="o_finishtime_con"><strong> 11시간 31분 7초 </strong></span>남았습니다 | </span>
-        <!--경매 마감일-->
-        <span o_people>두명의 입찰자 입찰중</span>
-        <!--입찰자 수-->
-        <p class="bar"><em style="width:1242%;height: 3px;"></em></p>
-        <div class="notice">보유한 포인트의 금액만큼 입찰가를 제시해주세요</div>
-        <div id="mid">
-            
-            <span class="pricing">입찰가 | 10만원 단위</span><br><br>
-            <div id="price-center">
-                <span class="price">1,330,000원</span>
-                <span class="price">1,330,000원</span>
-                <span class="price">1,330,000원</span>
+   <div class="total">
+    <div class="main">
+        <div class="firstline">
+            <div class="product_price">
+                <strong>
+                    <div class="product_pricecon">1,230,000</div>
+                </strong>
+                <div class="shipping">원 | 무료배송</div>
             </div>
-            
-             <p class="bar"><em style="width:1242%;height: 3px;"></em></p>
-            <div id="bottom">
-                <span class="point">보유포인트 1,220,000원</span>
-                <span>충전하기</span><br>
-                <textarea class="bid"></textarea>
-                <button class="btnbid">입찰하기</button><br>
-                <span class="gg">경매가 끝나거나 판매자가 입찰종료시 가장높은금액의 입찰자가 입찰됩니다.</span>
-            </div>
+
         </div>
-
-
+        <br>
+        <div class="sencondline">
+            <div>경매종료까지 <strong>11시간 31분 7초</strong> 남았습니다 | </div>
+            <div>
+                2명의 입찰자 입찰중
+            </div>
+            <p class="bar"><em style="width:1242%;height: 3px;"></em></p>
+        </div>
     </div>
+
+    <div class="notice">보유한 포인트의 금액만큼 입찰가를 제시해주세요</div>
+    <div class="colorpart">
+        
+        <div>입찰가|<span>100,000</span>원 단위</div>
+        <div class="pricepart">
+            <div class="price1"><span class="price_num1">1,330,000</span></div>
+            <div class="price2"><span class="price_num2">1,330,000</span></div>
+            <div class="price3"><span class="price_num3">1,330,000</span></div>
+        </div>
+        <p class="bar"><em style="width:1242%;height: 3px;"></em></p>
+        <div class="point">
+
+            <div class="have_point">
+                <div>보유포인트</div>
+                <div><div class="have_pointcon">1,220,000</div>원</div>
+                <div class="btn_charge">충전하기</div>
+            </div>
+        </div>
+        <div class="oction_input">
+            <div>
+                <div class="input_title">수량</div>
+                <div><input type="number" name="oction_inputcon_num"></div>
+                
+            </div>
+            <div>
+                <div class="input_title">입찰금액</div>
+                <div><input type="text" name="oction_inputcon"></div>
+            </div>
+           
+        </div>
+         <div class="btn">
+                <div class="btn_oction">입찰하기</div>
+                <div class="btn_oction_now">즉시입찰</div>
+            </div>
+        <div class="notice">경매가 끝나거나 입찰종료시 가장높은금액의 입찰자가 입찰됩니다</div>
+    </div>
+
+</div>
 
 </body></html>
