@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href=".css/bootstrap.css" />
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="css/slick.css" />
     <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
@@ -30,8 +30,7 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
 $(function () {
 	$("#order").click(function(){
@@ -47,10 +46,10 @@ $(function () {
 		$(".includepage").load("review.jsp")
 	})
 	$("#user_update").click(function(){
-		$(".includepage").load("user_update.jsp")
+		$(".includepage").load("user_update?beuid=goflrhdwn1")
 	})
 	$("#user_del").click(function(){
-		$(".includepage").load("user_del.jsp")
+		$(".includepage").load("user_del")
 	})
 	$("#inquiry").click(function(){
 		$(".includepage").load("inquiry.jsp")
@@ -126,8 +125,8 @@ $(function () {
             <!-- Side navigation -->
             <div class="sidenav">
               <div class="info">
-               <p class="name">김해리님</p>
-               <p class="email">beshop@beshop.com</p>
+               <p class="name">${sessionScope.uname }님</p>
+               <p class="email">${sessionScope.email }</p>
                 </div>
                   <div class="sidenav_wrap">
                    <p class="title">나의 쇼핑정보</p>
@@ -135,7 +134,7 @@ $(function () {
                     <a href="#" id="point">포인트 내역</a>
                     <a href="#" id="sell">판매중인 상품</a>
                     <p class="title">나의 정보</p>
-                    <a href="#" id="user_update">회원정보 수정</a>
+                    <a id="user_update">회원정보 수정</a>
                     <a href="#" id="user_del">회원탈퇴</a>
                     <p class="title">고객센터</p>
                     <a href="#" id="inquiry">1:1문의</a>
@@ -160,13 +159,14 @@ $(function () {
            	 	<jsp:include page="orderlist.jsp"></jsp:include>
             	</div>    
             </div>
-                        
+                       <div class="scoll">
+                       	<jsp:include page="TopandDown.jsp"></jsp:include>
+                       </div> 
             </div>
             <!-- /container -->
-              <!-- jQuery Plugins -->
-       
+        
         </div>
-       
+        
     
 </body>
 </html>

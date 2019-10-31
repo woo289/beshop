@@ -11,28 +11,27 @@
 <script>
 	$(function(){
 		
-		if($("#pwForm").submit(function(){
-			if($("#pw").val() !== $("#pw2").val()){
+		$("#pwForm").submit(function(){
+			if($("#old_pw").val() !== $("#pw2").val()){
 				alert("비밀번호가 다릅니다.");
-				$("#pw").val("").focus();
+				$("#old_pw").val("").focus();
 				$("#pw2").val("");
 				return false;
-			}else if ($("#pw").val().length < 8) {
-				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
-				$("#pw").val("").focus();
-				return false;
-			}else if($.trim($("#pw").val()) !== $("#pw").val()){
+			}else if($.trim($("#old_pw").val()) !== $("#old_pw").val()){
 				alert("공백은 입력이 불가능합니다.");
 				return false;
 			}
-			else if(confirm("탈퇴 하시겠습니까 ?") == true){
-			        alert("탈퇴되었습니다.");
-			    }
-			    else{
-			        return ;
-			    }
-			}));
-	});
+			else{
+				var result = confirm("탈퇴하시겠습니까?");
+				if(result){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		})
+	})
 </script>
 <style>
 	#joinBtn{transition: all 0.5s;}
@@ -46,11 +45,11 @@
 			<div>
 	
 				<br />
-				<form id="pwForm" action="../member/update_pw.do" method="post">	
-					<input type="hidden" name="id" value="${ member.id }">
+				<form id="pwForm" action="user_del" method="post">	
+					<input type="text" name="beuid" value="${sessionScope.beuid }">
 					<p>
 						<label>기존 비밀번호</label>
-						<input class="w3-input" id="old_pw" name="old_pw" type="password" required>
+						<input class="w3-input" id="old_pw" name="upw" type="password" required>
 					</p>
 					<p>
 						<label>비밀번호 확인</label>
