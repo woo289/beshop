@@ -8,10 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <script src="https://apis.google.com/js/api:client.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <title>Insert title here</title>
-
 
 <script type='text/javascript'>
 //카카오로그인
@@ -30,7 +28,7 @@
                console.log(res);
                
                var id = res.id;      //유저의 카카오톡 고유 id
-               //var userEmail = res.kaccount_email;   //유저의 이메일
+               //var userEmail = res.kaccount_email;   //유저의 이메일 - 카톡로그인으로는 로그인 안받와짐
                var userNickName = res.properties.nickname; //유저가 등록한 별명
                var profileImage = res.properties.profile_image;
                console.log("ID: "+id);
@@ -85,7 +83,7 @@
 	            console.log("Email: " + profile.getEmail());
 				
 	            var access_token = googleUser.getAuthResponse().id_token;
-	            //console.log("Access Token: "+ access_token)
+	            //console.log("Access Token: "+ access_token)액세스토큰
 	            location.href = '/joinpage';
 	            localStorage.setItem('id', id); //아이디 전송
 	            
