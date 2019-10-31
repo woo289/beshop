@@ -1,0 +1,16 @@
+loginPg가 로그인페이지
+나머지는 로그인 후 가는 임시페이지.
+나중에 다 하면 api사이트에서 redirectUrl 설정해줘야 로그인 후 바로 그 사이트로 이동 가능
+
+
+joinpage에 
+var snsid = localStorage.getItem('id'); //sns로그인 시 가져오는 아이디
+$("#snsId").val(snsid);
+//alert($("#snsId").val()); 
+설정해놨으니 잘 오나 확인. 
+snsid는 hidden으로 input에 값 설정하여 가입 시 db에 저장.
+
+sns로 로그인하려면 be_user에 snsid varchar2(20)추가
+
+나중에 로그인하려면 db에 저장된 snsid와 받아오는 snsid가 같은지 확인하여 로그인.
+
