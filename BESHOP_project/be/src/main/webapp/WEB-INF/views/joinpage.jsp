@@ -20,8 +20,9 @@
 			$("#emailcode").show();
 			var email=$("#email").val();
 			
-			$.ajax({url:"mail.go",dataType:"GET",data:{"email":email},success:function(r){
+			$.ajax({url:"mail.go",Type:"GET",data:{"email":email},success:function(r){
 				alert(r);
+				$("#key_a").val(r);
 			}});
 			
 			
@@ -30,14 +31,21 @@
 		$("#btn_Auth").click(function(){
 			
 			var emailcode=$("#emailcode").val();
-			$.ajax({
-				url:"mailok.go",
-				data:{"emailcode":emailcode},
-				success:function(r){
-					
+			var origincode=$("#key_a").val();
+			if(emailcode!=origincode)
+				{
+				$("#email").val('');
+				$("#emailcode").val('');
+				alert("인증코드가 일치하지않습니다");
+				$("#btn_Auth").hide();
+				$("#emailcode").hide();
+				$("#btn_email").show();
 				}
-				
-			})
+			else if(emailcode==origincode)
+			{
+				alert("인증에 성공하였습니다");
+			}
+			
 			
 			
 		})
@@ -222,7 +230,7 @@
              <div class="check_font" id="email_check"></div> 
              <input type="button" id="btn_email" value="인증번호받기">
              <input type="button" id="btn_Auth" value="인증확인">
-             <div class="check_font" id="code_check"></div> 
+           	 <input type="text" id="key_a">
               
              
             <br>
