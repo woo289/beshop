@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,7 +15,7 @@
     <!------ Include the above in your HEAD tag ---------->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="http://www.expertphp.in/js/jquery.form.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
     <script type="text/javascript" src="js/rolldate.min.js"></script>
     
     <script>
@@ -33,10 +33,15 @@
                 i++;
             });
             var n = 1;
+            $(".delInfo").hide();
             $(".addInfo").click(function() {
                 $(".info").append("<div id=num" + n + "><label class='title col-md-2 control-label' style='text-align: right'>추가정보 명</label><input class='title form-control input-md' type='text' value='추가정보" + n + "' style='width: 20%; float:left;'><label class='title col-md-2 control-label'> 이미지 </label> <input type='file' name='as'><textarea type='text' style='width: 100%; height: auto;'></textarea></div>")
                 $(".addInfo").hide();
+                $(".delInfo").toggle();
             });
+            $(".delInfo").click(function(){
+                $(".info").removechild();
+            })
             $(".delInfo").click(function() {
                 n--;
                 $(".info").remove($("#num" + n));
@@ -45,9 +50,30 @@
             $(".salePrice").hide();
             $("#sale").click(function() {
                 $(".salePrice").toggle();
-
             });
-            //$(".addr").hide();
+            $(".auctionOK").hide();
+            $(".now").hide();
+            $(".auctionOK").val(0);
+            
+           /* $("#auction").click(function(){
+                $(".now").toggle();                
+            });*/
+            
+            $("#auction").toggle(function(){
+                $(".auctionOK").val(1); 
+                $(".now").show(); 
+                $(".dayname").text("경매 시작일");
+                $(".pricename").text("초기 금액");
+                
+            },function(){
+                $(".auctionOK").val(0);
+                $(".now").hide(); 
+                $(".dayname").text("게시 날짜");
+                $(".pricename").text("가 격");
+                
+            });
+            
+            $(".addr").hide();
             $(".fa-camera").click(function(){
                 $(".addr").click();
                 setTimeout(function(){
@@ -230,6 +256,7 @@
 </head>
 
 <body>
+   
     <div class = "container myinfo">
         <div class="row-fluid">
             <div class="span2" >
@@ -242,7 +269,7 @@
                 </div>
             </div>
             <div class="span8">
-                <h2>킴 해리</h2><input type="text" name="cname" class="cname">
+                <h2><i class="oldname">킴 해리 </i> <input type="text" name="cname" class="cname"></h2>
                 <h6><i>Email: </i><i name="cemail" class="cemail">goflrhdwn1@gmail.com</i></h6>
                 <h6><i>지역: </i><i name="caddr" class="caddr">인천</i></h6>
                 <h6><i>나이: </i><i name="cage" class="cage">비공개</i></h6>
@@ -281,21 +308,35 @@
 	                                    <input type="text" class="text form-control input-md explain" name="detail" style="width: 100%;"><br>
 	                                    <div class="" style="display:flex;">
 	                                        <div style="display:flow-root; text-align:left " class="control">
-	                                            <label class="title col-md-4 control-label">수량 </label><br><input class="form-control input-md qty" type="number" name="stock" style="width: auto">
+	                                            <label class="title col-md-4 control-label" style="width:100px;">수량 </label><br><input class="form-control input-md qty" type="number" name="stock" style="width: 130px;">
 	                                        </div>
 	                                        <div style="display:flow-root; text-align:left" class="control">
-	                                            <label class="title col-md-4 control-label">가 격 </label><br><input class="form-control input-md price" type="number" min="5000" name="p_price" style="width: auto;">
+	                                            <label class="title col-md-4 control-label pricename" style="width:100px;">가 격 </label><br><input class="form-control input-md price" type="number" min="5000" name="p_price" style="width: 130px;">
+	                                        </div>
+	                                        <div style="display:flow-root; text-align:left" class="control now">
+	                                            <label class="title col-md-4 control-label" style="width:100px;">즉시구매가 </label><br><input class="form-control input-md nowprice" type="number" min="5000" name="p_price" style="width: 130px;">
 	                                        </div>
 	                                        <div class="salePrice control" style=" display:flow-root; text-align: left">
-	                                            <label class="title col-md-7 control-label">할인전 금액</label> <br><input class="form-control input-md sprice" type="number" min="5000" name="p_sprice" style="width: auto;">
+	                                            <label class="title col-md-7 control-label" style="width:130px;">할인전 금액</label> <br><input class="form-control input-md sprice" type="number" min="5000" name="p_sprice" style="width: 130px;">
 	                                        </div>
 	                                        <div>
 	                                            <label class="control-label" style="margin-top: 5px;">할인 적용</label><br>
 	                                            <label class="switch" style=" float: right; margin-top: 5px;">
 	                                                <input type="checkbox" id="sale">
 	                                                <span class="slider round"></span>
-	                                            </label>
+                                                </label>
 	                                        </div>
+	                                        &nbsp;&nbsp;&nbsp;
+	                                        <div >
+                                                <label class="control-label" style="margin-top: 5px; ">경매 기능</label><br>
+                                                <label class="switch" style=" float: right; margin-top: 5px;">
+                                                    <input type="checkbox" id="auction">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="number" class="auctionOK"> 
+                                            </div>
 	                                    </div> <br>
 	                                    <label class="title col-md-4 control-label" style=" display:flow-root; text-align:left">옵션명 </label>
 	                                    <a class="add btn btn-dark" name="add" style="float:right">옵션 추가</a><input class="form-control opname" name="select_op" type="text" style="width:100%;">
@@ -312,17 +353,20 @@
 	                                        <a class="btn btn-dark delInfo" name="delInfo">삭제</a><br>
 	                                    </div>
 	                                    <div class="form-group clearfix">
-	                                        <label class="title col-md-4 control-label" style="text-align: left">게시 날짜</label>
+	                                        <label class="title col-md-4 control-label dayname" style="text-align: left">게시 날짜</label>
 	                                        <div class="col-xs-13">
 	                                            <input readonly class="form-control p_cdate" type="text" id="date-group1-4" name="p_cdate" placeholder="YYYY-MM-DD hh:mm">
 	                                        </div>
+	                                    </div>
+	                                    <div>
+	                                        
 	                                    </div>
 	                                    <div style="float: right">
 								            <input class="btn btn-dark save" type="submit" value="확인">
 								            <input class="btn btn-dark reset" type="reset" value="취소">
 								        </div>
+                                        
 	                                </div>
-	                                <!---->
 	                            </div>
 	                        </div>
 	                    </div>
