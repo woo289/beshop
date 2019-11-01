@@ -7,6 +7,7 @@
 <typeAliases>
 	<typeAlias type="com.beshop.vo.Be_NoticeVo" alias="Be_NoticeVo"/>
 	<typeAlias type="com.beshop.vo.Be_QnaVo" alias="Be_QnaVo"/>
+	<typeAlias type="com.beshop.vo.BE_ProductVo" alias="pvo"/>
 </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -22,5 +23,6 @@
   <mappers>
     <mapper resource="com/beshop/db/be_noticeMapper.xml"/>
     <mapper resource="com/beshop/db/be_qnaMapper.xml"/>
+    <mapper resource="com/beshop/db/BE_ProductMapper.xml"/>
   </mappers>
 </configuration>

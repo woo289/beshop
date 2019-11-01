@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="header.jsp"/>
+<%-- <%@include file="/WEB-INF/include/header.jsp"%>--%>
+<jsp:include page="header.jsp" flush="true"/> 
 	<!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <!-- <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet"  href="https://han3283.cafe24.com/js/lightslider/css/lightslider.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
    
-    <script type="text/javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" type="text/javascript" src="js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://han3283.cafe24.com/js/lightslider/js/lightslider.js"></script> 
     <script type="text/javascript" src="js/slick.min.js"></script>
@@ -62,7 +65,7 @@
     }
     .slide-content .slide-content{
       margin-bottom: 60px;
-        
+         
     }
     .slider li{
       text-align: center;
@@ -88,25 +91,33 @@
         background: url(/skin/musinsa/images/sbb.png) no-repeat;
         background-position: top 15px right 0;
     }
-    .btnL{
-    	float:left;
-    	line-height:250px;
-    	vertical-align: middle;
+     .btnL{
+        position:absolute;
+       float:left;
+       line-height:250px;
+       vertical-align: middle;
     }
-    .btnR{
-    	float:right;
-    	padding:30px;
-    	height:40px;
-    	top:0;
-    	bottom:0;
-    	margin-top:auto;
-    	margin-bottom:auto;
-    	vertical-align: top;
+    
+    .btnR1{
+        position:absolute;
+        top:115px;
+       right:20px;
+
+    }
+     .btnR2{
+        position:absolute;
+        top:115px;
+       right:20px;
+
     }
     .sliderSlick{
+    	width:90%;
     	margin-left: 50px;
 		margin-right: 50px; 
     }
+    .row{padding:30px;}
+    .list1{position: relative;}
+    .list2{position: relative;}
     /* 편성표 이미지 넣기 */
     .item1{background-image:url('http://han3283.cafe24.com/images/apple.jpg'); }
     .item2{background-image:url('http://han3283.cafe24.com/images/cherry.jpg');}
@@ -151,49 +162,84 @@
             pause:3000
         });
 
-        $('.list1').click({
-        	nextArrow:$('.next'),
-            prevArrow:$('.prev')
+        /* $('.list1').click({
+        	nextArrow:$('.next1'),
+            prevArrow:$('.prev1')
             });
         $('.list2').click({
         	nextArrow:$('.next'),
             prevArrow:$('.prev')
-            });
-        $('.sliderSlick').slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            arrows:true,
-            nextArrow:$('.next'),
-            prevArrow:$('.prev'),
-            responsive: [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                  infinite: true,
-                  /* dots: true */
-                }
-              },
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2
-                 
-                }
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                  
-                }
-              }
-            ]
-          });
+            }); */
+            $('.sliderS1').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows:true,
+                nextArrow:$('.next1'),
+                prevArrow:$('.prev1'),
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      /* dots: true */
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                     
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                      
+                    }
+                  }
+                ]
+              });
+            $('.sliderS2').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows:true,
+                nextArrow:$('.next2'),
+                prevArrow:$('.prev2'),
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      /* dots: true */
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                     
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                      
+                    }
+                  }
+                ]
+              });
       
         $('.multiple-items').slick({
         	  infinite: true,
@@ -209,7 +255,7 @@
 <body>
 
 <div class="container-fluid">
-	<div class="row">
+	<div class="container">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
              <div>
@@ -223,8 +269,6 @@
                           <li><a href="#">NIKE</a></li>
                           <li><a href="#">puma</a></li>
                           <li><a href="#">new balance</a></li>
-                      </ul>
-                      <ul class="nav_category_menu" style="width:150px">
                           <li><a href="#">TOP10</a></li>
                           <li><a href="#">GAP</a></li>
                           <li><a href="#">UNICLO</a></li>
@@ -300,11 +344,11 @@
 	                            <hr>
 	                        </div>
 	                        <div class="list1">
-	                            <i class="prev fa fa-angle-left fa-3x btnL"></i>
-		                        <div class="list-unstyled video-list-thumbs row sliderSlick" style="width:400; height: 300px; padding:30;">
-		                        
+								<div>                   
+	                            <i class="prev1 fa fa-angle-left fa-3x btnL"></i>
+		                        <div class="list-unstyled video-list-thumbs row sliderSlick sliderS1" style="width:300; height: 300px; padding:30;">
 		                            <div class="col-lg-3 col-sm-4 col-xs-6">
-		                                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+		                                <a href="shoppingDetail" title="Claudio Bravo, antes su debut con el Barça en la Liga">
 		                                    <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
 		                                    <h3>가성비 내리는 스마트 캐주얼 백팩</h3>
 		                                    <h5>말이 필요없이 일단 가성비가 너무나 내림.</h5>
@@ -358,7 +402,8 @@
 		                                </a>
 		                            </div>
 	                        	</div>
-								<i class="next fa fa-angle-right fa-3x btnR"></i>
+								<i class="next1 fa fa-angle-right fa-3x btnR1"></i>
+	                        	</div>
 	                        </div>
                         </div>
                         <hr>
@@ -367,8 +412,9 @@
                             <hr>
                         </div>
                         <div class="list2">
-                            <i class="prev fa fa-angle-left fa-3x btnL"></i>
-                            <div class="list-unstyled video-list-thumbs row sliderSlick" style="height: 300px;">
+                            <i class="prev2 fa fa-angle-left fa-3x btnL"></i>
+                            <div>
+                            <div class="list-unstyled video-list-thumbs row sliderSlick sliderS2" style="width:300; height: 300px; padding:30px">
                                 <div class="col-lg-3 col-sm-4 col-xs-6">
                                     <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
                                         <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
@@ -415,7 +461,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <i class="next fa fa-angle-right fa-3x btnR"></i>
+                            <i class="next2 fa fa-angle-right fa-3x btnR2"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
