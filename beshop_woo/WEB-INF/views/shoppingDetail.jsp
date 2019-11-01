@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>shopping detail</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -29,13 +29,6 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 
     </head>
     
@@ -70,47 +63,58 @@
 				<!-- row -->
 				<div class="row">
 					<!-- Product main img -->
-					<div class="col-md-5 col-md-push-2">
+					<div class="col-md-5 col-md-push-2" style="width:50%; left:0;">
 						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
+							<div class="poster-main" id="carousel" data-setting='{
+							"width":1000,
+							"height":500,
+							"posterWidth":600,
+							"posterHeight":500,
+							"scale":0.8,
+							"speed":1000,
+							"autoPlay":true,
+							"delay":3000,
+							"verticalAlign":"middle"
+							}'> 
+								<div class="poster-item"> 
+									<div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
+							       	<script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
+							    	{ "src": "video/HaeLee01.mp4,
+							    	  "logo": "img/beShop.png" }
+							 	 	</script>
+					 				</div>
+					        	</div>
+					        </div>
 						</div>
 					</div>
 					<!-- /Product main img -->
 
-					<!-- Product thumb imgs -->
+					<!-- <!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
-						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="portlet portlet-default">
+									<div class="portlet-heading">
+										<div class="portlet-title">
+											<h4><i class="fa fa-circle text-green">실시간 채팅창</i></h4>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div id="chat" class="panel-collapse collapse in">
+										<div id="chatlist" class="porlet-body chat-widget" style="overflow-y:auto; width:auto; height:600px;">
+										</div>
+										<div class="portlet-footer">
+											<div class="row">
+												<div class="form-group col-xs-4">
+													<input style="height:40px;" type="text" id="chatName" class="form-control" placeholder="이름">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					<!-- /Product thumb imgs -->
 
 					<!-- Product details -->

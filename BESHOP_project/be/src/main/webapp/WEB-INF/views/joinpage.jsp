@@ -12,6 +12,13 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
+		var snsid = localStorage.getItem('id'); //sns로그인 시 가져오는 아이디
+		//alert(snsid);
+		$("#snsId").val(snsid);  //snsId에 값을 넣어줘야되서 추가할 것.
+		//alert($("#snsId").val()); 
+		var snsId = $("#snsId").val(); //snsId
+		console.log(snsId);
+		
 		$("#btn_Auth").hide();
 		$("#emailcode").hide();
 		$("#btn_email").click(function(){
@@ -203,7 +210,7 @@
         <form method="post" action="/be/joinpage"  name="f" onsubmit="return sendIt();">
              <p>아이디</p><span><input type="text" name="beuid" id="beuid"  maxlength="12" ></span><br>
             <div class="check_font" id="id_check"></div>
-			
+			<input id="snsId" type="hidden"> 
 
             
            <p>비밀번호</p><span><input type="password" name="upw" id="upw" maxlength="12" ></span><br>

@@ -145,7 +145,7 @@ $(function(){
       </form>
        <ul class="second">
           <li><a href="search_user">아이디/비밀번호 찾기</a></li> 
-           <li><a href="insert.html">회원가입</a></li>
+           <li><a href="joinpage">회원가입</a></li>
        </ul>
        </nav>
        </c:when>
