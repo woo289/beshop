@@ -11,10 +11,8 @@ import com.example.be.vo.UserVo;
 
 public class DBManager {
 	private static SqlSessionFactory factory;
-	
 	static
 	{
-		
 		try {
 			Reader reader
 			= Resources.getResourceAsReader("com/example/be/db/dbConfig.xml");
@@ -31,6 +29,7 @@ public class DBManager {
 		// TODO Auto-generated method stub
 		int re=-1;
 		SqlSession session=factory.openSession();
+		System.out.println("매니저에서의 값확인"+v);
 		re=session.insert("Join.insert",v);
 		session.commit();
 		session.close();

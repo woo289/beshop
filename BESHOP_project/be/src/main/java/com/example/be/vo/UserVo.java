@@ -1,6 +1,7 @@
 package com.example.be.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class UserVo {
 
@@ -9,10 +10,10 @@ public class UserVo {
 	String sex;
 	String birth;	//String
 	String uname;
-	Date loginLog;
+	Timestamp loginLog;
 	String addr1;
 	String addr2;
-	int uphone;
+	String uphone;
 	String email;
 	Date joindate;
 	String pf1;
@@ -48,10 +49,10 @@ public class UserVo {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	public Date getLoginLog() {
+	public Timestamp getLoginLog() {
 		return loginLog;
 	}
-	public void setLoginLog(Date loginLog) {
+	public void setLoginLog(Timestamp loginLog) {
 		this.loginLog = loginLog;
 	}
 	public String getAddr1() {
@@ -66,10 +67,10 @@ public class UserVo {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public int getUphone() {
+	public String getUphone() {
 		return uphone;
 	}
-	public void setUphone(int uphone) {
+	public void setUphone(String uphone) {
 		this.uphone = uphone;
 	}
 	public String getEmail() {
@@ -102,8 +103,8 @@ public class UserVo {
 	public void setPf3(String pf3) {
 		this.pf3 = pf3;
 	}
-	public UserVo(String beuid, String upw, String sex, String birth, String uname, Date loginLog, String addr1,
-			String addr2, int uphone, String email, Date joindate, String pf1, String pf2, String pf3) {
+	public UserVo(String beuid, String upw, String sex, String birth, String uname, Timestamp loginLog, String addr1,
+			String addr2, String uphone, String email, Date joindate, String pf1, String pf2, String pf3) {
 		super();
 		this.beuid = beuid;
 		this.upw = upw;
@@ -124,6 +125,13 @@ public class UserVo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "UserVo [beuid=" + beuid + ", upw=" + upw + ", sex=" + sex + ", birth=" + birth + ", uname=" + uname
+				+ ", loginLog=" + loginLog + ", addr1=" + addr1 + ", addr2=" + addr2 + ", uphone=" + uphone + ", email="
+				+ email + ", joindate=" + joindate + ", pf1=" + pf1 + ", pf2=" + pf2 + ", pf3=" + pf3 + "]";
+	}
+	
 	
 	
 }

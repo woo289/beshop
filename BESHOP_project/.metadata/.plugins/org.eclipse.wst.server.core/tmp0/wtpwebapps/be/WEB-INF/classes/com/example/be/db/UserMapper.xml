@@ -5,6 +5,12 @@
   <mapper namespace="Join">
   
   <insert id="insert">
-  	insert into be_user	values(#{beuid},#{upw},#{sex},#{uname},SYSDATE,#{uphone},#{email},SYSDATE,${pf1},${pf2},${pf3},null,null,#{birth})
+  	insert into be_user values(#{beuid},
+								  	 #{upw},
+								  	 #{sex},
+								  	 #{birth},
+								  	 #{uname},SYSDATE,NULL,NULL,#{uphone},
+								  	 #{email},sysdate,#{pf1},#{pf2},#{pf3})
+  	
   </insert>
   </mapper>
