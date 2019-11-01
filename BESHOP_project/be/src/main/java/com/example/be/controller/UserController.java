@@ -56,4 +56,9 @@ public class UserController {
 		return mav;
 		
 	}
+	@RequestMapping("/octionpopup")
+	public void popup()
+	{
+		
+	}
 }
