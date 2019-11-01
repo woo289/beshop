@@ -114,7 +114,56 @@ public class DBManager {
 		session.close();
 		return list;
 	}
+	
+	public static List<Be_ChargePointVo> plusPointList(String beuid)
+	{
+		List<Be_ChargePointVo> plist = null;
+		SqlSession session = factory.openSession();
+		plist = session.selectList("point.PlusPointList");
+		session.close();
+		return plist;
+	}
+	public static List<Be_PayPointVo> minusPointList(String beuid)
+	{
+		List<Be_PayPointVo> mlist = null;
+		SqlSession session = factory.openSession();
+		mlist = session.selectList("point.MinusPointList");
+		session.close();
+		return mlist;
+	}
+	public static Be_PointBalanceVo pointBalance(String beuid)
+	{
+		HashMap map = new HashMap();
+		map.put(beuid, beuid);
+		Be_PointBalanceVo point;
+		SqlSession session = factory.openSession();
+		point = session.selectOne("point.getPoint", map);
+		session.close();
+		return point;
+	}
+	
+	public static int  chargePoint(Be_ChargePointVo c)
+	{
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("point.chargeP", c);
+		//System.out.println("동작 dbmng");
+		//System.out.println("re: "+re);
+		session.commit();
+		session.close();
 		
+		return re;
+		
+	}
+	
+	public static int payPoint(Be_PayPointVo p)
+	{
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("point.payP", p);
+		session.close();
+		return re;
+	}
 
 	
 }

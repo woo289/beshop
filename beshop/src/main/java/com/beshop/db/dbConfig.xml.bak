@@ -10,7 +10,7 @@
 	<typeAlias type="com.beshop.vo.ChargePointVo" alias="Be_ChargeVo"/>
   	<typeAlias type="com.beshop.vo.PayPointVo" alias="Be_pPayVo"/>
   	<typeAlias type="com.beshop.vo.PointBalanceVo" alias="Be_BalanceVo"/>
-  	 <typeAlias type="com.beshop.vo.UserVo" alias="Be_uservo"/>
+  	 <typeAlias type="com.beshop.vo.UserVo" alias="uservo"/>
 </typeAliases>
   <environments default="development">
     <environment id="development">
