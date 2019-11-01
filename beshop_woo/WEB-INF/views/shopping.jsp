@@ -115,6 +115,7 @@
     	margin-left: 50px;
 		margin-right: 50px; 
     }
+    .row{padding:30px;}
     .list1{position: relative;}
     .list2{position: relative;}
     /* 편성표 이미지 넣기 */
@@ -254,7 +255,7 @@
 <body>
 
 <div class="container-fluid">
-	<div class="row">
+	<div class="container">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
              <div>
@@ -268,8 +269,6 @@
                           <li><a href="#">NIKE</a></li>
                           <li><a href="#">puma</a></li>
                           <li><a href="#">new balance</a></li>
-                      </ul>
-                      <ul class="nav_category_menu" style="width:150px">
                           <li><a href="#">TOP10</a></li>
                           <li><a href="#">GAP</a></li>
                           <li><a href="#">UNICLO</a></li>
@@ -349,7 +348,7 @@
 	                            <i class="prev1 fa fa-angle-left fa-3x btnL"></i>
 		                        <div class="list-unstyled video-list-thumbs row sliderSlick sliderS1" style="width:300; height: 300px; padding:30;">
 		                            <div class="col-lg-3 col-sm-4 col-xs-6">
-		                                <a href="shoppingDetail.jsp" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+		                                <a href="shoppingDetail" title="Claudio Bravo, antes su debut con el Barça en la Liga">
 		                                    <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
 		                                    <h3>가성비 내리는 스마트 캐주얼 백팩</h3>
 		                                    <h5>말이 필요없이 일단 가성비가 너무나 내림.</h5>

@@ -125,8 +125,8 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
-										<i class="fa fa-heart-o" style="color:black"></i>
+									<a href="addProduct">
+										<i class="fa fa-video-camera" style="color:black"></i>
 										<span style="color: black">위시리스트</span>
 										<div class="qty">2</div>
 									</a>
@@ -203,8 +203,8 @@
 				<div id="responsive-nav" >
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="shopping.jsp">쇼핑</a></li>
+						<li class="active"><a href="main">Home</a></li>
+						<li><a href="shopping">쇼핑</a></li>
 						<li><a href="FundMain.jsp">공동구매</a></li>
 						<li><a href="subscription.jsp">구독</a></li>
 						<li><a href="ranking.jsp">랭킹</a></li>
