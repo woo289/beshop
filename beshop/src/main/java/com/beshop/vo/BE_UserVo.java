@@ -6,11 +6,9 @@ public class BE_UserVo {
 	private String beuid;
 	private String upw;
 	private String sex;
-	private Date birth;
+	private String birth;
 	private String uname;
-	private String scnum;
 	private Date loginlog;
-	private String zipcoe;
 	private String addr1;
 	private String addr2;
 	private String uphone;
@@ -19,7 +17,28 @@ public class BE_UserVo {
 	private String pf1;
 	private String pf2;
 	private String pf3;
-	private int gradenum;
+	public BE_UserVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BE_UserVo(String beuid, String upw, String sex, String birth, String uname, Date loginlog, String addr1,
+			String addr2, String uphone, String email, Date joindata, String pf1, String pf2, String pf3) {
+		super();
+		this.beuid = beuid;
+		this.upw = upw;
+		this.sex = sex;
+		this.birth = birth;
+		this.uname = uname;
+		this.loginlog = loginlog;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.uphone = uphone;
+		this.email = email;
+		this.joindata = joindata;
+		this.pf1 = pf1;
+		this.pf2 = pf2;
+		this.pf3 = pf3;
+	}
 	public String getBeuid() {
 		return beuid;
 	}
@@ -38,10 +57,10 @@ public class BE_UserVo {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getUname() {
@@ -50,23 +69,11 @@ public class BE_UserVo {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	public String getScnum() {
-		return scnum;
-	}
-	public void setScnum(String scnum) {
-		this.scnum = scnum;
-	}
 	public Date getLoginlog() {
 		return loginlog;
 	}
 	public void setLoginlog(Date loginlog) {
 		this.loginlog = loginlog;
-	}
-	public String getZipcoe() {
-		return zipcoe;
-	}
-	public void setZipcoe(String zipcoe) {
-		this.zipcoe = zipcoe;
 	}
 	public String getAddr1() {
 		return addr1;
@@ -116,37 +123,5 @@ public class BE_UserVo {
 	public void setPf3(String pf3) {
 		this.pf3 = pf3;
 	}
-	public int getGradenum() {
-		return gradenum;
-	}
-	public void setGradenum(int gradenum) {
-		this.gradenum = gradenum;
-	}
-	public BE_UserVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public BE_UserVo(String beuid, String upw, String sex, Date birth, String uname, String scnum, Date loginlog,
-			String zipcoe, String addr1, String addr2, String uphone, String email, Date joindata, String pf1,
-			String pf2, String pf3, int gradenum) {
-		super();
-		this.beuid = beuid;
-		this.upw = upw;
-		this.sex = sex;
-		this.birth = birth;
-		this.uname = uname;
-		this.scnum = scnum;
-		this.loginlog = loginlog;
-		this.zipcoe = zipcoe;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.uphone = uphone;
-		this.email = email;
-		this.joindata = joindata;
-		this.pf1 = pf1;
-		this.pf2 = pf2;
-		this.pf3 = pf3;
-		this.gradenum = gradenum;
-	}
-	
+
 }

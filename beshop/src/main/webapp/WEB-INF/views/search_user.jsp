@@ -67,7 +67,7 @@
 				}
 			 	else{
 					alert("인증번호를 발송하였습니다.");
-					$.ajax({url:"mail.go",type:"GET",data:"email="+email, success:function(r){
+					$.ajax({url:"pwdmail.go",type:"GET",data:"email="+email, success:function(r){
 						alert(r);
 						$("#hidden_ok").html(r);
 						alert($("#hidden_ok").text());
