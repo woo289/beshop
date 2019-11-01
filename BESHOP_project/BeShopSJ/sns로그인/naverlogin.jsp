@@ -48,14 +48,22 @@
                   naverLogin.reprompt();
                   return;
                }
-               
-               //window.location.replace("http://127.0.0.1/test2.html");
+             
+               window.close();
+             //callback처리 되면 이동 할 페이지
+               opener.parent.location = "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/joinpage";
+              // var newWindow = window.open("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/joinpage","_blank");
+				
+               //window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/joinpage");
+				
+			   localStorage.setItem('id', id); //id 상태유지
             } else {
                console.log("callback 처리에 실패하였습니다.");
             }
          });
       });
 
+      
       
    </script>
     로그인 성공

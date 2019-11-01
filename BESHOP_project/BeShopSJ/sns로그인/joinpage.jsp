@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 	<style type="text/css">
 		input[type="number"]::-webkit-outer-spin-button,
-		input[type="number"]::-webkit-inner-spin-button {
+		input[type="number"]::-webkit-inner-spin-button { 
 	    -webkit-appearance: none;
 	    margin: 0;
 	}
@@ -21,9 +21,12 @@
 	$(function(){
 		var snsid = localStorage.getItem('id'); //sns로그인 시 가져오는 아이디
 		//alert(snsid);
-		$("#snsId").val(snsid);
-		
+		$("#snsId").val(snsid);  //snsId에 값을 넣어줘야되서 추가할 것.
 		//alert($("#snsId").val()); 
+		var snsId = $("#snsId").val(); 
+		console.log(snsId);
+
+		
 		$("#btn_Auth").hide();
 		$("#emailcode").hide();
 		$("#btn_email").click(function(){
@@ -206,7 +209,7 @@
 	<h1 id="logo">BESHOP</h1>
     <div id="f_insert">
         <form method="post" action="/be/joinpage"  name="f" onsubmit="return sendIt();">
-        	<input id="snsId" type="hidden">
+        	<input id="snsId" type="hidden"> <!-- snsId를 입력해야하므로 추가할 것-->
              <p>아이디</p><span><input type="text" name="beuid" id="beuid"  maxlength="12" ></span><br>
             <div class="check_font" id="id_check"></div>
 			
