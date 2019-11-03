@@ -11,7 +11,7 @@
 	<typeAlias type="com.beshop.vo.Be_ChargePointVo" alias="Be_ChargeVo"/>
   	<typeAlias type="com.beshop.vo.Be_PayPointVo" alias="Be_PayVo"/>
   	<typeAlias type="com.beshop.vo.Be_PointBalanceVo" alias="Be_BalanceVo"/>
-  	 <typeAlias type="com.beshop.vo.UserVo" alias="Be_uservo"/>
+  	 <typeAlias type="com.beshop.vo.Be_UserVo" alias="Be_uservo"/>
 =======
 	<typeAlias type="com.beshop.vo.BE_ProductVo" alias="pvo"/>
 >>>>>>> 81fbed5f244ad09c119c8cb07d683050a86dbb26
