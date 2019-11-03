@@ -61,6 +61,108 @@ $(function(){
 	}
 });
 </script>
+<!-- 카카오로그인 -->
+	<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('javascript키입력');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+        success: function(authObj) {
+          //alert(JSON.stringify(authObj));
+          Kakao.API.request({
+
+        	  url: '/v2/user/me',
+              success: function(res) {
+               console.log(res);
+               
+               var id = res.id;      //유저의 카카오톡 고유 id
+               //var userEmail = res.kaccount_email;   //유저의 이메일
+               var userNickName = res.properties.nickname; //유저가 등록한 별명
+               var profileImg = res.properties.profile_image;
+               console.log("ID: "+id);
+               //console.log(userEmail);
+               console.log("Nickname: "+userNickName);
+               console.log("ProfileImg : "+profileImg);
+               //console.log("Access Token: "+authObj.access_token);
+               location.href = '/joinpage';
+               localStorage.setItem('id', id);
+               localStorage.setItem('profileImg', profileImg);
+               
+                  }
+
+                });
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+
+  //]]>
+</script>
+	
+ <!-- 구글 -->
+<script type="text/javascript">
+	var googleUser = {};
+	var startApp = function() {
+	  gapi.load('auth2', function(){
+	    // Retrieve the singleton for the GoogleAuth library and set up the client.
+	    auth2 = gapi.auth2.init({
+	        
+	      // 클라이언트 ID 설정하기
+	      client_id: '구글클라이언트id입력',
+	      
+	      cookiepolicy: 'single_host_origin',
+	    });
+	    attachSignin(document.getElementById('customBtn'));
+	  });
+	};
+	
+	function attachSignin(element) {
+	  console.log(element.id);
+	  auth2.attachClickHandler(element, {},
+	      function(googleUser) {
+	            googleUser.getBasicProfile().getName();
+	            var profile = googleUser.getBasicProfile();
+	            var id = profile.getId()
+	            var profileImg = profile.getImageUrl();
+	            console.log("ID: " + id); 
+	            console.log('Full Name: ' + profile.getName());
+	            console.log('Given Name: ' + profile.getGivenName());
+	            console.log('Family Name: ' + profile.getFamilyName());
+	            console.log("Image URL: " + profile.getImageUrl());
+	            console.log("Email: " + profile.getEmail());
+				
+	            var access_token = googleUser.getAuthResponse().id_token;
+	            //console.log("Access Token: "+ access_token)
+	            location.href = '/joinpage';
+	            localStorage.setItem('id', id);
+	            localStorage.setItem('profileImg', profileImg);
+	            
+	      }, function(error) {
+	        alert(JSON.stringify(error, undefined, 2));
+	      });
+	}	
+</script>
+<!-- 네이버 -->	
+
+<script type="text/javascript">
+   var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "api키입력",
+				callbackUrl: "http://localhost:8082/naverlogin", 
+				//로그인하면 callback처리 되서 naverlogin으로 이동한 후 로그인 정보가 있으면 가입페이지로
+				isPopup: true, //로그인창 팝업
+				callbackHandle: true
+			}
+		);
+
+		//naverlogin페이지로 넘어가서 callback 처리됨 naverlogin페이지 반드시 필요
+		naverLogin.init();
+</script>
+<script>startApp();</script>
 <style>
 #hamburger-wrapper {
   float: right;
@@ -145,7 +247,7 @@ $(function(){
       </form>
        <ul class="second">
           <li><a href="search_user">아이디/비밀번호 찾기</a></li> 
-           <li><a href="insert.html">회원가입</a></li>
+           <li><a href="joinpage">회원가입</a></li>
        </ul>
        </nav>
        </c:when>
