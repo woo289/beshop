@@ -14,6 +14,7 @@
   	 <typeAlias type="com.beshop.vo.Be_UserVo" alias="Be_uservo"/>
 =======
 	<typeAlias type="com.beshop.vo.BE_ProductVo" alias="pvo"/>
+	<typeAlias type="com.beshop.vo.BE_AuctionVo" alias="avo"/>
 >>>>>>> 81fbed5f244ad09c119c8cb07d683050a86dbb26
 </typeAliases>
   <environments default="development">
