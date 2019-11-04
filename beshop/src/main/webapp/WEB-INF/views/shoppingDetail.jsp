@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<jsp:include page="header.jsp" flush="true"/> 
+	<jsp:include page="header.jsp" flush="true"/>
+	  
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +37,55 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<style type="text/css">
+		.poster-item {
+            width: 500px;
+            height: 400px;
+            text-decoration: none;
+            list-style: none;
+            margin-right: 100px;
+            position: relative;
+          }
+          .flowplayer {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#qual {
+  position: absolute; left: 1050px; top: 10px;
+  font-family: courier, monospace;
+  /* background-color: #262626; */
+  transition: all .3s;
+  border-radius: 3px;
+  font-size: 90%;
+  padding: 2em;
+  z-index: 1;
+  
+}
+
+#qual h3 {
+  margin: 0 0 10px;
+  color: #eee;
+}
+
+#qual label {
+  display: inline-block;
+  color: lime;
+  width: 100px;
+}
+
+#qual strong {
+  font-weight: 500;
+  color: #fff;
+}
+
+#qual.switching {
+  background-color: #ff0083;
+  transform: scale(1.05);
+}
+        
+		
+		</style>
 
     </head>
     
@@ -71,45 +121,29 @@
 				<div class="row">
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
+					<div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
+  <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
+    { "src": "video/HaeLee01.mp4", "plugins": ["qsel"] }
+  </script>
+  <div id="qual" class="">
+    <jsp:include page="home.jsp"></jsp:include>
+  </div>
+</div>
 
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
 
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
-						</div>
+						
+						
+										
+										
+										
 					</div>
+					
 					<!-- /Product main img -->
 
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
-						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
-						</div>
+						<!-- <div id="product-imgs"></div> -->
+						
 					</div>
 					<!-- /Product thumb imgs -->
 
