@@ -59,6 +59,7 @@ $(function(){
 	 if(msg == "실패"){
 		alert("로그인 정보를 확인해주세요!");
 	}
+
 });
 </script>
 <!-- 카카오로그인 -->
@@ -163,6 +164,7 @@ $(function(){
 		naverLogin.init();
 </script>
 <script>startApp();</script>
+
 <style>
 #hamburger-wrapper {
   float: right;
@@ -228,6 +230,18 @@ $(function(){
     .myheader{width:100%; text-align: center; margin-top: 50px;}
 </style>
     </head>
+      <script type="text/javascript">
+		$(function(){
+			$.getJSON("getPoint",function(data){
+					console.log(data);
+					//alert(data.pbalnow);
+					var p = $("<p></p>").html(data.pbalnow);
+					$("#point").append(p);
+					});
+			});
+			//로그인 시 포인트 불러오기
+				
+</script>
 	<body>
 	 <!--햄버거 로그인 영역 -->
       
@@ -265,6 +279,7 @@ $(function(){
             <a>My page</a>
             <a>나의 주문내역</a>
             <a>고객센터</a>
+            <a id="point">보유포인트</a>
             <header class="myheader"  style="margin-top:50px; font-size:17px;]">최근 시청한 방송</header>
         </div>
        	</nav>
@@ -292,7 +307,7 @@ $(function(){
 					</c:when>
 					 <c:otherwise>
 					 <ul class="header-links pull-right">
-						<li><a href="#"> <i class="fa fa-dollar" style="color: black"></i>point</a></li>
+						<li><a href="/charge"> <i class="fa fa-dollar" style="color: black"></i>point</a></li>
 						<li><a id="log"><i class="fa fa-user-o" style="color: black"></i> Logout</a></li>
 						<li><a href="mypage"><i class="fa fa-user-o" style="color: black"></i> My Page</a></li>
 					</ul>
@@ -310,6 +325,7 @@ $(function(){
                 $("body").removeClass("dark");
                 });
             </script>
+       
 			<!-- /TOP HEADER -->
 
 			<!-- MAIN HEADER -->

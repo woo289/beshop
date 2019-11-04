@@ -135,12 +135,14 @@ public class DBManager {
 	public static Be_PointBalanceVo pointBalance(String beuid)
 	{
 		HashMap map = new HashMap();
-		map.put(beuid, beuid);
-		Be_PointBalanceVo point;
+		//System.out.println("ì•„ì´ë””ëŠ” "+beuid);
+		map.put("beuid", beuid);
+		System.out.println("managerì—ì„œ map"+map);
+		Be_PointBalanceVo  p;
 		SqlSession session = factory.openSession();
-		point = session.selectOne("point.getPoint", map);
+		p = session.selectOne("point.getPoint", beuid);
 		session.close();
-		return point;
+		return p;
 	}
 	
 	public static int  chargePoint(Be_ChargePointVo c)
@@ -156,7 +158,7 @@ public class DBManager {
 		return re;
 =======
 
-	//be_user °ü·Ã ÇØ¸®°¡ Ãß°¡ÇÑ DBManager
+	//be_user ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ DBManager
 	public static  String searchId(HashMap map) {
 		// TODO Auto-generated method stub
 		String beuid = "";	
@@ -175,7 +177,7 @@ public class DBManager {
 		String beuid = (String)map.get("beuid");
 		String pwd = (String)map.get("pwd");
 		String new_pwd = (String)map.get("new_pwd");
-		System.out.println("¾ÆÀÌµğ : "+beuid+"ºñ¹Ğ¹øÈ£ : "+pwd+"»õ ºñ¹ø : "+new_pwd);
+		System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ : "+beuid+"ï¿½ï¿½Ğ¹ï¿½È£ : "+pwd+"ï¿½ï¿½ ï¿½ï¿½ï¿½ : "+new_pwd);
 	    int r =  session.update("beuser.updatePwd",map);
 	    System.out.println(r);
 	    session.commit();
@@ -189,7 +191,7 @@ public class DBManager {
 		SqlSession session = factory.openSession();
 		String beuid = (String)map.get("beuid");
 		String upw = (String)map.get("upw");
-		System.out.println("·Î±×ÀÎ ½ÃµµÇÑ ¾ÆÀÌµğ : "+beuid+" ºñ¹Ğ¹øÈ£ : "+upw);
+		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ : "+beuid+" ï¿½ï¿½Ğ¹ï¿½È£ : "+upw);
 		vo = session.selectOne("beuser.loginUser",map);
 		System.out.println(vo);
 		session.close();
@@ -199,7 +201,7 @@ public class DBManager {
 	public static int newPwd(String beuid, String keyCode) {
 		// TODO Auto-generated method stub
 		SqlSession session = factory.openSession();
-		System.out.println("¸Å´ÏÀú±îÁö Àß ¿Ô³ª¿ë ¾ÆÀÌµğ :"+beuid+"keycode´Â ¿ë"+keyCode);
+		System.out.println("ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ :"+beuid+"keycodeï¿½ï¿½ ï¿½ï¿½"+keyCode);
 		HashMap map = new HashMap();
 		map.put("beuid", beuid);
 		map.put("new_pwd", keyCode);
@@ -225,7 +227,7 @@ public class DBManager {
 		// TODO Auto-generated method stub
 		int re=-1;
 		SqlSession session=factory.openSession();
-		System.out.println("¸Å´ÏÀú¿¡¼­ÀÇ °ªÈ®ÀÎ"+v);
+		System.out.println("ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½"+v);
 		re=session.insert("beuser.insert",v);
 		session.commit();
 		session.close();
