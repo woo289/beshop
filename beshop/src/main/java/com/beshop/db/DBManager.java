@@ -30,7 +30,22 @@ public class DBManager {
 		}
 	}
 	
+	public static BE_AuctionVo nowAuction() {
+		BE_AuctionVo ao= null;
+		SqlSession session = factory.openSession();
+		ao = session.selectOne("product.nowAuction");
+		session.close();
+		return ao;
+	}
 	
+	public static int insertAuction(BE_AuctionVo ao) {
+		int r = 0;
+		SqlSession session = factory.openSession();
+		r = session.insert("product.insertAuction",ao);
+		session.commit();
+		session.close();
+		return r;
+	}
 	
 	public static int deleteNotice(int noticenum) {
 		int re = -1;
@@ -150,7 +165,7 @@ public class DBManager {
 		int re = -1;
 		SqlSession session = factory.openSession();
 		re = session.insert("point.chargeP", c);
-		//System.out.println("동작 dbmng");
+		//System.out.println("?�작 dbmng");
 		//System.out.println("re: "+re);
 		session.commit();
 		session.close();
