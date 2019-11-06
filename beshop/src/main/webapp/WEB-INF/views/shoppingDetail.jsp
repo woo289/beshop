@@ -38,29 +38,32 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<style type="text/css">
-		.poster-item {
-            width: 500px;
-            height: 400px;
-            text-decoration: none;
-            list-style: none;
-            margin-right: 100px;
-            position: relative;
-          }
-          .flowplayer {
-  max-width: 1000px;
-  margin: 0 auto;
+	.use-play-1 {
+		position:absolute;
+		width: 600px;
+		height: 400px;
+		left: -150px;
+	}		
+		
+ .poster-item {
+   width: 600px;
+   height: 500px;
+   text-decoration: none;
+   list-style: none;   
+         }
+  .flowplayer {
+  	max-width: 1000px;
 }
 
 #qual {
-  position: absolute; left: 1050px; top: 10px;
+  position: absolute; left: 1000px; top: 10px;
   font-family: courier, monospace;
   /* background-color: #262626; */
   transition: all .3s;
   border-radius: 3px;
   font-size: 90%;
-  padding: 2em;
-  z-index: 1;
-  
+  padding: 2em; 
+  z-index: 1;  
 }
 
 #qual h3 {
@@ -84,7 +87,7 @@
   transform: scale(1.05);
 }
         
-		
+
 		</style>
 
     </head>
@@ -126,17 +129,10 @@
     { "src": "video/HaeLee01.mp4", "plugins": ["qsel"] }
   </script>
   <div id="qual" class="">
-    <jsp:include page="home.jsp"></jsp:include>
+    <jsp:include page="home.jsp"/>
   </div>
 </div>
-
-
-						
-						
-										
-										
-										
-					</div>
+	</div>
 					
 					<!-- /Product main img -->
 

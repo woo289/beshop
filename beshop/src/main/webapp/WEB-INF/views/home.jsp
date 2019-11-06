@@ -28,32 +28,34 @@
 
 <style type="text/css">
 #chat_box {
+	
 	width: 500px;
 	height: 600px;
 	border: 2px solid #00A8B3;
 	text-align: right;
     font-size: 16px; 
-    
 }
 .soso {
 	margin-right: 10px;
     margin-top: 2px;
 }
 
-#msg {
+#msgc {
+    
 	width: 470px;
 	height:50px;
 	text-align: right;
 	border: 1px solid #00A8B3;
+	 
 }
 #name {
-    position: absolute;
-    left: 42px;
+    
 	text-align: right;
 	border: 1px solid #00A8B3;
+	
 }
 
-#msg_process {
+#msgc_process {
     position: relative;
 	width: 90px;
     left: 415px;
@@ -64,48 +66,49 @@
 <body>
 
 	<div id="chat_box" style="overflow: scroll;"></div>
-	ID:  &nbsp;&nbsp;<input id="name" class="name" type="text"><br>
-	Text:<input type="text" id="msg"><br>
-	<button id="msg_process">전송</button><br>
+	ID: &nbsp;&nbsp;<input id="name" class="name" type="text"><br>
+	Text:<input type="text" id="msgc"><br>
+	<button id="msgc_process">전송</button><br>
 
 	<script src="http://203.236.209.104:82/socket.io/socket.io.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js
+"></script>
 	<script>
 		$(document).ready(function() {
 			var socket = io("http://203.236.209.104:82");
 			var chat_box = document.getElementById("#chat_box");
 			
-			//msg에서 키를 누를떄
-			$("#msg").keydown(function(key) {
+			//msgc에서 키를 누를떄
+			$("#msgc").keydown(function(key) {
 				//해당하는 키가 엔터키(13) 일떄
 				if (key.keyCode == 13) {
-					//msg_process를 클릭해준다.
-					msg_process.click();
+					//msgc_process를 클릭해준다.
+					msgc_process.click();
 				}
 			});
 			
-			//msg_process를 클릭할 때
-			$("#msg_process").click(function(e) {
-				//소켓에 send_msg라는 이벤트로 input에 #msg의 벨류를 담고 보내준다.
-				socket.emit("send_msg", $("#name").val());
-				socket.emit("send_msg", $("#msg").val());
-				//#msg에 벨류값을 비워준다.
-				$("#msg").val("");
-				$("#msg").focus();
+			//msgc_process를 클릭할 때
+			$("#msgc_process").click(function(e) {
+				//소켓에 send_msgc라는 이벤트로 input에 #msgc의 벨류를 담고 보내준다.
+				socket.emit("send_msgc", $("#name").val());
+				socket.emit("send_msgc", $("#msgc").val());
+				//#msgc에 벨류값을 비워준다.
+				$("#msgc").val("");
+				$("#msgc").focus();
 				e.preventDefault();
 				chat_box.scrollTop = chat_box.scrollHeight;
 			});
 
-			//소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
-			socket.on('send_msg', function(msg) {
-				//div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
-				$('<div class="soso"></div>').text(msg).appendTo("#chat_box");
+			//소켓 서버로 부터 send_msgc를 통해 이벤트를 받을 경우 
+			socket.on('send_msgc', function(msgc) {
+				//div 태그를 만들어 텍스트를 msgc로 지정을 한뒤 #chat_box에 추가를 시켜준다.
+				$('<div class="soso"></div>').text(msgc).appendTo("#chat_box");
 				
 				
 			});
 			 socket.on('change name', function(name){
 		            $('#name').val(name);
-			        $('#msg').val(msg);
+			        $('#msgc').val(msgc);
 			      });
 			 
 			 chat_box.scrollTop = chat_box.scrollHeight; 
