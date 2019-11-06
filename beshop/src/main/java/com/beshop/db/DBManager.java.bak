@@ -165,7 +165,7 @@ public class DBManager {
 		int re = -1;
 		SqlSession session = factory.openSession();
 		re = session.insert("point.chargeP", c);
-		//System.out.println("?�작 dbmng");
+		//System.out.println("?�작 dbmng");
 		//System.out.println("re: "+re);
 		session.commit();
 		session.close();
@@ -269,29 +269,5 @@ public class DBManager {
 		return re;
 	}
 
-	public static List<Be_OrderDeliveryVo> orderList(String beuid)
-		{
-			HashMap map = new HashMap();
-			//System.out.println("아이디는 "+beuid);
-			map.put("beuid", beuid);
-			System.out.println("manager에서 map"+map);
-			List<Be_OrderDeliveryVo> list;
-			SqlSession session = factory.openSession();
-			list = session.selectList("ordered.orderList", map);
-			session.close();
-			return list;
-		}
-		
-	public static Be_OrderDeliveryVo orderDetail(String beuid, int onum)
-		{
-			Be_OrderDeliveryVo o;
-			HashMap map = new HashMap();
-			map.put("beuid", beuid);
-			map.put("onum", onum);
-			System.out.println("manager에서 map"+map);
-			SqlSession session = factory.openSession();
-			o = session.selectOne("ordered.orderDetail", map);
-			session.close();
-			return o;
-		}
+	
 }

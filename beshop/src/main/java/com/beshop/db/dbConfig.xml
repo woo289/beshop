@@ -12,6 +12,7 @@
   	<typeAlias type="com.beshop.vo.Be_PayPointVo" alias="Be_PayVo"/>
   	<typeAlias type="com.beshop.vo.Be_PointBalanceVo" alias="Be_BalanceVo"/>
   	 <typeAlias type="com.beshop.vo.Be_UserVo" alias="Be_uservo"/>
+	 <typeAlias type="com.beshop.vo.Be_OrderDeliveryVo" alias="Be_OrderVo"/>
 =======
 	<typeAlias type="com.beshop.vo.BE_ProductVo" alias="pvo"/>
 	<typeAlias type="com.beshop.vo.BE_AuctionVo" alias="avo"/>
@@ -35,6 +36,7 @@
     <mapper resource="com/beshop/db/be_pointMapper.xml"/>
 =======
     <mapper resource="com/beshop/db/BE_ProductMapper.xml"/>
+	<mapper resource="com/beshop/db/be_orderMapper.xml"/>
 >>>>>>> 81fbed5f244ad09c119c8cb07d683050a86dbb26
   </mappers>
 </configuration>

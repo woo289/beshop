@@ -38,7 +38,6 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<<<<<<< HEAD
 <script>
 $(function(){
  	function check(){
@@ -64,103 +63,10 @@ $(function(){
 });
 </script>
 <!-- 카카오로그인 -->
-=======
-   <script src="https://apis.google.com/js/api:client.js"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-<style>
- #kakaoBtn:hover {
-      cursor: pointer;
-    }
- #naverIdLogin:hover {
-      cursor: pointer;
-    }
- #customBtn:hover{
-  	cursor: pointer;
-  }
-  #kakaoBtn {
- 	margin-top: 10px; 
-  }
-  
-  #naverIdLogin {
- 	margin-top: 10px; 
-  }
-  
-  #customBtn {
- 	margin-top: 10px; 
-  }
-#hamburger-wrapper {
-  float: right;
-  margin-top: -20px;
- 
-}
-#hamburger {
-  cursor: pointer;
-  font-size: 3em;
-}
-#close-sidenav {
-  cursor: pointer;
-  font-size: 3em;
-  margin-top: -10px;
-  float: right;
-}
-#sidenav {
-  height: 100%; width: 300px;
-  top: 0px; right: -350px;
-  background: white;
-  position: fixed;
-  transition: 0.4s;
-    border: 2px solid #00a8b3;
-    box-sizing: border-box;
-    padding-left: 30px;
-    z-index: 10000;
-}
-#sidenav ul { margin-top: 10px; padding: 0; list-style-type: none; }
-.second li{display: inline; float: left; }
-.second li a {text-decoration: none; font-size: 12px; margin-right: 15px; color: black; transition: all 0.4s}
-#beuid, #upw {margin: 10px auto; width: 230px; height: 35px;}
-#btn_login{ 
-    margin-top: 20px;
-    width: 230px;
-    background-color: #00a8b3;
-    height: 40px;
-    border: 0px;
-    font-size: 15px;
-    color: white;
-    transition: all 0.4s;
-}
-
-#btn_login:hover{
-    color: #555;
-    font-weight: bold;
-    cursor: pointer;
-}
-    
-#sidenav header{
-  color: #555;
-  display: block;
-  text-decoration: none;
-    margin-top: 120px;
-    font-weight: bold;
-}
-/*#sidenav header { background: #93ddd3; }*/
-#sidenav a:hover { color: #93ddd3; }
-    #login_form {cursor: pointer;}
-     .userImg {width: 150px; height: 150px; margin: 30px auto;}
-.userImg img{width: 150px; height: 150px; border-radius: 100px;}  
-    .userMenu {text-align: center; width: 100%; margin-top: 0px;}
-    .userMenu a {width: 100%; display: block; margin: 30px 0;}
-    .myheader{width:100%; text-align: center; margin-top: 50px;}
-</style>
-    </head>
-	<body>
-	
-	<!-- 카카오로그인 -->
->>>>>>> 4f06ddb2ccd5c46906434773d7c150f41b4c53aa
 	<script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('99c2e695e5e3103295011ca253dfa112');
+    Kakao.init('javascript키입력');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
       Kakao.Auth.login({
@@ -181,7 +87,7 @@ $(function(){
                console.log("Nickname: "+userNickName);
                console.log("ProfileImg : "+profileImg);
                //console.log("Access Token: "+authObj.access_token);
-               location.href = '/beshop/joinpage';
+               location.href = '/joinpage';
                localStorage.setItem('id', id);
                localStorage.setItem('profileImg', profileImg);
                
@@ -207,7 +113,7 @@ $(function(){
 	    auth2 = gapi.auth2.init({
 	        
 	      // 클라이언트 ID 설정하기
-	      client_id: '383971103206-b6p2npdt5smrcrorj1naq8smlos9s3v8.apps.googleusercontent.com',
+	      client_id: '구글클라이언트id입력',
 	      
 	      cookiepolicy: 'single_host_origin',
 	    });
@@ -241,8 +147,23 @@ $(function(){
 	      });
 	}	
 </script>
+<!-- 네이버 -->	
+
+<script type="text/javascript">
+   var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "api키입력",
+				callbackUrl: "http://localhost:8082/naverlogin", 
+				//로그인하면 callback처리 되서 naverlogin으로 이동한 후 로그인 정보가 있으면 가입페이지로
+				isPopup: true, //로그인창 팝업
+				callbackHandle: true
+			}
+		);
+
+		//naverlogin페이지로 넘어가서 callback 처리됨 naverlogin페이지 반드시 필요
+		naverLogin.init();
+</script>
 <script>startApp();</script>
-<<<<<<< HEAD
 
 <style>
 #hamburger-wrapper {
@@ -322,9 +243,6 @@ $(function(){
 				
 </script>
 	<body>
-=======
-	
->>>>>>> 4f06ddb2ccd5c46906434773d7c150f41b4c53aa
 	 <!--햄버거 로그인 영역 -->
       
       <c:choose>
@@ -339,9 +257,6 @@ $(function(){
         <li><input type="text" name="beuid" id="beuid" placeholder="  아이디"></li>
         <li><input type="text" name ="upw" id="upw" placeholder="  비밀번호"></li>
         <li><input type="submit" value="로그인" id="btn_login"></li>
-        <li><div id="kakaoBtn"><a id="custom-login-btn" href="javascript:loginWithKakao()"><img src="img/kakaoLogin.png" width="233" height="40"/></a></div></li>
-        <li><div id="customBtn" class="customGPlusSignIn"><img src="img/google.png" id="googleLogin" width="233" height="40"></div></li>
-        <li><div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width="233" height="40"></a></div></li>
       </ul>
       </form>
        <ul class="second">
