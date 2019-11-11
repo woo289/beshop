@@ -1,5 +1,3 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +31,7 @@
                     alert("옵션은 3개까지만 추가 가능합니다.");
                     return false;
                 }else{
-                $(".option").append("<div class='op_name' style='width:30%; float:left'><label class='title col-md-4 control-label op2' style='display:flow-root; text-align:left'>옵션"+i+"</label><input class='form-control opname' name='option"+i+"' type='text'></div><div class='optionlist' style='width:63%; float:left; text-align: left; margin-left: 50px;'><label class='op' style='padding-top: 5px;'>옵션 상세</label><input class='title form-control input-md op1' name='select_op"+i+"' type='text' placeholder='옵션상세명을 ,로 구분해주세요.' ></div>")
+                $(".option").append("<div class='op_name' style='width:30%; float:left'><label class='title col-md-4 control-label op2' style='display:flow-root; text-align:left'>옵션"+i+"</label><input class='form-control opname' name='select_op' type='text'></div><div class='optionlist' style='width:63%; float:left; text-align: left; margin-left: 50px;'><label class='op' style='padding-top: 5px;'>옵션 상세</label><input class='title form-control input-md op1' name='option' type='text' placeholder='옵션상세명을 ,로 구분해주세요.' ></div>")
                 i++;
                 }
                 
@@ -281,8 +279,8 @@
             </div>
            
             <div class="span8">
-                <h2><a href="channel"><i class="oldname">${sessionScope.uname }님의 채널 </i></a></h2>
-                <h6><i>Email: </i><i name="email" class="cemail">${sessionScope.email }</i></h6>
+                <h2><a href="channel"><i class="oldname">님의 채널 </i></a></h2>
+                <h6><i>Email: </i><i name="email" class="cemail"></i></h6>
                 <h6><i>나이: </i><i name="cage" class="cage">비공개</i></h6>
               	<h6><i name="cdetail" class="cdetail">나는 누구이며 누구다</i></h6>
             </div>
@@ -360,10 +358,10 @@
 	                                    <div class="option" style="width:100%;">
 	                                    <div class="op_name" style="width:30%; float:left">
 	                                    <label class="title col-md-4 control-label op2" style=" display:flow-root; text-align:left">옵션1 </label>
-	                                    <input class="form-control opname" name="option1" type="text">
+	                                    <input class="form-control opname" name="select_op" type="text">
 										</div>
 	                                    <div class="optionlist" style="width:63%; float:left; text-align: left; margin-left: 50px;">
-	                                        <label class="op" style="padding-top: 5px;">옵션 상세</label><input class='title form-control input-md op1' name="select_op1" type="text" placeholder="옵션상세명을 ,로 구분해주세요." >
+	                                        <label class="op" style="padding-top: 5px;">옵션 상세</label><input class='title form-control input-md op1' name="option" type="text" placeholder="옵션상세명을 ,로 구분해주세요." >
 	                                    </div>
 	                                    
 	                                    </div>

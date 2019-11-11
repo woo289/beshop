@@ -1,4 +1,4 @@
-package com.beshop.db;
+﻿package com.beshop.db;
 
 import java.io.Reader;
 import java.util.HashMap;
@@ -281,6 +281,78 @@ public class DBManager {
 			session.close();
 			return list;
 		}
+
+	//상품 출력, 등록, 비디오 리스트
+	public static List<BE_ProductVo> productList(String beuid) {
+		// TODO Auto-generated method stub
+		List<BE_ProductVo> list = null;
+		SqlSession session = factory.openSession();
+		System.out.println(beuid);
+		list = session.selectList("product.list",beuid);
+		System.out.println(list);
+		session.close();
+		return list;
+	}
+
+	public static List<BE_ProductVo> videoList() {
+		// TODO Auto-generated method stub
+		List<BE_ProductVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("product.videolist");
+		System.out.println(list);
+		session.close();
+		return list;
+	}
+
+	public static BE_UserVo getUser(String beuid) {
+		// TODO Auto-generated method stub
+		System.out.println(beuid);
+		SqlSession session = factory.openSession();
+		BE_UserVo vo = session.selectOne("beuser.getUser",beuid);
+		System.out.println(vo);
+		session.close();
+		return vo;
+	}
+
+	public static int insertSub(HashMap map) {
+		// TODO Auto-generated method stub
+		int r = 0;
+		SqlSession session = factory.openSession();
+		r = session.insert("sub.insertSub", map);
+		session.commit();
+		session.close();
+		return r;
+	}
+
+	public static ArrayList<String> subList(String sbeuid) {
+		// TODO Auto-generated method stub
+		SqlSession session = factory.openSession();
+		List<String> listall = null;
+		listall =session.selectList("sub.subList",sbeuid);
+		ArrayList<String> list = new ArrayList<String>();
+		list.addAll(listall);
+		System.out.println(list);
+		session.close();
+		return list;
+	}
+
+	public static List<BE_ProductVo> shopList() {
+		// TODO Auto-generated method stub
+		SqlSession session = factory.openSession();
+		List<BE_ProductVo> list = null;
+		list = session.selectList("product.shoplist");
+		session.close();
+		return list;
+	}
+
+	public static BE_ProductVo productDetail(int pnum) {
+		// TODO Auto-generated method stub
+		BE_ProductVo vo = new BE_ProductVo();
+		SqlSession session = factory.openSession();
+		vo = session.selectOne("product.productDetail", pnum);
+		session.close();
+		return vo;
+	}
 		
 	public static Be_OrderDeliveryVo orderDetail(String beuid, int onum)
 		{

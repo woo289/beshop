@@ -16,8 +16,8 @@ public class SmtpComponent {
 		JavaMailSenderImpl r = new JavaMailSenderImpl();
 		r.setHost("smtp.naver.com");
 		r.setPort(587);
-		r.setUsername("gofl854@naver.com");
-		r.setPassword("SKSMSthffh23!");
+		r.setUsername("");
+		r.setPassword("");
 		r.setDefaultEncoding("UTF-8");
 		
 		Properties prop = new Properties();

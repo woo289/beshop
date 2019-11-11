@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -75,16 +76,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <script>
-    function slide(){
-      $("#today_slide_ul").animate({left:"-=187px"},1000,function(){
-        $(this).css({"left":0});
-        $("#today_slide_ul").append( $("#today_slide_ul").children("li").eq(0) );
-      });    
-      current++;
-      if(current==5)current=0;
-    }    
-    </script>
+   <script>
+		
+   </script>
     </head>
 	<body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -123,42 +117,19 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 							"posterHeight":500,
 							"scale":0.8,
 							"speed":1000,
-							"autoPlay":true,
+							"autoPlay":false,
 							"delay":3000,
 							"verticalAlign":"middle"
 							}'> 
    <div class="poster-btn poster-prev-btn"></div> 
    <ul class="poster-list"> 
-    <li class="poster-item" ><a href="shoppingDetail"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
+   <c:forEach var="v" items="${list }">
+<li class="poster-item"><a href="#"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
        <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/KakaoTalk_Video_20191006_1500_59_439.mp4",
-      "logo": "img/beShop.png" }
+  		  { "src": "video/${v.p_video}","logo": "img/beShop.png" }
   </script>
         </div></a></li> 
-    <li class="poster-item"><a href="#"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
-       <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/HaeLee01.mp4",
-      "logo": "img/beShop.png" }
-  </script>
-        </div></a></li> 
-    <li class="poster-item"><a href="#"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
-       <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/HaeLee02.mp4",
-      "logo": "img/beShop.png" }
-  </script>
-        </div></a></li> 
-    <li class="poster-item"><a href="#"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
-       <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/KakaoTalk_Video_20191006_1500_59_439.mp4",
-      "logo": "img/beShop.png" }
-  </script>
-        </div></a></li> 
-    <li class="poster-item"><a href="#"><div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
-       <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/KakaoTalk_Video_20191006_1500_59_439.mp4",
-      "logo": "img/beShop.png" }
-  </script>
-        </div></a></li> 
+     </c:forEach>
    </ul> 
    <div class="poster-btn poster-next-btn"></div> 
   </div> 
