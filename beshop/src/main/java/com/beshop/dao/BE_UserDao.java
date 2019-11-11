@@ -38,4 +38,8 @@ public class BE_UserDao {
 		// TODO Auto-generated method stub
 		return DBManager.insert(v);
 	}
+	public BE_UserVo getUser(String beuid) {
+		// TODO Auto-generated method stub
+		return DBManager.getUser(beuid);
+	}
 }

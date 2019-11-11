@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>상품상세</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -89,6 +90,7 @@
         
 
 		</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     </head>
     
@@ -126,7 +128,7 @@
 					<div class="col-md-5 col-md-push-2">
 					<div class="use-play-1 flowplayer" data-player-id="56058953-2cbd-4858-a915-1253bf7ef7b2">
   <script src="//cdn.flowplayer.com/players/8dfd6c14-ba3a-445e-8ef5-191d9358ed0a/native/flowplayer.async.js">
-    { "src": "video/HaeLee01.mp4", "plugins": ["qsel"] }
+    { "src": "video/${de.p_video}", "plugins": ["qsel"] }
   </script>
   <div id="qual" class="">
     <jsp:include page="home.jsp"/>
@@ -146,7 +148,7 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">Apple 2019년 맥북 프로 터치바 13 8세대 MUHQ2KH/A (i5-1.4GHz quad-core 8GB MAC OS SSD 128GB) </h2>
+							<h2 class="product-name">${de.pname } </h2>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -158,32 +160,74 @@
 								<a class="review-link" href="#">3개 리뷰 | 리뷰 달기</a>
 							</div>
 							<div>
-								<h3 class="product-price">599,000원 <del class="product-old-price">700,000원</del></h3>
-								<span class="product-available">재고 5</span>
+								<h3 class="product-price">${de.p_price }원 <del class="product-old-price">${de.p_sprice }원</del></h3>
+								<span class="product-available">재고 ${de.stock }개</span>
 							</div>
-							<p><h5>HD 디스플레이가 제공하는 고화질의 세계</h5> 16:9의 넓은 화면은 동영상이나 영화를 볼때 잘림현상이 없어 더욱 실감나는 영상을 감상하실수
-							있습니다. 또한 컨텐츠의 디테일한 재현은 물론 아이콘, 사진및 게임등의 그래픽을 완벽하게 표현해냅니다.</p>
-
+							<p><h4>판매자 : ${de.beuid }</h4> 
+							<a href="channel?beuid=${de.beuid }"><h5>판매자 채널로 이동하기</h5></a>
+							${de.detail }</p>
+							
 							<div class="product-options">
-								<label>
-									모델선택
-									<select class="input-select" style="width: 150px;">
-										<option value="0">LG 1N530</option>
-										<option value="1">LG 게이밍북 S550</option>
+							<input type="hidden" value="${de.select_op1 }" id="op1">
+								<label class="option1">
+									${de.option1 }
+									<select class="input-select select_op1" style="width: 150px;">
 									</select>
 								</label>
-								<label>
-									추가상품
-									<select class="input-select" style="width: 150px;">
-										<option value="0">메모리 업그레이드 2기가추가</option>
-										<option value="1">메모리 업그레이드 4기가추가</option>
-										<option value="2">MS오피스 설치</option>
-										<option value="3">게이밍 마우스</option>
-										<option value="3">노트북 파우치</option>
-									</select>
-								</label>
+								<script>
+										var op1 = $("#op1").val();
+										var arr = op1.split(',');
+										alert(arr);
+										for(var i = 0; i<arr.length; i++){
+											var option = $("<option value='"+i+"'>"+arr[i]+"</option>");
+											$(".select_op1").append(option);
+										}
+								</script>
+								<c:choose>
+								<c:when test="${!empty de.option2}">
+									<input type="hidden"  id ="op2" value=${de.select_op2 }>
+							
+									<label>
+										${de.option2 }
+										<select class="input-select select_op2" style="width: 150px;">
+											<!-- <option value="0">메모리 업그레이드 2기가추가</option>
+											<option value="1">메모리 업그레이드 4기가추가</option>
+											<option value="2">MS오피스 설치</option>
+											<option value="3">게이밍 마우스</option>
+											<option value="3">노트북 파우치</option> -->
+										</select>
+									</label>
+											<script>
+											var arr = $("#op2").val().split(',');
+											for(var i = 0; i<arr.length; i++){
+												var option = $("<option></option>").html(arr[i]).attr("value",i);
+												$(".select_op2").append(option);
+											}
+									</script>
+								</c:when>
+								<c:when test="${!empty de.option3}">
+									<input type="hidden"  id ="op3" value=${de.select_op3 }>
+									<label>
+										${de.option3 }
+										<select class="input-select select_op2" style="width: 150px;">
+											<!-- <option value="0">메모리 업그레이드 2기가추가</option>
+											<option value="1">메모리 업그레이드 4기가추가</option>
+											<option value="2">MS오피스 설치</option>
+											<option value="3">게이밍 마우스</option>
+											<option value="3">노트북 파우치</option> -->
+										</select>
+									</label>
+											<script>
+											var arr = $("#op3").val().split(',');
+											for(var i = 0; i<arr.length; i++){
+												var option = $("<option></option>").html(arr[i]).attr("value",i);
+												$(".select_op3").append(option);
+											}
+									</script>
+								</c:when>
+								</c:choose>
 							</div>
-
+							
 							<div class="add-to-cart">
 								<div class="qty-label">
 									수량
