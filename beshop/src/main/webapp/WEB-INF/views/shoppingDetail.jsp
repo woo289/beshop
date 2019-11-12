@@ -105,10 +105,9 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Headphones</a></li>
-							<li class="active">Product name goes here</li>
+							<li><a href="#">쇼핑</a></li>
+							<li><a href="#">${de.p_category }</a></li>
+							
 						</ul>
 					</div>
 				</div>
@@ -177,7 +176,6 @@
 								<script>
 										var op1 = $("#op1").val();
 										var arr = op1.split(',');
-										alert(arr);
 										for(var i = 0; i<arr.length; i++){
 											var option = $("<option value='"+i+"'>"+arr[i]+"</option>");
 											$(".select_op1").append(option);
@@ -271,7 +269,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<img src="http://gi.esmplus.com/sycnicom/11st_shokingdill/s550_ati/lg_s550_ati_11st_page.jpg" style="width: 100%">
+											<img src="img/${de.p_sangse }" style="width: 100%">
 										</div>
 									</div>
 								</div>
@@ -281,7 +279,7 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<img src="http://gi.esmplus.com/sycnicom/2nd_notebook/2nd-notebook-besong.jpg" style="width: 100%">
+											<img src="img/${de.as_info }" style="width: 100%">
 										</div>
 									</div>
 								</div>

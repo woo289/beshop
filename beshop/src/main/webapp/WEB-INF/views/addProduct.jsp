@@ -133,7 +133,7 @@
         .upload {
             background-position: center;
             
-            background-image: url(img/upload-image-icon2.jpg);
+            background-image: url(img/upload-image-icon.jpg);
             background-repeat: no-repeat;
         }
 
@@ -263,6 +263,7 @@
            
         }
        .btn-group a{margin: 95px 10px;}
+       .ca_select{float:left; width:100%; height:40px; margin:0 0 20px 0;}
     </style>
 </head>
 
@@ -370,17 +371,35 @@
 	           
 	                                    <a class="add btn btn-dark" name="add" style="width:100%; text-align: right;">옵션 추가</a>
 	                                    <a class="del btn btn-dark" name="del" style="width:100%; text-align: right;">옵션 삭제</a>
-
+										<div class="category">
+											 <label class="title col-md-4 control-label" style="text-align: left" >카테고리</label>
+											 <select name="p_category" class="ca_select  form-control">
+											 	<option value="브랜드패션">브랜드패션</option>
+											 	<option value="패션의류">패션의류</option>
+											 	<option value="잡화/뷰티">잡화/뷰티</option>
+											 	<option value="유아동">유아동</option>
+											 	<option value="식품">식품</option>
+											 	<option value="생필품">생필품</option>
+											 	<option value="홈데코">홈데코</option>
+											 	<option value="건강/렌탈">건강/렌탈</option>
+											 	<option value="문구/취미/반려">문구/취미/반려</option>
+											 	<option value="스포츠">스포츠</option>
+											 	<option value="디지털/가전">디지털/가전</option>
+											 	<option value="영상기기/카메라">영상기기/카메라</option>
+											 	<option value="컴퓨터">컴퓨터</option>
+											 	<option value="여행/도서">여행도서</option>
+											 </select>
+										</div>
 	                                    <div class="info">
-	                                        <label class="title col-md-4 control-label" style="text-align: left">상세정보</label>
-	                                        <label class="title col-md-2 control-label"> 상세정보 이미지 </label>
-	                                        <input class="sangse" type="file" name="sangse" style="width: auto;">
-	                                        <textarea class="sangsetext" type="text" style="width: 100%; height: auto;"> 이미지만 넣으셔도 됩니다.</textarea>
-	                                        <a class="btn btn-dark addInfo" name="addInfo">정보추가</a>
+	                                        <label class="title col-md-4 control-label" style="text-align: left; width:100%">상세정보</label>
+	                                        <textarea class="sangsetext form-control" type="text" style="width: 100%; height: auto;"> 이미지만 넣으셔도 됩니다.</textarea>
+	                                           <label class="title col-md-2 control-label" style="text-align: left; width:100%"> 상세정보 이미지 </label>
+	                                        <input class="sangse" type="file" name="p_sangse" style="width: auto;">
+	                                        <a class="btn btn-dark addInfo" name="addInfo">as 정보 입력</a>
 	                                        <a class="btn btn-dark delInfo" name="delInfo">삭제</a><br>
 	                                    </div>
 	                                    <div class="form-group clearfix">
-	                                        <label class="title col-md-4 control-label dayname" style="text-align: left">게시 날짜</label>
+	                                        <label class="title col-md-4 control-label dayname" style="text-align: left">게시일을 정해주세요</label>
 	                                        <div class="col-xs-13">
 	                                            <input readonly class="form-control p_cdate" type="text" id="date-group1-4" name="p_cdate" placeholder="YYYY-MM-DD hh:mm">
 	                                        </div>

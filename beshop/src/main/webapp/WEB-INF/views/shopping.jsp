@@ -100,14 +100,14 @@
     
     .btnR1{
         position:absolute;
-        top:115px;
-       right:20px;
+        top:104px;
+       right:0px;
 
     }
      .btnR2{
         position:absolute;
-        top:115px;
-       right:20px;
+           top:104px;
+       right:0px;
 
     }
     .sliderSlick{
