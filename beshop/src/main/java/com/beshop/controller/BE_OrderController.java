@@ -37,24 +37,6 @@ import com.beshop.vo.BE_PayVo;
 @Controller
 public class BE_OrderController {
 	@Autowired
-<<<<<<< HEAD
-	Be_OrderDao dao = new Be_OrderDao();
-	
-	public void setDao(Be_OrderDao dao) {
-		this.dao = dao;
-	}
-	
-	@RequestMapping("/orderlist")
-	public void orderlist(String beuid, HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		beuid = (String)session.getAttribute("beuid");
-		System.out.println("orderlist "+beuid);
-	}
-	
-	@ResponseBody
-	@RequestMapping("/orderedList")
-	public String orderList(String beuid, HttpServletRequest request)
-=======
 	private BE_OrderDeliveryDao dao;
 	@Autowired
 	private BE_PayDao pdao;
@@ -96,6 +78,35 @@ public class BE_OrderController {
 		
 		return order;
 	}
+	
+	@RequestMapping("/orderlist")
+	public void orderlist(String beuid, HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		beuid = (String)session.getAttribute("beuid");
+		System.out.println("orderlist "+beuid);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/orderedList")
+	public String orderList(String beuid, HttpServletRequest request)
+	{
+		HttpSession session = request.getSession(true);
+		beuid = (String)session.getAttribute("beuid");
+		//System.out.println("컨트롤러 beuid: "+beuid);
+		String order ="";
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			order = mapper.writeValueAsString(dao.orderList(beuid));
+			System.out.println(order);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		//System.out.println("beuid: "+beuid);
+		
+		return order;
+	}
+	
 	@RequestMapping("/orderDetail")
 	public ModelAndView detail(String beuid, HttpServletRequest request, @RequestParam("onum") int onum)
 	{
@@ -108,46 +119,8 @@ public class BE_OrderController {
 		mav.setViewName("orderDetail");
 		return mav;
 	}
-<<<<<<< HEAD
-	
-	/*
-	@ResponseBody
-	@RequestMapping("/detail")
-	public String detail(String beuid, HttpServletRequest request, @RequestParam("onum") int onum)
-	{
-		//RequestParam으로 onum(주문번호) 받아오기
-		HttpSession session = request.getSession(true);
-		beuid = (String)session.getAttribute("beuid");
-		//onum = (Integer)session.getAttribute("onum");
-		System.out.println("detail onum: "+onum);
-		String order ="";
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			order = mapper.writeValueAsString(dao.orderDetail(beuid, onum));
-			System.out.println(order);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-		}
-		System.out.println("beuid: "+beuid);
-		
-		return order;
-	}
-	
-	@RequestMapping( "/orderDetail")
-	public void orderDetail(String beuid, HttpServletRequest request, @RequestParam("onum") int onum)
-	{
-		HttpSession session = request.getSession(true);
-		beuid = (String)session.getAttribute("beuid");
-		session.setAttribute("onum", onum);
-		System.out.println("beuid는 "+beuid);
-		System.out.println("onum은 "+onum);
-	}
-	*/
-	
-	
-		
-=======
+
+
 	@RequestMapping("/purchase_ok")
 	public ModelAndView popup(BE_PayVo p,HttpServletRequest request)
 	{
