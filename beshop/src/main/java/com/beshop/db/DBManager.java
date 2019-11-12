@@ -148,7 +148,7 @@ public class DBManager {
 		int re = -1;
 		SqlSession session = factory.openSession();
 		re = session.insert("point.chargeP", c);
-		//System.out.println("ë™ì‘ dbmng");
+		//System.out.println("?™ì‘ dbmng");
 		//System.out.println("re: "+re);
 		session.commit();
 		session.close();
@@ -250,6 +250,40 @@ public class DBManager {
 		re = session.insert("point.payP", p);
 		session.close();
 		return re;
+	}
+	public static List<BE_OrderPurchaseVo> listOrderdelivery()
+	{
+		
+		SqlSession session = factory.openSession();
+		List<BE_OrderPurchaseVo> list = null;
+		System.out.println("µğºñ");
+		list = session.selectList("Order.selectodpurchase");
+		System.out.println(list);
+		session.close();
+		
+		return list;
+	}
+	public static int insertODPay(BE_OrderDeliveryVo od)
+	{
+		int r=-1;
+		
+	     SqlSession session = factory.openSession();
+	     r = session.insert("Order.insertorder",od);
+	      session.commit();
+	      session.close();
+		return r;
+	      
+	}
+	public static int insertPay(BE_PayVo p)
+	{
+		int r=-1;
+		
+	     SqlSession session = factory.openSession();
+	     r = session.insert("Order.insertodpay",p);
+	      session.commit();
+	      session.close();
+		return r;
+	      
 	}
 
 	

@@ -319,7 +319,7 @@
                     <div class="line"></div>
 
                     
-                       
+                        <div class="container">
 
                             <div class='main-session'>
 
@@ -436,7 +436,7 @@
 
 
                             </div>
-                        
+                        </div>
                          <div class="row">
                         <div class="col-sm-12 col-xs-12 table-responsive">
                             <table class="table table-condensed" border="0" cellspacing="0" cellpadding="0" width="100%">

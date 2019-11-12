@@ -1,0 +1,283 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, , minimum-scale=1, maximum-scale=1">
+<title>layout</title>
+<!-- 웹폰트 -->
+<!-- 
+    <link rel="stylesheet" type="text/css" href="http://api.typolink.co.kr/css?family=RixGo+L:400" />
+     -->
+<link
+   href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap"
+   rel="stylesheet">
+<!-- fadeIn -->
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/orders.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script type="text/javascript">
+   $(function() {
+      //로그인 로그아웃 전환
+      var mem_id = "${mem_id}";
+
+      if (mem_id != '' && mem_id != null) {
+         //var login = $("#category-2").find("a:first").html();
+         //var logout = $("<a></a>").attr("href","logout").addClass("cl-effect-1").html("LOGOUT");
+         //$("#category-2").append(logout);
+         $("#sign").attr("href", "logout").html("LOGOUT");
+      }
+      if (mem_id == '' || mem_id == null) {
+         //var login = $("<a></a>").attr("href","signIn").addClass("cl-effect-1").html("LOGIN");
+         //$("#category-2").append(login);
+         $("#sign").attr("href", "signIn").html("LOGIN");
+      }
+   })
+</script>
+</head>
+<body>
+
+    <div id="wrap" class="animated fadeIn">
+
+          <!-- header -->
+
+        <jsp:include page="header.jsp"></jsp:include>
+        <!-- //header -->
+
+        <!-- contents -->
+     <!-- 컨텐츠 영역 -->
+    <div id="contents">
+        <!-- 세션 영역        -->
+        <div id="content-session">
+            <div class="container">
+               <div class="container-top">주문</div>
+                <div class='main-session'>
+                  
+                <!--테이블 영역      -->
+                        <table class='cart_table'>
+                             <colgroup>
+                                 <col width='150px'>
+                                 <col width="100px">
+                                 <col width="300px">
+                                 <col width='100px'>
+                                 <col width='250px'>
+                                 <col width='200px'>
+                             </colgroup>
+                        <thead>
+                            <th scope="col">주문번호</th>
+                            <th scope="col"></th>
+                            <th scope="col">상품명</th>
+                            <th scope="col">판매가</th>
+                            <th scope="col">수량</th>
+                            <th scope="col">주문금액<br/>(적립예정)</th>
+                        </thead>
+                              <tbody>
+                            <td>1</td>
+                            <td>
+                                <div class="product_img">
+                                    <img src="img/drone.png" width="62" height="68">
+                                    
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <span>드론/시리즈명/구매일</span><br>
+                                <span>대여일:2019/09/05 반납일:2019/09/09</span>
+                            </td>
+                            <td>
+                                <span class="txt_origin_price">150000</span>
+                                <br>120000
+                            </td>
+                            <td>
+                                <span>수량</span>
+                            </td>
+                            
+                            <td>
+                                <span>120000</span><br>
+                                4500
+                            </td>
+                           
+                        </tbody>
+                        
+                        
+                            <tbody>
+                            <td>2</td>
+                            <td>
+                                <div class="product_img">
+                                    <img src="img/drone.png" width="62" height="68">
+                                    
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <span>드론/시리즈명/구매일</span><br>
+                                <span>대여일:2019/09/05 반납일:2019/09/09</span>
+                            </td>
+                            <td>
+                                <span class="txt_origin_price">100000</span><br>90000
+                                
+                            </td>
+                            <td>
+                                <span>수량</span>
+                            </td>
+                            
+                            <td>
+                                <span>90000</span><br>
+                                5740
+                            </td>
+                         
+                        </tbody>
+                        
+                        
+                            <tbody>
+                            <td>3</td>
+                            <td>
+                                <div class="product_img">
+                                    <img src="img/drone.png" width="62" height="68">
+                                    
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <span>드론/시리즈명/구매일</span><br>
+                                <span>대여일:2019/09/05 반납일:2019/09/09</span>
+                            </td>
+                            <td>
+                                <span class="txt_origin_price">200000</span><br>180000
+                                
+                            </td>
+                            <td>
+                                <span>수량</span>
+                            </td>
+                            
+                            <td>
+                                <span>180000</span><br>
+                                9700
+                            </td>
+                            
+
+                        </tbody>
+                        
+                        
+                            <tbody>
+                            <td>4</td>
+                            <td>
+                                <div class="product_img">
+                                    <img src="img/drone.png" width="62" height="68">
+                                    
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <span>드론/시리즈명/구매일</span><br>
+                                <span>대여일:2019/09/05 반납일:2019/09/09</span>
+                            </td>
+                            <td>
+                                <span class="txt_origin_price">100000</span><br>90000
+                                
+                            </td>
+                            <td>
+                                <span>수량</span>
+                            </td>
+                            
+                            <td>
+                                <span>90000</span><br>
+                                5740
+                            </td>
+
+                        </tbody>
+             
+                            <tbody>
+                            <td>5</td>
+                            <td>
+                                <div class="product_img">
+                                    <img src="img/drone.png" width="62" height="68">
+                                    
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <span>드론/시리즈명/구매일</span><br>
+                                <span>대여일:2019/09/05 반납일:2019/09/09</span>
+                            </td>
+                            <td>
+                                <span class="txt_origin_price">100000</span><br>90000
+                            </td>
+                            <td>
+                                <span>수량</span>
+                            </td>
+                            
+                            <td>
+                                <span>90000</span><br>
+                                5740
+                            </td>
+                        </tbody>
+                    </table>
+              
+                
+                    
+                </div>
+            </div>
+        </div>
+<!--    //table-->
+       
+          <!--    content_footer-->
+       <div id='content_footer'>
+            <div class="container">
+                <span>결제 방식</span><br>
+<!--
+                <div class="">
+                   <span>결제 수단</span>
+                    <input type="radio" class="payment" checked="checked" name="payment"><label>카드</label>
+                    <input type="radio" class="payment"  name="payment"><label>무통장</label>
+                    <input type="radio" class="payment"  name="payment"><label>카카오페이</label>
+                </div>
+                <div>
+                <span>총 주문금액</span>
+                </div>
+-->
+                <ul class="payment_container" >
+                    <li>
+                    <span>결제 수단</span>
+                        <input type="radio" class="payment" checked="checked" name="payment"><label style="padding: 0px 10px;">카드</label>
+                        <input type="radio" class="payment"  name="payment"><label style="padding: 0px 10px;">무통장</label>
+                        <input type="radio" class="payment"  name="payment"><label style="padding: 0px 10px;">카카오페이</label>
+                    </li>
+                    
+                    <li id="payment_style">결제 안내
+                        <select>
+                            <option>은행선택</option>
+                        </select>
+                        <select>
+                            <option>일시불</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>총 금액</span><span>430000원</span>
+                    </li>
+                    
+                </ul>
+                 <div class="delete-btn-area">
+               <a href="payKG" id="order" class="a_btn">결제하기</a>
+            </div>
+       </div>
+    </div>
+</div>
+    <!-- //contents -->
+
+
+
+        <!-- footer -->ㅋ
+        <jsp:include page="footer.jsp"></jsp:include>
+        <!-- //footer -->
+    </div>
+
+</body>
+</html>
