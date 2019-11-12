@@ -13,11 +13,21 @@ import com.beshop.vo.BE_UserVo;
 @Repository
 public class BE_OrderDeliveryDao {
 
-	
+	/*
 	public List<BE_OrderPurchaseVo> listod() {
 		System.out.println("db ok");
 		return DBManager.listOrderdelivery();
 		
+	}
+	*/
+	public List<Be_OrderDeliveryVo> orderList(String beuid)
+	{
+		return DBManager.orderList(beuid);
+	}
+	
+	public Be_OrderDeliveryVo orderDetail(String beuid, int onum)
+	{
+		return DBManager.orderDetail(beuid, onum);
 	}
 	public int insertOrderdelivery(BE_OrderDeliveryVo od)
 	{
