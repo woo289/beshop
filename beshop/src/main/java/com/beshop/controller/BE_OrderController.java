@@ -1,21 +1,15 @@
 package com.beshop.controller;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-=======
 import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
->>>>>>> b931015aca3c0477a351ad2314742c3abaff7861
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +26,6 @@ import com.beshop.dao.BE_OrderDeliveryDao;
 import com.beshop.dao.BE_PayDao;
 import com.beshop.vo.BE_OrderDeliveryVo;
 import com.beshop.vo.BE_PayVo;
->>>>>>> b931015aca3c0477a351ad2314742c3abaff7861
 
 @Controller
 public class BE_OrderController {
@@ -60,7 +53,6 @@ public class BE_OrderController {
 	}
 	@RequestMapping(value = "/orderpage",method = RequestMethod.GET)
 	public void Order() 
->>>>>>> b931015aca3c0477a351ad2314742c3abaff7861
 	{
 		HttpSession session = request.getSession(true);
 		beuid = (String)session.getAttribute("beuid");
@@ -172,9 +164,6 @@ public class BE_OrderController {
 			mav=new ModelAndView("redirect:/purchase_ok");
 		}
 		return mav;
-		
-	
-		
 	}
->>>>>>> b931015aca3c0477a351ad2314742c3abaff7861
+
 }
