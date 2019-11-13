@@ -105,16 +105,45 @@ public class BE_OrderController {
 	}
 
 
-	@RequestMapping("/purchase_ok")
-	public ModelAndView popup(BE_PayVo p,HttpServletRequest request)
+	@RequestMapping(value = "/purchase_ok",method = RequestMethod.GET)
+	public void popupget(BE_PayVo p,HttpServletRequest request)
 	{
+	
+		
+	}
+	@ResponseBody
+	@RequestMapping(value =  "/purchase_ok",method = RequestMethod.POST)
+	public String popuppost(BE_PayVo p,HttpServletRequest request)
+	{
+		String paynum1= request.getParameter("paynum");
+		String payway=request.getParameter("payway");
+		String paycondition=request.getParameter("paycondition");
+		String payprice1=request.getParameter("payprice");
+		String approvenum1=request.getParameter("approvenum");
+		String pnum1=request.getParameter("pnum");
+		int paynum=Integer.parseInt(paynum1);
+		int payprice=Integer.parseInt(payprice1);
+		int approvenum=Integer.parseInt(approvenum1);
+		int pnum=Integer.parseInt(pnum1);
+		p.setApprovenum(approvenum);
+		p.setPaycondition(paycondition);
+		p.setPaynum(paynum);
+		p.setPayprice(payprice);
+		p.setPayway(payway);
+		p.setPnum(pnum);
 		ModelAndView mav=new ModelAndView();
 		int re=pdao.insertpay(p);
+		String s="";
 		if(re==1)
 		{
-			mav=new ModelAndView("redirect:/purchase_ok");
+			s="성공";
+		}else
+		{
+			s="실패";
 		}
-		return mav;
+		
+		return s;
+		
 	}
 	
 	@RequestMapping(value="/orderpage", method=RequestMethod.GET)
