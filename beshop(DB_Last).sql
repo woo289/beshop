@@ -1,15 +1,15 @@
 
--- À¯Àú »ı¼º
+-- ìœ ì € ìƒì„±
 create user beshop06 identified by beshop06;
 	grant connect, resource, dba to beshop06; 
 
--- À¯Àú Å×ÀÌºí Á¶È¸
+-- ìœ ì € í…Œì´ë¸” ì¡°íšŒ
 select * from user_tables;
 
 -----------------------------------------------------------------------------
 -----------------Trigger---------------------------
 
--- (°¡ÀÔ½Ã Æ÷ÀÎÆ® 0¿ø ÁÖ±â)
+-- (ê°€ì…ì‹œ í¬ì¸íŠ¸ 0ì› ì£¼ê¸°)
 CREATE TRIGGER NewMemPoint
 AFTER INSERT ON be_user
 FOR EACH ROW 
@@ -19,7 +19,7 @@ BEGIN
 		:new.BEUID);
 END;
 
--- (Æ÷ÀÎÆ® ÃæÀüÆ®¸®°Å)
+-- (í¬ì¸íŠ¸ ì¶©ì „íŠ¸ë¦¬ê±°)
 CREATE TRIGGER PLUSPOINT
 AFTER INSERT ON PCHARGE
 FOR EACH ROW 
@@ -30,7 +30,7 @@ BEGIN
 		WHERE BEUID = :new.BEUID;
 END;
 
--- (Æ÷ÀÎÆ® »ç¿ëÆ®¸®°Å)
+-- (í¬ì¸íŠ¸ ì‚¬ìš©íŠ¸ë¦¬ê±°)
 CREATE TRIGGER MINUSPOINT
 AFTER INSERT ON PPAY
 FOR EACH ROW 
@@ -41,11 +41,11 @@ BEGIN
 		WHERE BEUID = :new.BEUID;
 END;
 
--- (ÇöÀç º¸À¯Æ÷ÀÎÆ® ±¸ÇÏ±â)
+-- (í˜„ì¬ ë³´ìœ í¬ì¸íŠ¸ êµ¬í•˜ê¸°)
 SELECT BEUID, PBALNOW FROM PBALANCE WHERE BEUID = 'nine';
 
 --------------------------------------------------------------------
---------------Table(Å×ÀÌºí)-----------------
+--------------Table(í…Œì´ë¸”)-----------------
 
 -- PBALANCE
 
@@ -83,7 +83,7 @@ create table category(ctnum number primary key not null,
  bigname varchar2(100) not null,
  smname varchar2(100));
 
--- product »óÇ°
+-- product ìƒí’ˆ
 /*
 create table product(
  Pnum number primary key not null,
@@ -146,7 +146,7 @@ CREATE TABLE "BESHOP06"."PRODUCT"
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 
--- pgroup(ºĞ·ù)
+-- pgroup(ë¶„ë¥˜)
 
 create table pgroup(
 gnum number primary key not null,
@@ -156,14 +156,14 @@ pg number not null
 
 
 
--- gbuy °øµ¿±¸¸Å
+-- gbuy ê³µë™êµ¬ë§¤
 
 create table gbuy(
 constraints fk_pnum pnum number not null references product(pnum) on delete cascade,
 constraints fk_gnum gnum number not null references pgroup(gnum) on delete cascade,
 primary key(pnum));
 
--- shopping(¼îÇÎ)
+-- shopping(ì‡¼í•‘)
 
 create table shopping(
 constraints fk_Pnum pnum number not null references product(pnum) ON DELETE CASCADE,
@@ -173,7 +173,7 @@ small_search varchar2(30),
 primary key(pnum)
 );
 
--- shoplist(Àå¹Ù±¸´Ï)
+-- shoplist(ì¥ë°”êµ¬ë‹ˆ)
 
 create table shoplist(
 slnum number primary key not null,
@@ -181,7 +181,7 @@ constraints fk_Pnum pnum number not null references product(pnum) on delete casc
 slcount number not null
 );
 
--- review(»óÇ°ÈÄ±â)
+-- review(ìƒí’ˆí›„ê¸°)
 
 create table review(renum number primary key not null,
 constraints fk_UID beuid varchar2(20) not null  references be_user(beuid) on delete cascade,
@@ -196,7 +196,7 @@ re_ref number ,
 re_refNo number
 );
 
--- video(¿µ»ó)
+-- video(ì˜ìƒ)
 
 CREATE TABLE Video (
        Vnum  NUMBER NOT NULL primary key,
@@ -212,7 +212,7 @@ CREATE TABLE Video (
        vtag  varchar2(50)     
 );
 
--- Channel(Ã¤³Î)
+-- Channel(ì±„ë„)
 /*
 CREATE TABLE Channel (
        Chnum          NUMBER NOT NULL primary key,
@@ -228,7 +228,7 @@ create table channel (
 
 
 
--- Recentbroadcast(ÃÖ±Ù º» ¿µ»ó)
+-- Recentbroadcast(ìµœê·¼ ë³¸ ì˜ìƒ)
 
 CREATE TABLE Recentbroadcast (
  constraints fk_UID beUid VARCHAR2(20) NOT NULL REFERENCES be_user(beUid) on delete cascade,
@@ -237,7 +237,7 @@ CREATE TABLE Recentbroadcast (
  Primary key(beUid)
 );
 
--- Seller(ÆÇ¸ÅÀÚ)
+-- Seller(íŒë§¤ì)
 
 CREATE TABLE Seller (
        Snum           NUMBER NOT NULL primary key,
@@ -246,7 +246,7 @@ CREATE TABLE Seller (
        Sunum       Number not null
 );
 
--- Sub(±¸µ¶)
+-- Sub(êµ¬ë…)
 
 /*
 CREATE TABLE Sub(
@@ -267,7 +267,7 @@ CREATE TABLE "BESHOP06"."SUB"
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 
--- Qna(¹®ÀÇ³»¿ª)
+-- Qna(ë¬¸ì˜ë‚´ì—­)
 
 /*
 CREATE TABLE Qna (
@@ -300,7 +300,7 @@ CREATE TABLE Qna (
 
 
 
--- customer(±¸¸ÅÀÚ)
+-- customer(êµ¬ë§¤ì)
 
 create table customer (
  beuid varchar2(20) primary key,
@@ -308,7 +308,7 @@ create table customer (
  constraints fk_onum onum number not null references orderDelivery(onum) on delete cascade 
 );
 
--- purchase(±¸¸Å)
+-- purchase(êµ¬ë§¤)
 
 create table purchase(
  Pcnum  NUMBER  primary key,
@@ -321,7 +321,7 @@ create table purchase(
 Pc_addr2  VARCHAR2(100)  not null
 );
 
--- pay(°áÁ¦)
+-- pay(ê²°ì œ)
 
 /*
 create table pay(
@@ -343,7 +343,7 @@ CREATE TABLE pay(
    APPROVENUM NUMBER, 
    PNUM NUMBER);     
 
--- orderDelivery(ÁÖ¹®¹è¼Û)
+-- orderDelivery(ì£¼ë¬¸ë°°ì†¡)
 
 /*
 create table orderDelivery(
@@ -358,7 +358,7 @@ create table orderDelivery(
  Ophone  VARCHAR2(15)  not null,
  odzip  char(5)  not null,
  odate  DATE,
- dstatus  VARCHAR2(50) default '¹è¼ÛÁØºñÁß'
+ dstatus  VARCHAR2(50) default 'ë°°ì†¡ì¤€ë¹„ì¤‘'
 );
 */
 create table orderDelivery(
@@ -376,7 +376,7 @@ create table orderDelivery(
  odzip  char(5)  not null,
  odate  DATE,
  dprice number,
- dstatus  VARCHAR2(50) default '¹è¼ÛÁØºñÁß',
+ dstatus  VARCHAR2(50) default 'ë°°ì†¡ì¤€ë¹„ì¤‘',
  omemo varchar2(100),
  receivename varchar2(10),
  paymethod varchar2(20)
@@ -393,7 +393,7 @@ endday date not null
 );
 
 
--- Deliverycom(ÅÃ¹è¾÷Ã¼)
+-- Deliverycom(íƒë°°ì—…ì²´)
 
 /*
 create table Deliverycom(
@@ -405,7 +405,7 @@ create table Deliverycom(
  Dcharge   VARCHAR2(100),
  Dnum   VARCHAR2(30)
 );
-alter table orderdelivery modify dstatus varchar2(30) default '¹è¼ÛÁØºñÁß';
+alter table orderdelivery modify dstatus varchar2(30) default 'ë°°ì†¡ì¤€ë¹„ì¤‘';
 */
 
 CREATE TABLE "BESHOP06"."DELIVERYCOM" 
@@ -429,7 +429,7 @@ CREATE TABLE "BESHOP06"."DELIVERYCOM"
   TABLESPACE "USERS" ;
 
 
--- be_user(È¸¿ø)
+-- be_user(íšŒì›)
 
 create table be_user (
     beuid varchar2(20) primary key,
@@ -449,16 +449,7 @@ create table be_user (
     snsid varchar2(50)
 );
 
-
--- pointhit(Æ÷ÀÎÆ®Á¶È¸)
-
-create table pointhit(
-constraints fk_Uid beUid varchar2(20) references be_user(beuid) on delete cascade,
-    pointpurnum number,
-    primary key(beuid)
-);
-
--- div(±¸ºĞ)
+-- div(êµ¬ë¶„)
 
 create table div(
     dnum number primary key,
@@ -466,7 +457,7 @@ constraints fk_Uid beUid varchar2(20) not null references be_user(beuid) on dele
     ds number not null
 );
 
--- wishlist(À§½Ã¸®½ºÆ®)
+-- wishlist(ìœ„ì‹œë¦¬ìŠ¤íŠ¸)
 
 create table wishlist(
     wnum number primary key,
@@ -474,7 +465,7 @@ constraints fk_Uid beuid varchar2(20) not null references be_user(beuid) on dele
 constraints fk_pnum pnum number not null references product(pnum) on delete cascade
 );
 
--- Notify(½Å°í)
+-- Notify(ì‹ ê³ )
 
 CREATE TABLE Notify(
        Nonum NUMBER NOT NULL primary key,
@@ -493,7 +484,7 @@ CREATE TABLE FAQ (
        FAQ_con              VARCHAR2(500) NOT NULL
 );
 
--- Notice(°øÁö»çÇ×)
+-- Notice(ê³µì§€ì‚¬í•­)
 
 CREATE TABLE Notice (
      Noticenum        NUMBER NOT NULL primary key,
@@ -503,7 +494,7 @@ CREATE TABLE Notice (
 Notice_name varchar2(100) not null
 );
 
--- Administration(°ü¸®)
+-- Administration(ê´€ë¦¬)
 
 CREATE TABLE Administration(
        Ad_num             NUMBER NOT NULL primary key,
@@ -514,7 +505,7 @@ CREATE TABLE Administration(
        Cqnanum             NUMBER NOT NULL
 );
 
--- Admin(°ü¸®ÀÚ)
+-- Admin(ê´€ë¦¬ì)
 
 CREATE TABLE Admin (
 constraints fk_Uid  beUid  VARCHAR2(20) NOT NULL REFERENCES be_user(beuid) on delete cascade,
@@ -530,7 +521,7 @@ CREATE TABLE Event     (
        E_image        VARCHAR2(100) NOT NULL
 );
 
--- Cqna(Áú¹®)
+-- Cqna(ì§ˆë¬¸)
 
 CREATE TABLE Cqna (
    Cqnanum             NUMBER NOT NULL primary key,
@@ -542,24 +533,12 @@ CREATE TABLE Cqna (
    Cq_refNo  number
 );
 
--- usergrade(È¸¿øµî±Ş)
+-- usergrade(íšŒì›ë“±ê¸‰)
 
 create table usergrade(
     gradenum number primary key,
     grade varchar2(20) not null,
     gbenefit varchar2(100) not null
-);
-
--- point
-
-create table point (
-    pointpurnum number,
-    beuid varchar2(20) not null references be_user(beuid) on delete cascade,
-    pointbalance number not null,
-    changemethod varchar2(20),
-    changedate date,
-    pointdetails number,
-    constraint beuid_pointpurnum primary key(beuid, pointpurnum)
 );
 
 
