@@ -435,21 +435,20 @@ create table be_user (
     beuid varchar2(20) primary key,
     upw varchar2(20) not null,
     sex varchar2(20) not null,
-    birth date not null,
+    birth  varchar2(10) not null,
     uname varchar2(30) not null,
-    scnum char(14) not null,
     loginlog timestamp not null,
-    zipcode char(5) not null,
-    addr1 varchar2(100) not null,
-    addr2 varchar2(100) not null,
-    uPhone char(11) not null,
-    email varchar2(50) not null,
-    joindata date not null,
+    addr1 varchar2(100) ,
+    addr2 varchar2(100) ,
+    uphone varchar(11) not null,
+    email varchar2(25) not null,
+    joindate date not null,
     pf1 varchar2(20),
     pf2 varchar2(20),
     pf3 varchar2(20),
-    constraints fk_grade gradenum number not null references usergrade(gradenum) ON DELETE CASCADE
+    snsid varchar2(50)
 );
+
 
 -- pointhit(포인트조회)
 
