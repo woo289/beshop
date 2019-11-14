@@ -113,7 +113,7 @@ public class BE_OrderController {
 	}
 	@ResponseBody
 	@RequestMapping(value =  "/purchase_ok",method = RequestMethod.POST)
-	public String popuppost(BE_PayVo p,HttpServletRequest request)
+	public  Map<String, Object> popuppost(BE_PayVo p,HttpServletRequest request)
 	{
 		String paynum1= request.getParameter("paynum");
 		String payway=request.getParameter("payway");
@@ -133,16 +133,18 @@ public class BE_OrderController {
 		p.setPnum(pnum);
 		ModelAndView mav=new ModelAndView();
 		int re=pdao.insertpay(p);
-		String s="";
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		
 		if(re==1)
 		{
-			s="성공";
+			map.put("s", "성공");
 		}else
 		{
-			s="실패";
+			map.put("s", "실패");
 		}
-		
-		return s;
+		System.out.println("컨트롤러 결과"+map);
+		return map;
 		
 	}
 	
