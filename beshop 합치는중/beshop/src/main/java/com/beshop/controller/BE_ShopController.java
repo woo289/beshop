@@ -249,4 +249,30 @@ public class BE_ShopController {
 			return mav;
 		}
 	}
+	
+	@RequestMapping("/auctionDetail")
+	public ModelAndView auctionDetail(int pnum, HttpSession sesion) {
+		System.out.println("auction pnum은용 ? =" + pnum);
+		BE_ProductVo vo = pao.productDetail(pnum);
+		BE_AuctionVo a = pao.nowAuction();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("de", vo);
+		mav.addObject("a", a);
+		return mav;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/nowAuction")
+	public BE_AuctionVo auction(){
+		BE_AuctionVo ao = pao.nowAuction();
+		return ao;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertAuction",method = RequestMethod.POST)
+	public int insertAuction(BE_AuctionVo ao,HttpSession session) {
+		int r = pao.insertAuction(ao);
+		return r;
+	}
 }
