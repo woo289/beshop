@@ -44,7 +44,7 @@
 		var pnumkey=generateRandom(1, 100);
 		
 		//$("#odpnum").val(pnumkey);
-	
+		var oprice = $("#price").
 	});
 	
 	</script>
@@ -68,7 +68,7 @@
                     <input type="number" name="odpnum" id="odpnum">
                     
                     <div class="line"></div>
-
+					s
                     
                         
                             <div class='main-session'>
@@ -83,13 +83,13 @@
                                         <col width='250px'>
                                         <col width='200px'>
                                     </colgroup>
-                                    <thead>
-                                        <th scope="col" >상품번호</th>
+                                    <thead id="con">
+                                        <th scope="col" >${p.pnum }</th>
                                         <th scope="col"></th>
-                                        <th scope="col">상품명</th>
-                                        <th scope="col">판매가</th>
-                                        <th scope="col">수량</th>
-                                        <th scope="col">주문금액</th>
+                                        <th scope="col">${p.pname }</th>
+                                        <th scope="col" id="price">${p.p_price }</th>
+                                        <th scope="col" id="qty">${qty }</th>
+                                        <th scope="col" id="oprice">${oprice }</th>
                                     </thead>
                                     <tbody>
                                     
@@ -104,21 +104,21 @@
                                         </td>
                                         
                                         <td>
-                                            <span id="odnameval">청소기</span><br>
+                                            <span id="odnameval">${p.pname }</span><br>
                                             <input type="hidden" id="oname" name="oname">
                                             
                                         </td>
                                         <td >
-                                           <span id="p_price">120000</span>
+                                           <span id="p_price">${p.p_price }</span>
                                             <input type="hidden" name="p_priceval" id="p_priceval" >
                                         </td>
                                         
                                         <td>
-                                            <span id="ocount" name="ocount">1</span>
+                                            <span id="ocount" name="ocount">${qty }</span>
                                         </td>
 
                                         <td>
-                                            <span id="odp_price" name="odp_price">120000</span><br>
+                                            <span id="odp_price" name="odp_price">${oprice }</span><br>
                                            
                                         </td>
 									

@@ -1,5 +1,6 @@
 package com.beshop.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beshop.dao.BE_OrderDeliveryDao;
 import com.beshop.dao.BE_PayDao;
+import com.beshop.dao.BE_ProductDao;
 import com.beshop.vo.BE_OrderDeliveryVo;
 import com.beshop.vo.BE_PayVo;
+import com.beshop.vo.BE_ProductVo;
 
 @Controller
 public class BE_OrderController {
@@ -32,13 +35,18 @@ public class BE_OrderController {
 	private BE_OrderDeliveryDao dao;
 	@Autowired
 	private BE_PayDao pdao;
-	
+	@Autowired
+	private BE_ProductDao pao;
 	
 	public void setPdao(BE_PayDao pdao) {
 		this.pdao = pdao;
 	}
 	public void setDao(BE_OrderDeliveryDao dao) {
 		this.dao = dao;
+	}
+	
+	public void setPao(BE_ProductDao pao) {
+		this.pao = pao;
 	}
 	@ResponseBody
 	@RequestMapping("/OrderPurchase")
@@ -113,7 +121,7 @@ public class BE_OrderController {
 	}
 	@ResponseBody
 	@RequestMapping(value =  "/purchase_ok",method = RequestMethod.POST)
-	public  Map<String, Object> popuppost(BE_PayVo p,HttpServletRequest request)
+	public HashMap<String, Object> popuppost(BE_PayVo p,HttpServletRequest request)
 	{
 		String paynum1= request.getParameter("paynum");
 		String payway=request.getParameter("payway");
@@ -133,7 +141,7 @@ public class BE_OrderController {
 		p.setPnum(pnum);
 		ModelAndView mav=new ModelAndView();
 		int re=pdao.insertpay(p);
-		Map<String, Object> map=new HashMap<String, Object>();
+		HashMap<String, Object> map=new HashMap<String, Object>();
 		
 		
 		if(re==1)
@@ -148,9 +156,19 @@ public class BE_OrderController {
 		
 	}
 	
+	//상품디테일에서 주문하기로 이동
 	@RequestMapping(value="/orderpage", method=RequestMethod.GET)
-	public void order() {
-		
+	public ModelAndView order(HttpSession session, HttpServletRequest request) {
+		int pnum = Integer.parseInt(request.getParameter("pnum"));
+		int qty = Integer.parseInt(request.getParameter("qty"));
+		BE_ProductVo vo = pao.productDetail(pnum);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("p", vo);
+		mav.addObject("qty", qty);
+		System.out.println(vo.getP_price()*qty);
+		mav.addObject("oprice", vo.getP_price()*qty);
+		mav.setViewName("orderpage");
+		return mav;
 	}
 	@RequestMapping(value = "/orderpage",method =RequestMethod.POST )
 	public ModelAndView Order(BE_OrderDeliveryVo vo,HttpServletRequest request)
