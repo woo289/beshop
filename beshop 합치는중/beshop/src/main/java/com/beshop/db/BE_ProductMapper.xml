@@ -14,7 +14,7 @@
   	select p_video, p_date from (select rownum r,p_video,p_date from product) where r <![CDATA[<=]]> 5 order by p_date
   </select>
   <select id="shoplist" resultType="pvo">
-  select * from (select rownum r, pnum, p_date, p_cdate, p_sangse, pname, hits, p_price, beuid from 
+  select * from (select rownum r, pnum, p_date, p_cdate, p_sangse, pname, hits, p_price, beuid, auction from 
 (select * from product where p_cdate <![CDATA[<=]]> sysdate 
 order by p_cdate desc)) where r <![CDATA[<=]]> 5
   </select>
