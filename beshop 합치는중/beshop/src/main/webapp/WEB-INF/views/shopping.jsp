@@ -357,15 +357,6 @@
 							    <span class="duration">${r.p_cdate }</span>
 							</a>
 		                            	</c:if>
-		                           	 <c:if test="${r.auction == 1}">
-							<a href="auctionDetail?pnum=${r.pnum }">
-							    <img src="img/${r.p_sangse }" alt="Barca" class="img-responsive" style="width:160px; height:140px;" />
-							    <h3 style="margin: 15px 0px;">${r.pname }</h3>
-							    <h5>${r.beuid}</h5>
-							    <span class="glyphicon glyphicon-play-circle"></span>
-							    <span class="duration">${r.p_cdate }</span>
-							</a>
-		                           	 </c:if>
 		                            </div>
 		                          </c:forEach>
 		                     <!--     <div class="col-lg-3 col-sm-4 col-xs-6" style="width:200px;" >
@@ -427,15 +418,21 @@
                             <i class="prev2 fa fa-angle-left fa-3x btnL"></i>
                             <div>
                             <div class="list-unstyled video-list-thumbs row1 sliderSlick sliderS2" style="width:300; height: 300px; padding:30px">
-                                <div class="col-lg-3 col-sm-4 col-xs-6">
-                                    <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-                                        <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
-                                        <h3>스탠다드에코백(중) 블랙36*37*10cm+</h3>
-                                        <h5>에코지퍼파우치 인도산세트.</h5>
-                                        <span class="glyphicon glyphicon-play-circle"></span>
-                                        <span class="duration">03:15</span>
-                                    </a>
-                                </div>
+                               <c:forEach items="${list}" var="r">
+		                  <div class="col-lg-3 col-sm-4 col-xs-6">
+		                  <c:if test="${r.auction == 1}">
+		                   <a href="auctionDetail?pnum=${r.pnum }">
+		                   <img src="img/${r.p_sangse }" alt="Barca" class="img-responsive" style="width:160px; height:140px;" />
+		                   <h3 style="margin: 15px 0px;">${r.pname }</h3>
+		                   <h5>${r.beuid}</h5>
+		                   <span class="glyphicon glyphicon-play-circle"></span>
+		                   <span class="duration">${r.p_cdate }</span>
+		                   </a>
+		                   </c:if>
+		                   </div>
+		                </c:forEach>
+				    
+				<!--
                                 <div class="col-lg-3 col-sm-4 col-xs-6">
                                     <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
                                         <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
@@ -472,6 +469,7 @@
                                         <span class="duration">03:15</span>
                                     </a>
                                 </div>
+				-->
                             </div>
                             <i class="next2 fa fa-angle-right fa-3x btnR2"></i>
                             </div>
