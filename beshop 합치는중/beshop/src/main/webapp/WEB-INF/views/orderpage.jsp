@@ -41,7 +41,8 @@
             var onumkey = generateRandom(100000, 1000000);
 
             $("#odnum").val(onumkey);
-
+            var onum=$("#odnum").val();
+		      localStorage.setItem('onum', onum);
             var pnumkey = generateRandom(1, 100);
 
             //$("#odpnum").val(pnumkey);

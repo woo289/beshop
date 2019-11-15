@@ -14,9 +14,9 @@ import com.beshop.vo.BE_UserVo;
 public class BE_OrderDeliveryDao {
 
 	
-	public List<BE_OrderPurchaseVo> listod() {
+	public List<BE_OrderPurchaseVo> listod(String beuid, int onum) {
 		System.out.println("db ok");
-		return DBManager.listOrderdelivery();
+		return DBManager.listOrderdelivery(beuid,onum);
 		
 	}
 	

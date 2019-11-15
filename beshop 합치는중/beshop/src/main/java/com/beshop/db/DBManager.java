@@ -255,13 +255,17 @@ public class DBManager {
 		return o;
 	}
 	
-	public static List<BE_OrderPurchaseVo> listOrderdelivery()
+	public static List<BE_OrderPurchaseVo> listOrderdelivery(String beuid,int onum)
 	{
 		
 		SqlSession session = factory.openSession();
 		List<BE_OrderPurchaseVo> list = null;
-		System.out.println("���");
-		list = session.selectList("Order.selectodpurchase");
+		System.out.println("디비");
+		HashMap map = new HashMap();
+		map.put("beuid", beuid);
+		map.put("onum", onum);
+		System.out.println(map);
+		list = session.selectList("Order.selectodpurchase",map);
 		System.out.println(list);
 		session.close();
 		

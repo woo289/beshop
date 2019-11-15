@@ -5,7 +5,7 @@
   <mapper namespace="Order">
   
 <select id="selectodpurchase"  resultType="odpvo">
-select pname,p_price,ocount,payway,paycondition,payprice,recivename,ophone,oaddr1,oaddr2,omemo from pay a,product p,orderdelivery o where a.pnum=p.pnum  and o.pnum=p.pnum and a.pnum=o.pnum and beuid='godkkoo'
+select pname,p_price,ocount,payway,paycondition,payprice,recivename,ophone,oaddr1,oaddr2,omemo from pay a,product p,orderdelivery o where a.pnum=p.pnum  and o.pnum=p.pnum and a.pnum=o.pnum and beuid=#{beuid} and onum=#{onum}
 </select>
 <insert id="insertorder" parameterType="odvo">
   	insert into orderdelivery values(#{onum},#{beuid},#{pnum},#{dcnum},#{ocount},#{oprice},#{oaddr1},#{oaddr2},#{ophone},

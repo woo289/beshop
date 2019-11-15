@@ -49,13 +49,17 @@ public class BE_OrderController {
 		this.pao = pao;
 	}
 	@ResponseBody
-	@RequestMapping("/OrderPurchase")
-	public ModelAndView orderdelivery()
+	@RequestMapping( "/OrderPurchase")
+	public ModelAndView OrderPurchase(HttpServletRequest request,HttpSession session,String beuid,int onum)
 	{
+		
+		beuid = (String)session.getAttribute("beuid");
+		String onumval=request.getParameter("onum");
+		onum=Integer.parseInt(onumval);
 		System.out.println("컨트롤러동작함");
 		ModelAndView mav=new ModelAndView();
-		System.out.println(dao.listod());
-		mav.addObject("orderdeliverylist",dao.listod());
+		System.out.println(dao.listod(beuid,onum));
+		mav.addObject("orderdeliverylist",dao.listod(beuid,onum));
 		return mav;
 	}
 	/*
