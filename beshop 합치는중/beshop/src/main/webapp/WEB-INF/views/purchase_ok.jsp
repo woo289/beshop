@@ -33,7 +33,7 @@
 			    pay_method : 'card',
 			    merchant_uid :new Date().getTime(),
 			    name : 'BESHOP결제',
-			    amount : oprice,
+			    amount : 100,
 			    buyer_email : 'email',
 			    buyer_name : name,
 			    buyer_tel : '010-6268-3365',
@@ -53,7 +53,7 @@
 				    	  	"paynum":paynum,
 				            "payway":"카드",
 				            "paycondition":"결제완료",
-				           	"payprice":oprice,
+				           	"payprice":100,
 				            "pnum":1
 
 

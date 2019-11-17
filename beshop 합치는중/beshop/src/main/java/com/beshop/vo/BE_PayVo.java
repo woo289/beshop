@@ -8,8 +8,9 @@ public class BE_PayVo {
 	private String paycondition;
 	private Date paydate;
 	private int payprice;
-	private int Approvenum;
+	private int approvenum;
 	private int pnum;
+	
 	public int getPaynum() {
 		return paynum;
 	}
@@ -41,16 +42,20 @@ public class BE_PayVo {
 		this.payprice = payprice;
 	}
 	public int getApprovenum() {
-		return Approvenum;
+		return approvenum;
 	}
 	public void setApprovenum(int approvenum) {
-		Approvenum = approvenum;
+		this.approvenum = approvenum;
 	}
 	public int getPnum() {
 		return pnum;
 	}
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
+	}
+	public BE_PayVo() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	public BE_PayVo(int paynum, String payway, String paycondition, Date paydate, int payprice, int approvenum,
 			int pnum) {
@@ -60,13 +65,13 @@ public class BE_PayVo {
 		this.paycondition = paycondition;
 		this.paydate = paydate;
 		this.payprice = payprice;
-		Approvenum = approvenum;
+		this.approvenum = approvenum;
 		this.pnum = pnum;
 	}
-	public BE_PayVo() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "BE_PayVo [paynum=" + paynum + ", payway=" + payway + ", paycondition=" + paycondition + ", paydate="
+				+ paydate + ", payprice=" + payprice + ", approvenum=" + approvenum + ", pnum=" + pnum + "]";
 	}
-	
 	
 }

@@ -44,5 +44,20 @@ public class BE_UserDao {
 		return DBManager.getUser(beuid);
 	}
 
+	public BE_UserVo snsCheck(String snsid) {
+		// TODO Auto-generated method stub
+		return DBManager.snsIdCheck(snsid);
+	}
+
+	public BE_UserVo getSnsName(String snsid) {
+		// TODO Auto-generated method stub
+		return DBManager.snsIdCheck(snsid);
+	}
+
+	public int insertChannel(BE_UserVo v) {
+		// TODO Auto-generated method stub
+		return DBManager.insertChannel(v);
+	}
+
 	
 }
