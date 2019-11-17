@@ -38,6 +38,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script>
 $(function(){
  	function check(){
@@ -65,7 +68,7 @@ $(function(){
 	<script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('javascript키입력');
+    Kakao.init('f74089970be9d701ca6422b0bf5404bd');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
       Kakao.Auth.login({
@@ -85,10 +88,24 @@ $(function(){
                console.log("Nickname: "+userNickName);
                console.log("ProfileImg : "+profileImg);
                //console.log("Access Token: "+authObj.access_token);
-               location.href = '/joinpage';
-               localStorage.setItem('id', id);
-               localStorage.setItem('profileImg', profileImg);
                
+	               $.ajax({url:"snsId_ck", data:{snsid : id}, success:function(r){
+							alert(r)
+							if(r == "1"){
+								var data = "snsid="+id;
+								$.ajax({url:"main", type:"POST", data:data, success:function(){
+									window.location.href = "main";	
+									
+								}});
+							}else{
+								
+								location.href = 'joinpage';
+				               localStorage.setItem('id', id);
+				               localStorage.setItem('profileImg', profileImg);
+							}
+			           } 
+	               })
+          
                   }
                 });
         },
@@ -102,6 +119,7 @@ $(function(){
 	
  <!-- 구글 -->
 <script type="text/javascript">
+
 	var googleUser = {};
 	var startApp = function() {
 	  gapi.load('auth2', function(){
@@ -238,7 +256,7 @@ $(function(){
 </script>
 	<body>
 	 <!--햄버거 로그인 영역 -->
-      
+      <%-- <input type='text' value='${session }'> --%>
       <c:choose>
 			<c:when test="${empty sessionScope.beuid}">
 			<!-- 로그인이 안되어 있으면 -->
@@ -251,6 +269,10 @@ $(function(){
         <li><input type="text" name="beuid" id="beuid" placeholder="  아이디"></li>
         <li><input type="text" name ="upw" id="upw" placeholder="  비밀번호"></li>
         <li><input type="submit" value="로그인" id="btn_login"></li>
+        <li><div id="kakaoBtn"><a id="custom-login-btn" href="javascript:loginWithKakao()"><img src="img/kakaoLogin.png" width="233" height="40"/></a></div></li>
+        <li><div id="customBtn" class="customGPlusSignIn"><img src="img/google.png" id="googleLogin" width="233" height="40"></div></li>
+        <li><div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="#" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width="233" height="40"></a></div></li>
+        
       </ul>
       </form>
        <ul class="second">
@@ -263,10 +285,10 @@ $(function(){
        <c:otherwise>
        <nav id="sidenav" style="padding-left:0px">
       <span id="close-sidenav">&times;</span>
-       	 <header class="myheader" style="font-size: 20px;">${sessionScope.uname }님 환영합니다</header>
+       	 <header class="myheader" style="font-size: 20px;" style="margin-top:90px">${sessionScope.uname }님 환영합니다</header>
        	 <a href="logout.do" style="text-align: center; font-size:13px; margin:10px 0;" >로그아웃</a>
         <div class="userImg">
-            <img src="img/haeree.jpg">
+            <img src="img/${sessionScope.ch_img }">
         </div>
         <div class="userMenu">
             <header class="myheader" style="margin-top:50px; font-size:17px;">My 메뉴</header>
@@ -274,7 +296,6 @@ $(function(){
             <a>나의 주문내역</a>
             <a>고객센터</a>
             <a id="point">보유포인트</a>
-            <header class="myheader"  style="margin-top:50px; font-size:17px;]">최근 시청한 방송</header>
         </div>
        	</nav>
        	</c:otherwise>

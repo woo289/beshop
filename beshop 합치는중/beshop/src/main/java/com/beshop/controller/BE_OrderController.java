@@ -59,7 +59,7 @@ public class BE_OrderController {
 		System.out.println("컨트롤러동작함");
 		ModelAndView mav=new ModelAndView();
 		System.out.println(dao.listod(beuid,onum));
-		mav.addObject("orderdeliverylist",dao.listod(beuid,onum));
+		mav.addObject("d",dao.listod(beuid,onum));
 		return mav;
 	}
 	/*
@@ -131,16 +131,10 @@ public class BE_OrderController {
 		String payway=request.getParameter("payway");
 		String paycondition=request.getParameter("paycondition");
 		String payprice1=request.getParameter("payprice");
-		int approvenum1= Integer.parseInt(request.getParameter("approvenum"));
 		String pnum1=request.getParameter("pnum");
-		System.out.println(approvenum1);
 		int paynum=Integer.parseInt(paynum1);
 		int payprice=Integer.parseInt(payprice1);
-		int approvenum=(approvenum1);
 		int pnum=Integer.parseInt(pnum1);
-		System.out.println(approvenum);
-		p.setApprovenum(Integer.parseInt("1"));
-		System.out.println(p.getApprovenum());
 		p.setPaycondition(paycondition);
 		p.setPaynum(paynum);
 		p.setPayprice(payprice);

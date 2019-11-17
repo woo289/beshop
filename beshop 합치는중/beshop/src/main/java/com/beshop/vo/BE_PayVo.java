@@ -8,9 +8,20 @@ public class BE_PayVo {
 	private String paycondition;
 	private Date paydate;
 	private int payprice;
-	private int approvenum;
 	private int pnum;
-	
+	public BE_PayVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BE_PayVo(int paynum, String payway, String paycondition, Date paydate, int payprice, int pnum) {
+		super();
+		this.paynum = paynum;
+		this.payway = payway;
+		this.paycondition = paycondition;
+		this.paydate = paydate;
+		this.payprice = payprice;
+		this.pnum = pnum;
+	}
 	public int getPaynum() {
 		return paynum;
 	}
@@ -41,37 +52,16 @@ public class BE_PayVo {
 	public void setPayprice(int payprice) {
 		this.payprice = payprice;
 	}
-	public int getApprovenum() {
-		return approvenum;
-	}
-	public void setApprovenum(int approvenum) {
-		this.approvenum = approvenum;
-	}
 	public int getPnum() {
 		return pnum;
 	}
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
-	public BE_PayVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public BE_PayVo(int paynum, String payway, String paycondition, Date paydate, int payprice, int approvenum,
-			int pnum) {
-		super();
-		this.paynum = paynum;
-		this.payway = payway;
-		this.paycondition = paycondition;
-		this.paydate = paydate;
-		this.payprice = payprice;
-		this.approvenum = approvenum;
-		this.pnum = pnum;
-	}
 	@Override
 	public String toString() {
 		return "BE_PayVo [paynum=" + paynum + ", payway=" + payway + ", paycondition=" + paycondition + ", paydate="
-				+ paydate + ", payprice=" + payprice + ", approvenum=" + approvenum + ", pnum=" + pnum + "]";
+				+ paydate + ", payprice=" + payprice + ", pnum=" + pnum + "]";
 	}
 	
 }

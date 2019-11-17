@@ -91,7 +91,20 @@
 
 		</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+		function order(){
+			var f = $("#f").serialize();
+			alert(f);
+			var qty = $("#qty").val();
+			//select box 값 가져오기
+			var option1 = $(".select_op1 option:selected").val();
+			var option2 = $(".select_op2 option:selected").val();
+		
+		});
+});
 
+</script>
     </head>
     
 	<body>
@@ -136,14 +149,16 @@
 	</div>
 					
 					<!-- /Product main img -->
-
+					<form id="f" action="orderpage" onsubmit="return order()">
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<!-- <div id="product-imgs"></div> -->
 						
 					</div>
 					<!-- /Product thumb imgs -->
-
+					<input type ="hidden" id="pnum" name="pnum" value="${de.pnum }">
+					<input type="hidden"  name="pname" value="${de.pname }">
+					<input type="hidden" name="p_price" value="${de.p_price }">
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
@@ -170,14 +185,14 @@
 							<input type="hidden" value="${de.select_op1 }" id="op1">
 								<label class="option1">
 									${de.option1 }
-									<select class="input-select select_op1" style="width: 150px;">
+									<select class="input-select select_op1" name="select_op1" style="width: 150px;">
 									</select>
 								</label>
 								<script>
 										var op1 = $("#op1").val();
 										var arr = op1.split(',');
 										for(var i = 0; i<arr.length; i++){
-											var option = $("<option value='"+i+"'>"+arr[i]+"</option>");
+											var option = $("<option value='"+arr[i]+"'>"+arr[i]+"</option>");
 											$(".select_op1").append(option);
 										}
 								</script>
@@ -187,7 +202,7 @@
 							
 									<label>
 										${de.option2 }
-										<select class="input-select select_op2" style="width: 150px;">
+										<select class="input-select select_op2" name="select_op2" style="width: 150px;">
 											<!-- <option value="0">메모리 업그레이드 2기가추가</option>
 											<option value="1">메모리 업그레이드 4기가추가</option>
 											<option value="2">MS오피스 설치</option>
@@ -198,7 +213,7 @@
 											<script>
 											var arr = $("#op2").val().split(',');
 											for(var i = 0; i<arr.length; i++){
-												var option = $("<option></option>").html(arr[i]).attr("value",i);
+												var option = $("<option></option>").html(arr[i]).attr("value",arr[i]);
 												$(".select_op2").append(option);
 											}
 									</script>
@@ -230,13 +245,13 @@
 								<div class="qty-label">
 									수량
 									<div class="input-number" style="width:80px;">
-										<input type="number" value="1">
+										<input type="number" value="1" name="qty">
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
 								</div>
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 장바구니에 담기</button>
-								<button class="buy-now-btn"><i class="fa fa-credit-card"></i> 바로 구매하기</button>
+								<input type="submit" class="buy-now-btn"  id="btn_buy" value="바로 구매하기">
 							</div>
 
 							<ul class="product-btns">
@@ -251,7 +266,7 @@
 						</div>
 					</div>
 					<!-- /Product details -->
-
+					</form >
 					<!-- Product tab -->
 					<div class="col-md-12">
 						<div id="product-tab">

@@ -29,8 +29,6 @@
 		var addr=localStorage.getItem('addr');
 		var zipcode=localStorage.getItem('zipcode');
 		var paynum=localStorage.getItem('merchant_uid');
-        var onum=localStorage.getItem('onum');
-		$("#onum").val(onum);
 	});
 	</script>
 </head>
@@ -58,7 +56,7 @@
                 <div class="col-sm col-xs-3 to-details">
                     <div style="margin-bottom: 10px; margin-top: 20px; margin-left: 5px;">주문상품</div>
                     <div class="line"></div>
-                    <input type="text"  name="onum" id="onum">
+
                     
                        
 
@@ -83,7 +81,7 @@
                                         <th scope="col">주문금액</th>
                                     </thead>
                                     <tbody>
-                                <c:forEach var="o" items="${orderdeliverylist}">
+                                
                                         <td>1</td>
                                        
                                         <td>
@@ -94,15 +92,15 @@
 
                                         </td>
                                         <td>
-                                            <span>${o.pname}</span><br>
+                                            <span>${d.pname}</span><br>
                                          
                                         </td>
                                         <td>
                                            
-                                            ${o.p_price}
+                                            ${d.p_price}
                                         </td>
                                         <td>
-                                            <span>${o.ocount}</span>개
+                                            <span>${d.ocount}</span>개
                                         </td>
 
                                         <td>
@@ -111,7 +109,7 @@
 
                                     </tbody>
 
-									</c:forEach>
+									
 
                                 </table>
 
@@ -157,7 +155,7 @@
                             <div class="row">
                                 <div class="table">
                                     <table class="table-con" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<c:forEach var="d" items="${orderdeliverylist}">
+									
                                         <tr>
                                             <th class="p-info-payoption">결제방법</th>
                                             <th class="p-info-payoption-way">${d.payway}</th>
@@ -172,7 +170,7 @@
 
                                         </tr>
 
-								</c:forEach>
+								
 
                                     </table>
                                     <div class="line"></div>
@@ -192,35 +190,33 @@
                             <div class="row">
                                 <div class="table">
                                     <table class="table-con" width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <c:forEach var="c" items="${orderdeliverylist}">
+                                        
                                         <tr>
                                             <th class="table-colname-recieve" style="padding-left: 20;">수령인</th>
-                                            <th class="table-colname-blank">${c.recivename}</th>
+                                            <th class="table-colname-blank">${d.receivename}</th>
                                             <th class="table-colname-request">주문자정보</th>
 
                                         </tr>
                                         <tr>
                                             <th class="table-colname-phone1" style="padding-left: 20px;" width="800px;">연락처1</th>
-                                            <th class="table-colname-phone1con" style="padding-left: 20px;" width="800px;">${c.ophone}</th>
-                                            <th class="order-person-info" style="padding-top: 20px;" COLSPAN="2" ROWSPAN="4">${c.recivename}<br>${o.ophone}<br> ${o.oaddr1 }${o.oaddr2 }</th>
+                                            <th class="table-colname-phone1con" style="padding-left: 20px;" width="800px;">${d.ophone}</th>
+                                            <th class="order-person-info" style="padding-top: 20px;" COLSPAN="2" ROWSPAN="4">${d.recivename}<br>${o.ophone}<br> ${o.oaddr1 }${o.oaddr2 }</th>
                                         </tr>
                                         <tr>
                                             <th class="table-colname-phone2" style="padding-left: 20px;" width="800px;">연락처2</th>
-                                            <th class="table-colname-phone2con" style="padding-left: 20px;" width="800px;">${c.ophone}</th>
+                                            <th class="table-colname-phone2con" style="padding-left: 20px;" width="800px;">${d.ophone}</th>
 
                                         </tr>
                                         <tr>
                                             <th class="table-colname-addr" style="padding-left: 20px;" width="800px;">배송지 주소</th>
-                                            <th class="table-colname-addrcon" style="padding-left: 20px;" width="800px;">${c.oaddr1}${o.oaddr2}</th>
+                                            <th class="table-colname-addrcon" style="padding-left: 20px;" width="800px;">${d.oaddr1}${o.oaddr2}</th>
 
                                         </tr>
                                         <tr>
                                             <th class="table-colname-memo" style="padding-left: 20px;" width="800px;">배송메모</th>
-                                            <th class="table-colnamememo-con" style="padding-left: 20px;" width="800px;">${c.omemo}</th>
+                                            <th class="table-colnamememo-con" style="padding-left: 20px;" width="800px;">${d.omemo}</th>
 
                                         </tr>
-
-										</c:forEach>
 
 
 
