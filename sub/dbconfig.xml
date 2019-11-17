@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource="com/beshop/db/db.properties"/>
+<typeAliases>
+	<typeAlias type="com.beshop.vo.BE_UserVo" alias="userVo"/>
+	<typeAlias type="com.beshop.vo.BE_ProductVo" alias="pvo"/>
+	<typeAlias type="com.beshop.vo.BE_SubVo" alias="subVo" />
+	<typeAlias type="com.beshop.vo.BE_Sub_ListVo" alias="sub_ListVo" />
+	<typeAlias type="com.beshop.vo.BE_ChargePointVo" alias="Be_ChargeVo"/>
+  	<typeAlias type="com.beshop.vo.BE_PayPointVo" alias="Be_PayVo"/>
+  	<typeAlias type="com.beshop.vo.BE_PointBalanceVo" alias="Be_BalanceVo"/>
+  	<typeAlias type="com.beshop.vo.BE_OrderDeliveryVo" alias="odvo"/>
+  	<typeAlias type="com.beshop.vo.BE_OrderPurchaseVo" alias="odpvo"/>
+  	<typeAlias type="com.beshop.vo.BE_PayVo" alias="payvo"/>
+  	<typeAlias type="com.beshop.vo.Be_RankingVo" alias="rankVo"/>
+  	  	<typeAlias type="com.beshop.vo.BE_AuctionVo" alias="avo"/>
+</typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${pwd}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/beshop/db/be_userMapper.xml"/>
+    <mapper resource="com/beshop/db/BE_ProductMapper.xml"/>
+    <mapper resource="com/beshop/db/BE_SubMapper.xml"/>
+    <mapper resource="com/beshop/db/BE_pointMapper.xml"/>
+    <mapper resource="com/beshop/db/BE_OrderMapper.xml"/>
+    <mapper resource="com/beshop/db/be_rankingMapper.xml"/>
+    
+  </mappers>
+</configuration>
