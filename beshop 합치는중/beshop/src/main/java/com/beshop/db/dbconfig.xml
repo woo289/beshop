@@ -14,6 +14,9 @@
   	<typeAlias type="com.beshop.vo.BE_OrderDeliveryVo" alias="odvo"/>
   	<typeAlias type="com.beshop.vo.BE_OrderPurchaseVo" alias="odpvo"/>
   	<typeAlias type="com.beshop.vo.BE_PayVo" alias="payvo"/>
+	<typeAlias type="com.beshop.vo.BE_AuctionVo" alias="avo"/>
+  	<typeAlias type="com.beshop.vo.BE_ChannelVo" alias="channelvo"/>
+
   	
 </typeAliases>
   <environments default="development">

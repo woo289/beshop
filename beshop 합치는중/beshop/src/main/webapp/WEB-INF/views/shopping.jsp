@@ -346,6 +346,7 @@
 	                            <i class="prev1 fa fa-angle-left fa-3x btnL"></i>
 		                        <div class="list-unstyled video-list-thumbs row1 sliderSlick sliderS1" style="width:300; height: 300px; padding:30;">
 		                         <c:forEach items="${list}" var="r">
+		                          <c:if test="${r.auction == 0}">
 		                            <div class="col-lg-3 col-sm-4 col-xs-6">
 		                                <a href="shoppingDetail?pnum=${r.pnum }">
 		                                    <img src="img/${r.p_sangse }" alt="Barca" class="img-responsive" style="width:160px; height:140px;" />
@@ -355,6 +356,7 @@
 		                                    <span class="duration">${r.p_cdate }</span>
 		                                </a>
 		                            </div>
+		                            </c:if>
 		                            </c:forEach>
 		                     <!--     <div class="col-lg-3 col-sm-4 col-xs-6" style="width:200px;" >
 		                                <a href="#">
@@ -416,15 +418,20 @@
                             <div>
                             <div class="list-unstyled video-list-thumbs row1 sliderSlick sliderS2" style="width:300; height: 300px; padding:30px">
                                 <div class="col-lg-3 col-sm-4 col-xs-6">
-                                    <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-                                        <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
-                                        <h3>스탠다드에코백(중) 블랙36*37*10cm+</h3>
-                                        <h5>에코지퍼파우치 인도산세트.</h5>
-                                        <span class="glyphicon glyphicon-play-circle"></span>
-                                        <span class="duration">03:15</span>
-                                    </a>
+                                <c:forEach items="${list}" var="r">
+                                   <c:if test="${r.auction != 0}">
+										<a href="auctionDetail?pnum=${r.pnum }">
+										    <img src="img/${r.p_sangse }" alt="Barca" class="img-responsive" style="width:160px; height:140px;" />
+										    <h3 style="margin: 15px 0px;">${r.pname }</h3>
+										    <h5>${r.beuid}</h5>
+										    <span class="glyphicon glyphicon-play-circle"></span>
+										    <span class="duration">${r.p_cdate }</span>
+										</a>
+		                            	</c:if>
+		                            	</c:forEach>
                                 </div>
-                                <div class="col-lg-3 col-sm-4 col-xs-6">
+                                 
+                                <!-- <div class="col-lg-3 col-sm-4 col-xs-6">
                                     <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
                                         <img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" width="200px" />
                                         <h3>린넨에코백 동물의왕국 330*380mm </h3>
@@ -458,7 +465,7 @@
                                         <h5>레드,블랙</h5>
                                         <span class="glyphicon glyphicon-play-circle"></span>
                                         <span class="duration">03:15</span>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <i class="next2 fa fa-angle-right fa-3x btnR2"></i>

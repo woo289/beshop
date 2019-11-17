@@ -18,6 +18,21 @@
 	padding-right: 200px;
 	}
 	</style>
+	<script type="text/javascript" src=""></script>
+	<script type="text/javascript">
+	$(function(){
+		var snsid = localStorage.getItem('id');
+		
+		var oprice=localStorage.getItem('oprice');
+		var email=localStorage.getItem('email');
+		var name=localStorage.getItem('name');
+		var addr=localStorage.getItem('addr');
+		var zipcode=localStorage.getItem('zipcode');
+		var paynum=localStorage.getItem('merchant_uid');
+        var onum=localStorage.getItem('onum');
+		$("#onum").val(onum);
+	});
+	</script>
 </head>
 <body>
 
@@ -43,7 +58,7 @@
                 <div class="col-sm col-xs-3 to-details">
                     <div style="margin-bottom: 10px; margin-top: 20px; margin-left: 5px;">주문상품</div>
                     <div class="line"></div>
-
+                    <input type="text"  name="onum" id="onum">
                     
                        
 

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beshop.dao.BE_ChannelDao;
 import com.beshop.dao.BE_ProductDao;
 import com.beshop.dao.BE_UserDao;
+import com.beshop.vo.BE_ChannelVo;
 import com.beshop.vo.BE_ProductVo;
 import com.beshop.vo.BE_UserVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +30,12 @@ public class BE_UserController {
 	private BE_UserDao dao;
 	public void setDao(BE_UserDao dao) {
 		this.dao = dao;
+	}
+	@Autowired
+	private BE_ChannelDao cdao;
+
+	public void setCdao(BE_ChannelDao cdao) {
+		this.cdao = cdao;
 	}
 	
 	@Autowired
@@ -68,12 +76,29 @@ public class BE_UserController {
 			int re=dao.insert(v);
 			if(re==1)
 			{
+				int r = dao.insertChannel(v);
+				System.out.println(r);
 				mav=new ModelAndView("redirect:/main");
 			}
 			return mav;
 			
 		}
-	
+	//Sns 아이디 로그인 체크
+		@ResponseBody
+	@RequestMapping("snsId_ck")
+		public int snsId_ck(String snsid, HttpServletRequest request) {
+			System.out.println(snsid);
+			BE_UserVo vo = dao.snsCheck(snsid);
+		
+			int r = 0;
+			if(vo == null) {
+				r = 0;
+			}
+			else {
+				r =1;
+			}	        
+			return r;
+		}
 	
 	//아이디,비밀번호 찾기 페이지
 	@RequestMapping(value = "/search_user", method = RequestMethod.GET)
@@ -145,36 +170,63 @@ public class BE_UserController {
 	 * mav.setViewName("main"); return mav; }
 	 */
 	@RequestMapping(value="main", method=RequestMethod.POST)
-	public ModelAndView login_process(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView login_process(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("redirect:/main");
 		BE_UserVo vo = null;
 		String beuid = request.getParameter("beuid");
 		String upw = request.getParameter("upw");
-		
-		System.out.println("회원아이디 : "+beuid+" 회원 비밀번호 : "+upw);
-		HashMap map = new HashMap();
-		map.put("beuid",beuid);
-		map.put("upw", upw);
-	
-		vo = dao.getName(map);
+		String snsid = request.getParameter("snsid");
+		BE_ChannelVo cvo = null;
 		HttpSession session = request.getSession(true);
-
-		if(vo == null) {
-			System.out.println("실패");
-			mav.addObject("msg","실패");
+		System.out.println(snsid);
+		if(snsid != null) {
+			vo = dao.getSnsName(snsid);
+			cvo = cdao.getChannel(vo.getBeuid());
+			if(vo == null) {
+				System.out.println("실패");
+				mav.addObject("msg","실패");
+			}
+			else {
+				System.out.println(vo.getUname());
+				String name = vo.getUname();
+				mav.addObject("msg","성공");
+				session.setAttribute("beuid", vo.getBeuid());
+				session.setAttribute("upw", vo.getUpw());
+				session.setAttribute("uname", vo.getUname());
+				session.setAttribute("email", vo.getEmail());
+				session.setAttribute("ch_img", cvo.getCh_img());
+				session.setAttribute("ch_name", cvo.getCh_name());
+				System.out.println(vo.getBeuid()+vo.getUpw()+vo.getUname()+vo.getEmail());
+			}	        
 		}
 		else {
-			System.out.println(vo.getUname());
-			String name = vo.getUname();
-			mav.addObject("msg","성공");
-			session.setAttribute("beuid", beuid);
-			session.setAttribute("upw", upw);
-			session.setAttribute("uname", name);
-			session.setAttribute("email", vo.getEmail());
-		}	        
+			System.out.println("회원아이디 : "+beuid+" 회원 비밀번호 : "+upw);
+			HashMap map = new HashMap();
+			map.put("beuid",beuid);
+			map.put("upw", upw);
+		
+			vo = dao.getName(map);
+			cvo = cdao.getChannel(beuid);
+			if(vo == null) {
+				System.out.println("실패");
+				mav.addObject("msg","실패");
+			}
+			else {
+				System.out.println(vo.getUname());
+				String name = vo.getUname();
+				mav.addObject("msg","성공");
+				session.setAttribute("beuid", beuid);
+				session.setAttribute("upw", upw);
+				session.setAttribute("uname", name);
+				session.setAttribute("email", vo.getEmail());
+				session.setAttribute("ch_img", cvo.getCh_img());
+				session.setAttribute("ch_name", cvo.getCh_name());
+				System.out.println();
+			}	        
+			}
 		  mav.addObject("list", pao.videoList());
-		mav.setViewName("main");
-		return mav;
+		  mav.setViewName("main");
+		  return mav;
 	}
 	//회원 로그아웃
 	@RequestMapping("logout.do")

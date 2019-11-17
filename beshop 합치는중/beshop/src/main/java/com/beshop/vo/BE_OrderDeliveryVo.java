@@ -8,6 +8,7 @@ public class BE_OrderDeliveryVo {
 	String beuid;
 	int pnum;
 	int dcnum;
+	String oname;
 	int ocount;
 	int oprice;
 	String oaddr1;
@@ -15,12 +16,37 @@ public class BE_OrderDeliveryVo {
 	String ophone;
 	String odzip;
 	Date odate;
+	int dprice;
 	String dstatus;
 	String omemo;
 	String receivename;
 	String paymethod;
-	int dprice;
-	String oname;
+	public BE_OrderDeliveryVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BE_OrderDeliveryVo(int onum, String beuid, int pnum, int dcnum, String oname, int ocount, int oprice,
+			String oaddr1, String oaddr2, String ophone, String odzip, Date odate, int dprice, String dstatus,
+			String omemo, String receivename, String paymethod) {
+		super();
+		this.onum = onum;
+		this.beuid = beuid;
+		this.pnum = pnum;
+		this.dcnum = dcnum;
+		this.oname = oname;
+		this.ocount = ocount;
+		this.oprice = oprice;
+		this.oaddr1 = oaddr1;
+		this.oaddr2 = oaddr2;
+		this.ophone = ophone;
+		this.odzip = odzip;
+		this.odate = odate;
+		this.dprice = dprice;
+		this.dstatus = dstatus;
+		this.omemo = omemo;
+		this.receivename = receivename;
+		this.paymethod = paymethod;
+	}
 	public int getOnum() {
 		return onum;
 	}
@@ -44,6 +70,12 @@ public class BE_OrderDeliveryVo {
 	}
 	public void setDcnum(int dcnum) {
 		this.dcnum = dcnum;
+	}
+	public String getOname() {
+		return oname;
+	}
+	public void setOname(String oname) {
+		this.oname = oname;
 	}
 	public int getOcount() {
 		return ocount;
@@ -87,6 +119,12 @@ public class BE_OrderDeliveryVo {
 	public void setOdate(Date odate) {
 		this.odate = odate;
 	}
+	public int getDprice() {
+		return dprice;
+	}
+	public void setDprice(int dprice) {
+		this.dprice = dprice;
+	}
 	public String getDstatus() {
 		return dstatus;
 	}
@@ -111,45 +149,15 @@ public class BE_OrderDeliveryVo {
 	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
-	public int getDprice() {
-		return dprice;
+	@Override
+	public String toString() {
+		return "BE_OrderDeliveryVo [onum=" + onum + ", beuid=" + beuid + ", pnum=" + pnum + ", dcnum=" + dcnum
+				+ ", oname=" + oname + ", ocount=" + ocount + ", oprice=" + oprice + ", oaddr1=" + oaddr1 + ", oaddr2="
+				+ oaddr2 + ", ophone=" + ophone + ", odzip=" + odzip + ", odate=" + odate + ", dprice=" + dprice
+				+ ", dstatus=" + dstatus + ", omemo=" + omemo + ", receivename=" + receivename + ", paymethod="
+				+ paymethod + "]";
 	}
-	public void setDprice(int dprice) {
-		this.dprice = dprice;
-	}
-	public String getOname() {
-		return oname;
-	}
-	public void setOname(String oname) {
-		this.oname = oname;
-	}
-	public BE_OrderDeliveryVo(int onum, String beuid, int pnum, int dcnum, int ocount, int oprice, String oaddr1,
-			String oaddr2, String ophone, String odzip, Date odate, String dstatus, String omemo, String receivename,
-			String paymethod, int dprice, String oname) {
-		super();
-		this.onum = onum;
-		this.beuid = beuid;
-		this.pnum = pnum;
-		this.dcnum = dcnum;
-		this.ocount = ocount;
-		this.oprice = oprice;
-		this.oaddr1 = oaddr1;
-		this.oaddr2 = oaddr2;
-		this.ophone = ophone;
-		this.odzip = odzip;
-		this.odate = odate;
-		this.dstatus = dstatus;
-		this.omemo = omemo;
-		this.receivename = receivename;
-		this.paymethod = paymethod;
-		this.dprice = dprice;
-		this.oname = oname;
-	}
-	public BE_OrderDeliveryVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
+
+
 	
 }

@@ -49,17 +49,13 @@ public class BE_OrderController {
 		this.pao = pao;
 	}
 	@ResponseBody
-	@RequestMapping( "/OrderPurchase")
-	public ModelAndView OrderPurchase(HttpServletRequest request,HttpSession session,String beuid,int onum)
+	@RequestMapping("/OrderPurchase")
+	public ModelAndView orderdelivery()
 	{
-		
-		beuid = (String)session.getAttribute("beuid");
-		String onumval=request.getParameter("onum");
-		onum=Integer.parseInt(onumval);
 		System.out.println("컨트롤러동작함");
 		ModelAndView mav=new ModelAndView();
-		System.out.println(dao.listod(beuid,onum));
-		mav.addObject("orderdeliverylist",dao.listod(beuid,onum));
+		System.out.println(dao.listod());
+		mav.addObject("orderdeliverylist",dao.listod());
 		return mav;
 	}
 	/*
@@ -131,16 +127,13 @@ public class BE_OrderController {
 		String payway=request.getParameter("payway");
 		String paycondition=request.getParameter("paycondition");
 		String payprice1=request.getParameter("payprice");
-		int approvenum1= Integer.parseInt(request.getParameter("approvenum"));
+		String approvenum1=request.getParameter("approvenum");
 		String pnum1=request.getParameter("pnum");
-		System.out.println(approvenum1);
 		int paynum=Integer.parseInt(paynum1);
 		int payprice=Integer.parseInt(payprice1);
-		int approvenum=(approvenum1);
+		int approvenum=Integer.parseInt(approvenum1);
 		int pnum=Integer.parseInt(pnum1);
-		System.out.println(approvenum);
-		p.setApprovenum(Integer.parseInt("1"));
-		System.out.println(p.getApprovenum());
+		p.setApprovenum(approvenum);
 		p.setPaycondition(paycondition);
 		p.setPaynum(paynum);
 		p.setPayprice(payprice);
@@ -168,19 +161,17 @@ public class BE_OrderController {
 	public ModelAndView order(HttpSession session, HttpServletRequest request) {
 		int pnum = Integer.parseInt(request.getParameter("pnum"));
 		int qty = Integer.parseInt(request.getParameter("qty"));
-		System.out.println(pnum+qty);
 		BE_ProductVo vo = pao.productDetail(pnum);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("p", vo);
 		mav.addObject("qty", qty);
 		System.out.println(vo.getP_price()*qty);
 		mav.addObject("oprice", vo.getP_price()*qty);
-		
 		mav.setViewName("orderpage");
 		return mav;
 	}
 	@RequestMapping(value = "/orderpage",method =RequestMethod.POST )
-	public ModelAndView Order(BE_OrderDeliveryVo vo,HttpServletRequest request, HttpSession session)
+	public ModelAndView Order(BE_OrderDeliveryVo vo,HttpServletRequest request)
 	{
 		String phone1=request.getParameter("phone1");
 		String phone2=request.getParameter("phone2");
@@ -197,8 +188,7 @@ public class BE_OrderController {
 		//int pnum=Integer.parseInt(request.getParameter("odpnum"));
 		int pnum=1;
 		String paymethod="iamport";
-		String beuid=(String)session.getAttribute("beuid");
-		System.out.println("세션 유지 아이디"+beuid);
+		String beuid="godkkoo";
 		String oname=request.getParameter("oname");
 		System.out.println(oname);
 		vo.setDcnum(dcnum);

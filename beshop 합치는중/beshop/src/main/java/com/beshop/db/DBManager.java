@@ -13,6 +13,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.beshop.vo.BE_AuctionVo;
+import com.beshop.vo.BE_ChannelVo;
 import com.beshop.vo.BE_ChargePointVo;
 import com.beshop.vo.BE_OrderDeliveryVo;
 import com.beshop.vo.BE_OrderPurchaseVo;
@@ -35,7 +37,23 @@ public class DBManager {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	//경매 관련
+	public static BE_AuctionVo nowAuction() {
+		BE_AuctionVo ao= null;
+		SqlSession session = factory.openSession();
+		ao = session.selectOne("product.nowAuction");
+		session.close();
+		return ao;
+	}
+	
+	public static int insertAuction(BE_AuctionVo ao) {
+		int r = 0;
+		SqlSession session = factory.openSession();
+		r = session.insert("product.insertAuction",ao);
+		session.commit();
+		session.close();
+		return r;
+	}
 	public static  String searchId(HashMap map) {
 		// TODO Auto-generated method stub
 		String beuid = "";	
@@ -255,13 +273,17 @@ public class DBManager {
 		return o;
 	}
 	
-	public static List<BE_OrderPurchaseVo> listOrderdelivery()
+	public static List<BE_OrderPurchaseVo> listOrderdelivery(String beuid,int onum)
 	{
 		
 		SqlSession session = factory.openSession();
 		List<BE_OrderPurchaseVo> list = null;
-		System.out.println("���");
-		list = session.selectList("Order.selectodpurchase");
+		System.out.println("디비");
+		HashMap map = new HashMap();
+		map.put("beuid", beuid);
+		map.put("onum", onum);
+		System.out.println(map);
+		list = session.selectList("Order.selectodpurchase",map);
 		System.out.println(list);
 		session.close();
 		
@@ -303,5 +325,34 @@ public class DBManager {
 			return list;
 		}
 
-
+	public static BE_UserVo snsIdCheck(String snsid) {
+		// TODO Auto-generated method stub
+		BE_UserVo vo = new BE_UserVo();
+		SqlSession session = factory.openSession();
+		vo = session.selectOne("beuser.snscheck", snsid);
+		session.close();
+		return vo;
+	}
+	//회원가입시 자동으로 채널 생성
+	public static int insertChannel(BE_UserVo v) {
+		// TODO Auto-generated method stub
+		SqlSession session = factory.openSession();
+		HashMap map = new HashMap();
+		map.put("uname", v.getUname());
+		map.put("beuid", v.getBeuid());
+		int r = session.insert("beuser.channel",map);
+		session.commit();
+		session.close();
+		return r;
+	}
+	//아이디를 받아 회원의 채널 정보 담기
+	public static BE_ChannelVo getChannel(String beuid) {
+		// TODO Auto-generated method stub
+		BE_ChannelVo vo = null;
+		SqlSession session = factory.openSession();
+		vo = session.selectOne("channel.getChannel", beuid);
+		System.out.println("채널의 회원정보"+vo);
+		session.close();
+		return vo;
+	}
 }

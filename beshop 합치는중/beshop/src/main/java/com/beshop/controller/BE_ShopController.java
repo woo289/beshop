@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beshop.dao.BE_ChannelDao;
 import com.beshop.dao.BE_ProductDao;
 import com.beshop.dao.BE_SubDao;
 import com.beshop.dao.BE_UserDao;
+import com.beshop.vo.BE_AuctionVo;
 import com.beshop.vo.BE_ProductVo;
 import com.beshop.vo.BE_SubVo;
 import com.beshop.vo.BE_UserVo;
@@ -53,6 +56,7 @@ public class BE_ShopController {
 	public void setSdao(BE_SubDao sdao) {
 		this.sdao = sdao;
 	}
+	
 	@ResponseBody
 	@RequestMapping("/shopping")
 	public ModelAndView shopping() {
@@ -220,6 +224,7 @@ public class BE_ShopController {
 		return mav;
 	}
 	
+			
 	@RequestMapping("/channel")
 	public ModelAndView channel(HttpServletRequest request, HttpSession session) {
 		String beuid = request.getParameter("beuid"); //해당 채널 아이디
@@ -248,5 +253,32 @@ public class BE_ShopController {
 					mav.setViewName("channel");
 			return mav;
 		}
+	}
+	
+	//경매 상품
+	@RequestMapping("auctionDetail")
+	public ModelAndView auctionDetail(int pnum, HttpSession sesion) {
+		System.out.println("auction pnum은용 ? =" + pnum);
+		BE_ProductVo vo = pao.productDetail(pnum);
+		BE_AuctionVo a = pao.nowAuction();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("de", vo);
+		mav.addObject("a", a);
+		return mav;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/nowAuction")
+	public BE_AuctionVo auction(){
+		BE_AuctionVo ao = pao.nowAuction();
+		return ao;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertAuction",method = RequestMethod.POST)
+	public int insertAuction(BE_AuctionVo ao,HttpSession session) {
+		int r = pao.insertAuction(ao);
+		return r;
 	}
 }

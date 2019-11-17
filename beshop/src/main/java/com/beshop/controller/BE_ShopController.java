@@ -1,15 +1,21 @@
-﻿package com.beshop.controller;
+package com.beshop.controller;
 
 
 import java.awt.Dialog;
 import java.io.FileOutputStream;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Producer;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +24,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beshop.dao.BE_ChannelDao;
 import com.beshop.dao.BE_ProductDao;
+import com.beshop.dao.BE_SubDao;
+import com.beshop.dao.BE_UserDao;
+import com.beshop.vo.BE_AuctionVo;
 import com.beshop.vo.BE_ProductVo;
+import com.beshop.vo.BE_SubVo;
+import com.beshop.vo.BE_UserVo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Controller
@@ -43,36 +56,7 @@ public class BE_ShopController {
 	public void setSdao(BE_SubDao sdao) {
 		this.sdao = sdao;
 	}
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/orderListSet") public List<OrderListVo> orderList(){
-	 * List<OrderListVo> list = olao.listOrder();
-	 * 
-	 * String str = ""; ObjectMapper mapper = new ObjectMapper(); try { str =
-	 * mapper.writeValueAsString(olao.listOrder()); } catch (Exception e) {
-	 * System.out.println(e.getMessage()); }
-	 * 
-	 * return str;
-	 * 
-	 * return list; }
-	 */
-
-	@ResponseBody
-	@RequestMapping("/nowAuction")
-	public BE_AuctionVo auction(){
-		BE_AuctionVo ao = pao.nowAuction();
-		return ao;
-	}
 	
-	@ResponseBody
-	@RequestMapping(value="/insertAuction",method = RequestMethod.POST)
-	public int insertAuction(BE_AuctionVo ao,HttpSession session) {
-		int r = pao.insertAuction(ao);
-		return r;
-	}
-	//쇼핑 메인(리스트 반영)
 	@ResponseBody
 	@RequestMapping("/shopping")
 	public ModelAndView shopping() {
@@ -82,7 +66,7 @@ public class BE_ShopController {
 		System.out.println(pao.shopList());
 		return mav;
 	}
-	//쇼핑 디테일(상품 반영)
+
 	@RequestMapping("shoppingDetail")
 	public ModelAndView shoppingDetail(int pnum, HttpSession sesion) {
 		System.out.println("pnum은용 ? =" + pnum);
@@ -91,83 +75,26 @@ public class BE_ShopController {
 		mav.addObject("de", vo);
 		return mav;
 	}
-	
-	@RequestMapping("/orderlist")
-	public void orderlist() {
-
-	}
-	@RequestMapping("shoppingDetail")
-	public void shoppingDetail() {
-		
-	}
-	@RequestMapping("/auctionDetail")
-	public void auctionDetail() {
-		
-	}
 
 	@RequestMapping(value="/addProduct",method = RequestMethod.GET)
 	public void addProductGet() {
 		System.out.println("get온다");
 		
 	}
-	/* 팀장님 코드
-	@RequestMapping(value="/addProduct",method = RequestMethod.POST)
-	public ModelAndView addProductPost(BE_ProductVo po, HttpSession session, HttpServletRequest request) {
-		System.out.println("post온다"+po.getP_cdate());
-		String path = request.getRealPath("video");
-		System.out.println(path);
-		MultipartFile file = po.getVideo();
-		String p_video = file.getOriginalFilename();
-		po.setP_video(p_video);
-		try {
-			byte date[] = file.getBytes();
-			FileOutputStream fos = new FileOutputStream(path+"/"+p_video);
-			fos.write(date);
-			fos.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		MultipartFile file2 = po.getSangse();
-		String p_sangse = file2.getOriginalFilename();
-		po.setP_sangse(p_sangse);
-		try {
-			byte date[] = file2.getBytes();
-			FileOutputStream fos = new FileOutputStream(path+"/"+p_sangse);
-			fos.write(date);
-			fos.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		MultipartFile file3 = po.getAs();
-		String as_info = file3.getOriginalFilename();
-		po.setAs_info(as_info);
-		try {
-			byte date[] = file3.getBytes();
-			FileOutputStream fos = new FileOutputStream(path+"/"+as_info);
-			fos.write(date);
-			fos.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("file3 까지 탄다.");
-		ModelAndView mav = new ModelAndView("redirect:/main");
-		int r = pao.insertProduct(po);
-		System.out.println(r);
-		String msg = "";
-		if(r != 1) { 
-			msg ="상품등록에 실패했습니다.";
-		}else {
-			msg = "상품등록에 성공!!";
-		}
-		mav.addObject("msg", msg);
-		return mav;
+	
+	@RequestMapping("inquiry")
+	public void ma1() {
 		
 	}
-	*/
-
-	//수정
+	@RequestMapping("inquiry_detail")
+	public void ma2() {
+		
+	}
+	@RequestMapping("inquiry_write")
+	public void ma3() {
+		
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/addProduct",method = RequestMethod.POST)
 	public ModelAndView addProductPost(BE_ProductVo po, HttpSession session, HttpServletRequest request) {
@@ -180,7 +107,10 @@ public class BE_ShopController {
 		String sel_op1 = request.getParameter("select_op1");
 		String sel_op2 = request.getParameter("select_op2");
 		String sel_op3 = request.getParameter("select_op3");
+		String p_category = request.getParameter("p_category");
+		
 		System.out.println(option2+sel_op2);
+		System.out.println(p_category);
 		MultipartFile file = po.getVideo();
 		String p_video = file.getOriginalFilename();
 		if(option2 == null || sel_op2 == null) {
@@ -203,6 +133,7 @@ public class BE_ShopController {
 		po.setP_video(p_video);
 		po.setOption1(option1);
 		po.setSelect_op1(sel_op1);
+		po.setP_category(p_category);
 		
 		try {
 			byte date[] = file.getBytes();
@@ -263,12 +194,10 @@ public class BE_ShopController {
 		return mav;
 	}
 	
-	//내 채널
 	@RequestMapping("/mychannel")
 	public void mychannel(HttpSession session) {
 		
 	}
-	
 	//채널에 올린 상품 보여주기
 	@ResponseBody
 	@RequestMapping(value="/plist",method=RequestMethod.GET)
@@ -295,6 +224,7 @@ public class BE_ShopController {
 		return mav;
 	}
 	
+			
 	@RequestMapping("/channel")
 	public ModelAndView channel(HttpServletRequest request, HttpSession session) {
 		String beuid = request.getParameter("beuid"); //해당 채널 아이디
@@ -323,5 +253,32 @@ public class BE_ShopController {
 					mav.setViewName("channel");
 			return mav;
 		}
+	}
+	
+	//경매 상품
+	@RequestMapping("auctionDetail")
+	public ModelAndView auctionDetail(int pnum, HttpSession sesion) {
+		System.out.println("auction pnum은용 ? =" + pnum);
+		BE_ProductVo vo = pao.productDetail(pnum);
+		BE_AuctionVo a = pao.nowAuction();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("de", vo);
+		mav.addObject("a", a);
+		return mav;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/nowAuction")
+	public BE_AuctionVo auction(){
+		BE_AuctionVo ao = pao.nowAuction();
+		return ao;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insertAuction",method = RequestMethod.POST)
+	public int insertAuction(BE_AuctionVo ao,HttpSession session) {
+		int r = pao.insertAuction(ao);
+		return r;
 	}
 }

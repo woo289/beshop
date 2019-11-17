@@ -30,9 +30,9 @@
 		localStorage.setItem('zipcode', zipcode);
 		
 		var odname=$("#odnameval").val();
-		$("#oname").val(odname);
-		$("#odnum").hide();
-		$("#odpnum").hide();
+		
+		 $("#odnum").hide();
+		$("#odpnum").hide(); 
 		var generateRandom = function (min, max) {
 			  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
 			  return ranNum;
@@ -40,15 +40,42 @@
 		var onumkey=generateRandom(100000, 1000000);
 		
 		$("#odnum").val(onumkey);
+		var onum=$("#odnum").val();
+	      localStorage.setItem('onum', onum);
 		
 		var pnumkey=generateRandom(1, 100);
 		
-		//$("#odpnum").val(pnumkey);
-	
 	});
 	
 	</script>
-	
+	  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function addrfind() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 참고 항목 변수
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraRoadAddr !== '') {
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('odzip').value = data.zonecode;
+                    document.getElementById("oaddr1").value = roadAddr;
+                    document.getElementById("oaddr2").focus();
+                }
+            }).open();
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -65,11 +92,9 @@
                 
                     <div style="margin-bottom: 10px; margin-top: 20px; margin-left: 5px;">주문상품</div>
                     <input type="number"  name="odnum" id="odnum">
-                    <input type="number" name="odpnum" id="odpnum">
+                    <input type="number" name="odpnum" id="odpnum" value="${p.pnum }">
                     
                     <div class="line"></div>
-
-                    
                         
                             <div class='main-session'>
 
@@ -83,13 +108,13 @@
                                         <col width='250px'>
                                         <col width='200px'>
                                     </colgroup>
-                                    <thead>
-                                        <th scope="col" >상품번호</th>
+                                    <thead id="con">
+                                        <th scope="col" >주문번호</th>
                                         <th scope="col"></th>
                                         <th scope="col">상품명</th>
-                                        <th scope="col">판매가</th>
-                                        <th scope="col">수량</th>
-                                        <th scope="col">주문금액</th>
+                                        <th scope="col" id="price">상품금액</th>
+                                        <th scope="col" id="qty">수량</th>
+                                        <th scope="col" id="oprice">주문금액</th>
                                     </thead>
                                     <tbody>
                                     
@@ -97,38 +122,32 @@
                                         
                                         <td>
                                             <div class="product_img">
-                                                <img src="img/drone.png" width="62px" height="68px" style="margin-bottom: 5px;margin-top: 5px;overflow: hidden;">
-
+                                                <img src="img/${p.p_sangse }" width="62px" height="68px" style="margin-bottom: 5px;margin-top: 5px;overflow: hidden;">
                                             </div>
 
                                         </td>
                                         
                                         <td>
-                                            <span id="odnameval">청소기</span><br>
-                                            <input type="hidden" id="oname" name="oname">
+                                            <span id="odnameval">${p.pname }</span><br>
+                                            <input type="hidden" id="oname" name="oname" value=${p.pname }>
                                             
                                         </td>
                                         <td >
-                                           <span id="p_price">120000</span>
+                                           <span id="p_price">${p.p_price }</span>
                                             <input type="hidden" name="p_priceval" id="p_priceval" >
                                         </td>
                                         
                                         <td>
-                                            <span id="ocount" name="ocount">1</span>
+                                            <span id="ocount" name="ocount">${qty }</span>
                                         </td>
 
                                         <td>
-                                            <span id="odp_price" name="odp_price">120000</span><br>
+                                            <span id="odp_price" name="odp_price">${oprice }</span><br>
                                            
                                         </td>
 									
                                     </tbody>
-
-
-                                   
-
-
-                                   
+                       
                                 </table>
 
 
@@ -217,7 +236,7 @@
 
                                 <tr>
                                     <th class="p-info-payoption">이름</th>
-                                    <th class="table-colname-blank"><input type="text" id="name" name="name" placeholder="이름을 입력해 주세요" style="text-align: left;padding-left: 10px;"></th>
+                                    <th class="table-colname-blank"><input type="text" id="name" name="uname" style="text-align: left;padding-left: 10px;" value="${sessionScope.uname }"></th>
                                    
                                 </tr>
                                 <tr>
@@ -230,8 +249,7 @@
 
                                  <tr>
                                     <th class="p-info-payoption">이메일</th>
-                                    <th class="table-colname-blank"><input type="text"  style="text-align: left;padding-left: 10px;"></th>
-
+                                    <th class="table-colname-blank"><input type="text"  style="text-align: left;padding-left: 10px;" value="${sessionScope.email }"></th>
                                 </tr>
 							
                                 
@@ -253,32 +271,34 @@
             </div>
            
 
-            <div class="row">
-                
-                    <div style="margin-bottom: 10px; margin-top: 20px; margin-left: 5px;"><strong>배송지 정보</strong></div>
-                    <div class="line"></div>
-					<div class="col-sm-12 col-xs-12 table-responsive">
+       <div class="row">
+
+                <div style="margin-bottom: 10px; margin-top: 20px; margin-left: 5px;"><strong>배송지 정보</strong></div>
+                <div class="line"></div>
+                <div class="col-sm-12 col-xs-12 table-responsive">
                     <div class="row">
                         <div class="table" id="delivery">
                             <table class="table-con" width="100%" border="0" cellspacing="0" cellpadding="0">
 
                                 <tr>
-                                    <th class="table-colname-recieve"  style="padding-left: 20;">수령인</th>
+                                    <th class="table-colname-recieve" style="padding-left: 20;">수령인</th>
                                     <th class="table-colname-blank"><input type="text" name="receivename" id="receivename" placeholder="이름을 입력해주세요" style="text-align: left;padding-left: 10px;"></th>
-                                  
+
 
                                 </tr>
                                 <tr>
                                     <th class="table-colname-phone1" style="" width="800px;">연락처</th>
-                                    <th class="table-colname-phone1con"  width="800px;"><input type="number" class="phone" name="phone1" id="phone1" value="010"> -
-                                            <input type="number" class="phone" name="phone2" id="phone2" maxlength="4"> - 
-                                            <input type="number" class="phone" name="phone3" id="phone3" maxlength="4"></th>
-                                    
+                                    <th class="table-colname-phone1con" width="800px;"><input type="number" class="phone" name="phone1" id="phone1" value="010"> -
+                                        <input type="number" class="phone" name="phone2" id="phone2" maxlength="4"> -
+                                        <input type="number" class="phone" name="phone3" id="phone3" maxlength="4"></th>
+
                                 </tr>
-                                
+
                                 <tr>
                                     <th class="table-colname-addr" style="padding-left: 20px;" width="800px;">배송지 주소</th>
-                                    <th class="table-colname-addrcon" style="" width="800px;" ><input type="text" name="oaddr1" id="oaddr1"><input style="margin-left: 10px;" type="text" name="oaddr2" id="oaddr2"><input type="text" name="odzip" id="odzip"></th>
+                                    <th class="table-colname-addrcon" style="" width="800px;"><input type="text" name="odzip" id="odzip"><input type="button" id="btnaddr" onclick="addrfind()" name="btnaddr" value="주소찾기">
+                                    <br><input type="text" name="oaddr1" id="oaddr1"><br>
+                                    <input style="margin-left: 10px;" type="text" name="oaddr2" id="oaddr2"></th>
 
                                 </tr>
                                 <tr>
@@ -288,7 +308,7 @@
                                 </tr>
 
 
-</div>
+                        </div>
 
 
                             </table>

@@ -1,5 +1,6 @@
 package com.beshop.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.beshop.dao.BE_OrderDeliveryDao;
 import com.beshop.dao.BE_PayDao;
+import com.beshop.dao.BE_ProductDao;
 import com.beshop.vo.BE_OrderDeliveryVo;
 import com.beshop.vo.BE_PayVo;
+import com.beshop.vo.BE_ProductVo;
 
 @Controller
 public class BE_OrderController {
@@ -32,7 +35,8 @@ public class BE_OrderController {
 	private BE_OrderDeliveryDao dao;
 	@Autowired
 	private BE_PayDao pdao;
-	
+	@Autowired
+	private BE_ProductDao pao;
 	
 	public void setPdao(BE_PayDao pdao) {
 		this.pdao = pdao;
@@ -40,14 +44,22 @@ public class BE_OrderController {
 	public void setDao(BE_OrderDeliveryDao dao) {
 		this.dao = dao;
 	}
+	
+	public void setPao(BE_ProductDao pao) {
+		this.pao = pao;
+	}
 	@ResponseBody
-	@RequestMapping("/OrderPurchase")
-	public ModelAndView orderdelivery()
+	@RequestMapping( "/OrderPurchase")
+	public ModelAndView OrderPurchase(HttpServletRequest request,HttpSession session,String beuid,int onum)
 	{
+		
+		beuid = (String)session.getAttribute("beuid");
+		String onumval=request.getParameter("onum");
+		onum=Integer.parseInt(onumval);
 		System.out.println("컨트롤러동작함");
 		ModelAndView mav=new ModelAndView();
-		System.out.println(dao.listod());
-		mav.addObject("orderdeliverylist",dao.listod());
+		System.out.println(dao.listod(beuid,onum));
+		mav.addObject("orderdeliverylist",dao.listod(beuid,onum));
 		return mav;
 	}
 	/*
@@ -105,24 +117,70 @@ public class BE_OrderController {
 	}
 
 
-	@RequestMapping("/purchase_ok")
-	public ModelAndView popup(BE_PayVo p,HttpServletRequest request)
+	@RequestMapping(value = "/purchase_ok",method = RequestMethod.GET)
+	public void popupget(BE_PayVo p,HttpServletRequest request)
 	{
-		ModelAndView mav=new ModelAndView();
-		int re=pdao.insertpay(p);
-		if(re==1)
-		{
-			mav=new ModelAndView("redirect:/purchase_ok");
-		}
-		return mav;
-	}
 	
-	@RequestMapping(value="/orderpage", method=RequestMethod.GET)
-	public void order() {
 		
 	}
+	@ResponseBody
+	@RequestMapping(value =  "/purchase_ok",method = RequestMethod.POST)
+	public HashMap<String, Object> popuppost(BE_PayVo p,HttpServletRequest request)
+	{
+		String paynum1= request.getParameter("paynum");
+		String payway=request.getParameter("payway");
+		String paycondition=request.getParameter("paycondition");
+		String payprice1=request.getParameter("payprice");
+		int approvenum1= Integer.parseInt(request.getParameter("approvenum"));
+		String pnum1=request.getParameter("pnum");
+		System.out.println(approvenum1);
+		int paynum=Integer.parseInt(paynum1);
+		int payprice=Integer.parseInt(payprice1);
+		int approvenum=(approvenum1);
+		int pnum=Integer.parseInt(pnum1);
+		System.out.println(approvenum);
+		p.setApprovenum(Integer.parseInt("1"));
+		System.out.println(p.getApprovenum());
+		p.setPaycondition(paycondition);
+		p.setPaynum(paynum);
+		p.setPayprice(payprice);
+		p.setPayway(payway);
+		p.setPnum(pnum);
+		ModelAndView mav=new ModelAndView();
+		int re=pdao.insertpay(p);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		
+		
+		if(re==1)
+		{
+			map.put("s", "성공");
+		}else
+		{
+			map.put("s", "실패");
+		}
+		System.out.println("컨트롤러 결과"+map);
+		return map;
+		
+	}
+	
+	//상품디테일에서 주문하기로 이동
+	@RequestMapping(value="/orderpage", method=RequestMethod.GET)
+	public ModelAndView order(HttpSession session, HttpServletRequest request) {
+		int pnum = Integer.parseInt(request.getParameter("pnum"));
+		int qty = Integer.parseInt(request.getParameter("qty"));
+		System.out.println(pnum+qty);
+		BE_ProductVo vo = pao.productDetail(pnum);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("p", vo);
+		mav.addObject("qty", qty);
+		System.out.println(vo.getP_price()*qty);
+		mav.addObject("oprice", vo.getP_price()*qty);
+		
+		mav.setViewName("orderpage");
+		return mav;
+	}
 	@RequestMapping(value = "/orderpage",method =RequestMethod.POST )
-	public ModelAndView Order(BE_OrderDeliveryVo vo,HttpServletRequest request)
+	public ModelAndView Order(BE_OrderDeliveryVo vo,HttpServletRequest request, HttpSession session)
 	{
 		String phone1=request.getParameter("phone1");
 		String phone2=request.getParameter("phone2");
@@ -139,7 +197,8 @@ public class BE_OrderController {
 		//int pnum=Integer.parseInt(request.getParameter("odpnum"));
 		int pnum=1;
 		String paymethod="iamport";
-		String beuid="godkkoo";
+		String beuid=(String)session.getAttribute("beuid");
+		System.out.println("세션 유지 아이디"+beuid);
 		String oname=request.getParameter("oname");
 		System.out.println(oname);
 		vo.setDcnum(dcnum);

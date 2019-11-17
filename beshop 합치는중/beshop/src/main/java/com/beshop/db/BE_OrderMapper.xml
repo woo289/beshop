@@ -8,8 +8,8 @@
 select pname,p_price,ocount,payway,paycondition,payprice,recivename,ophone,oaddr1,oaddr2,omemo from pay a,product p,orderdelivery o where a.pnum=p.pnum  and o.pnum=p.pnum and a.pnum=o.pnum and beuid='godkkoo'
 </select>
 <insert id="insertorder" parameterType="odvo">
-  	insert into orderdelivery values(#{onum},#{beuid},#{pnum},#{dcnum},#{ocount},#{oprice},#{oaddr1},#{oaddr2},#{ophone},
-  	#{odzip},sysdate,#{dstatus},#{omemo},#{receivename},#{paymethod},#{dprice},#{oname})
+  	insert into orderdelivery values(#{onum},#{beuid},#{pnum},#{dcnum},#{oname},#{ocount},#{oprice},#{oaddr1},#{oaddr2},#{ophone},
+  	#{odzip},sysdate,#{dprice},#{dstatus},#{omemo},#{receivename},#{paymethod})
   	
   </insert>
   <insert id="insertodpay">
