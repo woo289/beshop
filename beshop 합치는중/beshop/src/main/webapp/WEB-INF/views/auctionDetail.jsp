@@ -37,7 +37,7 @@
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 
 	<script type="text/javascript">
-	var SetTime = 30;			//최초 설정 시간(기본 : 초)
+	var SetTime = 60;			//최초 설정 시간(기본 : 초)
 	function msg_time() {	// 1초씩 카운트
 			
 			m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
@@ -53,11 +53,12 @@
 				clearInterval(msg_time());		// 타이머 해제
 				alert("경매가 종료되기 1분 전 입니다");
 			}
-			if (SetTime <= 0) {			// 시간이 종료 되었으면..
+			if (SetTime < 0) {			// 시간이 종료 되었으면..
 				
 				clearInterval(msg_time());		// 타이머 해제
 				alert("경매가 종료되었습니다");
-				
+				$(".btn_b").prop('disabled', true);
+				//$("#btn_b").prop('disabled', true);
 			}
 			
 		}
@@ -275,7 +276,7 @@
 							                            <p class="start">보유포인트<span class="mypoint"></span><a href="/charge">충전하기</a></p>
 							                            <div class="box">
 							                                <input type="number" class="price btn_a" name="price" id="price" value=" " placeholder="입찰하고 싶은 금액을 입력해주세요.">
-							                                <input type="button" class="btn_b" value="입찰하기">
+							                                <input type="button" class="btn_b" id="btn_b" value="입찰하기">
 							                            </div>
 							
 							                            <p class="start">경매가 끝나거나 판매자가 입찰종료시 가장 높은 금액을 제시한 입찰자가 입찰됩니다</p>
