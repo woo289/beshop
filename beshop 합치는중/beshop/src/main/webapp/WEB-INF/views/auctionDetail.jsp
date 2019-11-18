@@ -162,7 +162,60 @@
   background-color: #ff0083;
   transform: scale(1.05);
 }
+#reviews{
+	margin-left: 80px;
+	margin-top: 30px;
+} 
+#rdate{
+	color: gray;
+	font-size: 10px;
+} 
+#con{
+
+	font-size: 15px;
+}
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//alert("ok");
+	$.getJSON("reviewList", function(data){
+		console.log(data);
+		$.each(data, function(idx, item){
+		
+			var date = new Date(item.redate);
+			/*
+			var dy = date.getFullYear();
+			var dm = date.getMonth();
+			var dd = date.getDate();
+			var dday = date.getDate();
+			var dh = date.getHours();
+			var dm = date.getMinutes();
+			var ds = date.getSeconds();
+			*/
+			var h4 = $("<h4></h4>").html(item.beuid);
+			var p2 = $("<p></p>").html(date);
+			var p1 = $("<p></p>").html(item.re_con);
+
+			$(h4).attr('id', 'beuidR');
+			$(p2).attr('id', 'rdate');
+			$(p1).attr('id', 'con');
+			var tr1 = $("<tr></tr>").append(h4);
+			var tr2 = $("<tr></tr>").append(p1);
+			var tr3 = $("<tr></tr>").append(p2);
+
+			$("#reviews").append(tr1, tr2, tr3);
+			
+			
+	
+		});
+		
+	});
+	
+});
+
+
+</script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -327,7 +380,7 @@
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">상세정보</a></li>
 								<li><a data-toggle="tab" href="#tab2">A/S정보</a></li>
-								<li><a data-toggle="tab" href="#tab3">리뷰보기 (3)</a></li>
+								<li><a data-toggle="tab" href="#tab3">리뷰</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -356,7 +409,7 @@
 								<!-- tab3  -->
 								<div id="tab3" class="tab-pane fade in">
 									<div class="row">
-										<!-- Rating -->
+										<!-- Rating 
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
@@ -443,6 +496,7 @@
 										<!-- Reviews -->
 										<div class="col-md-6">
 											<div id="reviews">
+												<!-- Reviews
 												<ul class="reviews">
 													<li>
 														<div class="review-heading">
@@ -500,11 +554,12 @@
 													<li><a href="#">4</a></li>
 													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 												</ul>
+												 -->
 											</div>
 										</div>
 										<!-- /Reviews -->
 
-										<!-- Review Form -->
+										<!-- Review Form 
 										<div class="col-md-3">
 											<div id="review-form">
 												<form class="review-form">
@@ -523,6 +578,7 @@
 													</div>
 													<button class="primary-btn">등록하기</button>
 												</form>
+												
 											</div>
 										</div>
 										<!-- /Review Form -->
