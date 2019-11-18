@@ -389,8 +389,9 @@ img {
 										<c:forEach items="${list}" var="r">
 											<c:if test="${r.auction == 0}">
 												<div class="col-lg-3 col-sm-4 col-xs-6">
-													<a href="shoppingDetail?pnum=${r.pnum }"> <img
-														src="img/${r.p_sangse }" alt="Barca"
+													<a href="shoppingDetail?pnum=${r.pnum }">
+													<input type="hidden" value="${r.pnum }">
+														<img src="img/${r.p_sangse }" alt="Barca"
 														class="img-responsive"
 														style="width: 160px; height: 140px;" />
 														<h3 style="margin: 15px 0px;">${r.pname }</h3>
@@ -468,8 +469,9 @@ img {
 										<c:forEach items="${list}" var="r">
 											<c:if test="${r.auction != 0}">
 												<c:if test="${r.p_cdate < sysdate }">	<!-- p_cdate가 오늘 날짜보다 크면?? 다른조건식으로 경매종료되면 비활성화!! -->
-													<a href="auctionDetail?pnum=${r.pnum }" disabled = "true"> <img
-														src="img/${r.p_sangse }" alt="Barca" class="img-responsive"
+													<a href="auctionDetail?pnum=${r.pnum }" disabled = "true">
+													<input type="hidden" value="${r.pnum }">
+														<img src="img/${r.p_sangse }" alt="Barca" class="img-responsive"
 														style="width: 160px; height: 140px;" />
 														<h3 style="margin: 15px 0px;">${r.pname }</h3>
 														<h5>${r.beuid}</h5> <span
