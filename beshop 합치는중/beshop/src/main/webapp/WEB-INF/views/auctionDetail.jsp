@@ -280,6 +280,7 @@ $(function(){
 					<div class="col-md-5">
 						<div class="product-details">
 							<h2 class="product-name">${de.pname } </h2>
+							<!--
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -290,6 +291,7 @@ $(function(){
 								</div>
 								<a class="review-link" href="#">3개 리뷰 | 리뷰 달기</a>
 							</div>
+							-->
 							<div>
 								<h3 class="product-price">${de.p_price }원 <del class="product-old-price">${de.p_sprice }원</del></h3>
 								<span class="product-available">재고 ${de.stock }개</span>
