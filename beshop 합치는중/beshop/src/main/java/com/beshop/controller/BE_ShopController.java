@@ -68,10 +68,14 @@ public class BE_ShopController {
 	}
 
 	@RequestMapping("shoppingDetail")
-	public ModelAndView shoppingDetail(int pnum, HttpSession sesion) {
+	public ModelAndView shoppingDetail(int pnum, HttpSession sesion, HttpServletRequest request) {
 		System.out.println("pnum은용 ? =" + pnum);
 		BE_ProductVo vo = pao.productDetail(pnum);
 		ModelAndView mav = new ModelAndView();
+		
+		session = request.getSession(true);
+		session.setAttribute("pnum", pnum);
+		
 		mav.addObject("de", vo);
 		return mav;
 	}
@@ -257,11 +261,15 @@ public class BE_ShopController {
 	
 	//경매 상품
 	@RequestMapping("auctionDetail")
-	public ModelAndView auctionDetail(int pnum, HttpSession sesion) {
+	public ModelAndView auctionDetail(int pnum, HttpSession sesion, HttpServletRequest request) {
 		System.out.println("auction pnum은용 ? =" + pnum);
 		BE_ProductVo vo = pao.productDetail(pnum);
 		BE_AuctionVo a = pao.nowAuction();
 		ModelAndView mav = new ModelAndView();
+		
+		session = request.getSession(true);
+		session.setAttribute("pnum", pnum);
+		
 		mav.addObject("de", vo);
 		mav.addObject("a", a);
 		return mav;
