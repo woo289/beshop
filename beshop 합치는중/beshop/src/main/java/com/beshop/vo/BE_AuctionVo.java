@@ -4,17 +4,23 @@ import java.util.Date;
 
 public class BE_AuctionVo {
 	int anum;
+	int pnum;
 	String beuid;
 	int price;
 	Date day;
 	int cnt;
 	Date endday;
-	
 	public int getAnum() {
 		return anum;
 	}
 	public void setAnum(int anum) {
 		this.anum = anum;
+	}
+	public int getPnum() {
+		return pnum;
+	}
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
 	}
 	public String getBeuid() {
 		return beuid;
@@ -46,9 +52,10 @@ public class BE_AuctionVo {
 	public void setEndday(Date endday) {
 		this.endday = endday;
 	}
-	public BE_AuctionVo(int anum, String beuid, int price, Date day, int cnt, Date endday) {
+	public BE_AuctionVo(int anum, int pnum, String beuid, int price, Date day, int cnt, Date endday) {
 		super();
 		this.anum = anum;
+		this.pnum = pnum;
 		this.beuid = beuid;
 		this.price = price;
 		this.day = day;
@@ -61,8 +68,9 @@ public class BE_AuctionVo {
 	}
 	@Override
 	public String toString() {
-		return "BE_AuctionVo [anum=" + anum + ", beuid=" + beuid + ", price=" + price + ", day=" + day + ", cnt=" + cnt
-				+ ", endday=" + endday + "]";
+		return "BE_AuctionVo [anum=" + anum + ", pnum=" + pnum + ", beuid=" + beuid + ", price=" + price + ", day="
+				+ day + ", cnt=" + cnt + ", endday=" + endday + "]";
 	}
+	
 	
 }

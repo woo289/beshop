@@ -32,4 +32,7 @@ order by p_cdate desc)) where r <![CDATA[<=]]> 5
   <select id="productDetail" resultType="pvo">
   	select * from product where pnum = #{pnum}
   </select>
+<select id="successAuction" resultType="avo">
+  	select * from auction where pnum = #{pnum} and price = (select max(price) from auction where pnum = #{pnum})
+  </select>
 </mapper>

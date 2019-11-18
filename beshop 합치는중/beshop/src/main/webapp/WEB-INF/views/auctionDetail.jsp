@@ -59,6 +59,15 @@
 				alert("경매가 종료되었습니다");
 				$(".btn_b").prop('disabled', true);
 				//$("#btn_b").prop('disabled', true);
+				var data = $(".f").serialize();
+				$.ajax({
+					url:"successAuction",
+					type:"post",
+					data:data,
+					success:function(data){
+						alert("입찰자에게 에게 넘어갑"+data.beuid+","+data.price);
+					}
+				}); 
 			}
 			
 		}
@@ -162,60 +171,7 @@
   background-color: #ff0083;
   transform: scale(1.05);
 }
-#reviews{
-	margin-left: 80px;
-	margin-top: 30px;
-} 
-#rdate{
-	color: gray;
-	font-size: 10px;
-} 
-#con{
-
-	font-size: 15px;
-}
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	//alert("ok");
-	$.getJSON("reviewList", function(data){
-		console.log(data);
-		$.each(data, function(idx, item){
-		
-			var date = new Date(item.redate);
-			/*
-			var dy = date.getFullYear();
-			var dm = date.getMonth();
-			var dd = date.getDate();
-			var dday = date.getDate();
-			var dh = date.getHours();
-			var dm = date.getMinutes();
-			var ds = date.getSeconds();
-			*/
-			var h4 = $("<h4></h4>").html(item.beuid);
-			var p2 = $("<p></p>").html(date);
-			var p1 = $("<p></p>").html(item.re_con);
-
-			$(h4).attr('id', 'beuidR');
-			$(p2).attr('id', 'rdate');
-			$(p1).attr('id', 'con');
-			var tr1 = $("<tr></tr>").append(h4);
-			var tr2 = $("<tr></tr>").append(p1);
-			var tr3 = $("<tr></tr>").append(p2);
-
-			$("#reviews").append(tr1, tr2, tr3);
-			
-			
-	
-		});
-		
-	});
-	
-});
-
-
-</script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -280,7 +236,6 @@ $(function(){
 					<div class="col-md-5">
 						<div class="product-details">
 							<h2 class="product-name">${de.pname } </h2>
-							<!--
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -291,7 +246,6 @@ $(function(){
 								</div>
 								<a class="review-link" href="#">3개 리뷰 | 리뷰 달기</a>
 							</div>
-							-->
 							<div>
 								<h3 class="product-price">${de.p_price }원 <del class="product-old-price">${de.p_sprice }원</del></h3>
 								<span class="product-available">재고 ${de.stock }개</span>
@@ -306,6 +260,7 @@ $(function(){
 						        	<form class="f">
 						                <div class="modal-content" style="width:700px;">
 						                	<!-- <h5 class="modal-title" id="exampleModalLabel">경매</h5> -->
+						                	<div><span id="pnum" class="pnum" >${de.pnum}</span></div>
 						                	<div class="modal-header"><span id="startprice">${de.p_price}</span> 원ㅣ무료배송 
 							                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									          	<span aria-hidden="true">&times;</span>
@@ -382,7 +337,7 @@ $(function(){
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">상세정보</a></li>
 								<li><a data-toggle="tab" href="#tab2">A/S정보</a></li>
-								<li><a data-toggle="tab" href="#tab3">리뷰</a></li>
+								<li><a data-toggle="tab" href="#tab3">리뷰보기 (3)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -411,7 +366,7 @@ $(function(){
 								<!-- tab3  -->
 								<div id="tab3" class="tab-pane fade in">
 									<div class="row">
-										<!-- Rating 
+										<!-- Rating -->
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
@@ -498,7 +453,6 @@ $(function(){
 										<!-- Reviews -->
 										<div class="col-md-6">
 											<div id="reviews">
-												<!-- Reviews
 												<ul class="reviews">
 													<li>
 														<div class="review-heading">
@@ -556,12 +510,11 @@ $(function(){
 													<li><a href="#">4</a></li>
 													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 												</ul>
-												 -->
 											</div>
 										</div>
 										<!-- /Reviews -->
 
-										<!-- Review Form 
+										<!-- Review Form -->
 										<div class="col-md-3">
 											<div id="review-form">
 												<form class="review-form">
@@ -580,7 +533,6 @@ $(function(){
 													</div>
 													<button class="primary-btn">등록하기</button>
 												</form>
-												
 											</div>
 										</div>
 										<!-- /Review Form -->

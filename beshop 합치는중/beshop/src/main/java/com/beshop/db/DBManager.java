@@ -1,4 +1,4 @@
-package com.beshop.db;
+﻿package com.beshop.db;
 
 import java.io.Reader;
 import java.util.ArrayList;
@@ -45,7 +45,13 @@ public class DBManager {
 		session.close();
 		return ao;
 	}
-	
+	public static BE_AuctionVo successAuction(BE_AuctionVo ao) {
+		BE_AuctionVo avo = new BE_AuctionVo();
+		SqlSession session = factory.openSession();
+		avo = session.selectOne("product.successAuction",ao);
+		session.close();
+		return avo;
+	}
 	public static int insertAuction(BE_AuctionVo ao) {
 		int r = 0;
 		SqlSession session = factory.openSession();

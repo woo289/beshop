@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
@@ -24,14 +23,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.beshop.dao.BE_ChannelDao;
+
 import com.beshop.dao.BE_ProductDao;
 import com.beshop.dao.BE_SubDao;
 import com.beshop.dao.BE_UserDao;
 import com.beshop.vo.BE_AuctionVo;
 import com.beshop.vo.BE_ProductVo;
-import com.beshop.vo.BE_SubVo;
-import com.beshop.vo.BE_UserVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -68,14 +65,10 @@ public class BE_ShopController {
 	}
 
 	@RequestMapping("shoppingDetail")
-	public ModelAndView shoppingDetail(int pnum, HttpSession sesion, HttpServletRequest request) {
+	public ModelAndView shoppingDetail(int pnum, HttpSession sesion) {
 		System.out.println("pnum은용 ? =" + pnum);
 		BE_ProductVo vo = pao.productDetail(pnum);
 		ModelAndView mav = new ModelAndView();
-		
-		session = request.getSession(true);
-		session.setAttribute("pnum", pnum);
-		
 		mav.addObject("de", vo);
 		return mav;
 	}
@@ -99,104 +92,104 @@ public class BE_ShopController {
 		
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/addProduct",method = RequestMethod.POST)
-	public ModelAndView addProductPost(BE_ProductVo po, HttpSession session, HttpServletRequest request) {
-		System.out.println("post온다"+po.getP_cdate());
-		String path = request.getRealPath("video");
-		String path2 = request.getRealPath("img");
-		String option1 = request.getParameter("option1");
-		String option2 = request.getParameter("option2");
-		String option3 = request.getParameter("option3");
-		String sel_op1 = request.getParameter("select_op1");
-		String sel_op2 = request.getParameter("select_op2");
-		String sel_op3 = request.getParameter("select_op3");
-		String p_category = request.getParameter("p_category");
-		
-		System.out.println(option2+sel_op2);
-		System.out.println(p_category);
-		MultipartFile file = po.getVideo();
-		String p_video = file.getOriginalFilename();
-		if(option2 == null || sel_op2 == null) {
-			po.setOption2("");
-			po.setSelect_op2("");
-			po.setOption3("");
-			po.setSelect_op3("");
-		}
-		else if(option3 == null  || sel_op3 == null) {
-			
-			po.setOption3("");
-			po.setSelect_op3("");
-		}
-		else {
-			po.setOption2(option2);
-			po.setSelect_op2(sel_op2);
-			po.setOption3(option3);
-			po.setSelect_op3(sel_op3);
-		}
-		po.setP_video(p_video);
-		po.setOption1(option1);
-		po.setSelect_op1(sel_op1);
-		po.setP_category(p_category);
-		
-		try {
-			byte date[] = file.getBytes();
-			FileOutputStream fos = new FileOutputStream(path+"/"+p_video);
-			fos.write(date);
-			fos.close();
-			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/video/"+p_video);
-		//	FileOutputStream fos2 = new FileOutputStream(path2+p_video);
-			fos2.write(date);
-			fos2.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		MultipartFile file2 = po.getSangse();
-		String p_sangse = file2.getOriginalFilename();
-		po.setP_sangse(p_sangse);
-		try {
-			byte date[] = file2.getBytes();
-			FileOutputStream fos = new FileOutputStream(path2+"/"+p_sangse);
-			fos.write(date);
-			fos.close();
-			//webapp/img
-			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/img/"+p_sangse);
-			fos2.write(date);
-			fos2.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		MultipartFile file3 = po.getAs();
-		String as_info = file3.getOriginalFilename();
-		po.setAs_info(as_info);
-		try {
-			byte date[] = file3.getBytes();
-			FileOutputStream fos = new FileOutputStream(path2+"/"+as_info);
-			fos.write(date);
-			fos.close();
-			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/img/"+as_info);
-			fos2.write(date);
-			fos2.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("file3 까지 탄다.");
-		ModelAndView mav = new ModelAndView("redirect:/mychannel");
-		System.out.println(po);
-		int r = pao.insertProduct(po);
-		System.out.println(r);
-		String msg = "";
-		if(r != 1) { 
-			msg ="실패";
-		}else {
-			msg = "성공";
-		}
-		mav.addObject("msg", msg);
-		mav.setViewName("/mychannel");
-		return mav;
-	}
+//	@ResponseBody
+//	@RequestMapping(value="/addProduct",method = RequestMethod.POST)
+//	public ModelAndView addProductPost(BE_ProductVo po, HttpSession session, HttpServletRequest request) {
+//		System.out.println("post온다"+po.getP_cdate());
+//		String path = request.getRealPath("video");
+//		String path2 = request.getRealPath("img");
+//		String option1 = request.getParameter("option1");
+//		String option2 = request.getParameter("option2");
+//		String option3 = request.getParameter("option3");
+//		String sel_op1 = request.getParameter("select_op1");
+//		String sel_op2 = request.getParameter("select_op2");
+//		String sel_op3 = request.getParameter("select_op3");
+//		String p_category = request.getParameter("p_category");
+//		
+//		System.out.println(option2+sel_op2);
+//		System.out.println(p_category);
+//		MultipartFile file = po.getVideo();
+//		String p_video = file.getOriginalFilename();
+//		if(option2 == null || sel_op2 == null) {
+//			po.setOption2("");
+//			po.setSelect_op2("");
+//			po.setOption3("");
+//			po.setSelect_op3("");
+//		}
+//		else if(option3 == null  || sel_op3 == null) {
+//			
+//			po.setOption3("");
+//			po.setSelect_op3("");
+//		}
+//		else {
+//			po.setOption2(option2);
+//			po.setSelect_op2(sel_op2);
+//			po.setOption3(option3);
+//			po.setSelect_op3(sel_op3);
+//		}
+//		po.setP_video(p_video);
+//		po.setOption1(option1);
+//		po.setSelect_op1(sel_op1);
+//		po.setP_category(p_category);
+//		
+//		try {
+//			byte date[] = file.getBytes();
+//			FileOutputStream fos = new FileOutputStream(path+"/"+p_video);
+//			fos.write(date);
+//			fos.close();
+//			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/video/"+p_video);
+//		//	FileOutputStream fos2 = new FileOutputStream(path2+p_video);
+//			fos2.write(date);
+//			fos2.close();
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+//		
+//		MultipartFile file2 = po.getSangse();
+//		String p_sangse = file2.getOriginalFilename();
+//		po.setP_sangse(p_sangse);
+//		try {
+//			byte date[] = file2.getBytes();
+//			FileOutputStream fos = new FileOutputStream(path2+"/"+p_sangse);
+//			fos.write(date);
+//			fos.close();
+//			//webapp/img
+//			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/img/"+p_sangse);
+//			fos2.write(date);
+//			fos2.close();
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+//		
+//		MultipartFile file3 = po.getAs();
+//		String as_info = file3.getOriginalFilename();
+//		po.setAs_info(as_info);
+//		try {
+//			byte date[] = file3.getBytes();
+//			FileOutputStream fos = new FileOutputStream(path2+"/"+as_info);
+//			fos.write(date);
+//			fos.close();
+//			FileOutputStream fos2 = new FileOutputStream("C:/haeree/beshop/src/main/webapp/img/"+as_info);
+//			fos2.write(date);
+//			fos2.close();
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+//		System.out.println("file3 까지 탄다.");
+//		ModelAndView mav = new ModelAndView("redirect:/mychannel");
+//		System.out.println(po);
+//		int r = pao.insertProduct(po);
+//		System.out.println(r);
+//		String msg = "";
+//		if(r != 1) { 
+//			msg ="실패";
+//		}else {
+//			msg = "성공";
+//		}
+//		mav.addObject("msg", msg);
+//		mav.setViewName("/mychannel");
+//		return mav;
+//	}
 	
 	@RequestMapping("/mychannel")
 	public void mychannel(HttpSession session) {
@@ -261,19 +254,21 @@ public class BE_ShopController {
 	
 	//경매 상품
 	@RequestMapping("auctionDetail")
-	public ModelAndView auctionDetail(int pnum, HttpSession sesion, HttpServletRequest request) {
+	public ModelAndView auctionDetail(int pnum, HttpSession sesion) {
 		System.out.println("auction pnum은용 ? =" + pnum);
 		BE_ProductVo vo = pao.productDetail(pnum);
 		BE_AuctionVo a = pao.nowAuction();
 		ModelAndView mav = new ModelAndView();
-		
-		session = request.getSession(true);
-		session.setAttribute("pnum", pnum);
-		
 		mav.addObject("de", vo);
 		mav.addObject("a", a);
 		return mav;
 		
+	}
+	@ResponseBody
+	@RequestMapping(value="/successAuction",method = RequestMethod.POST)
+	public BE_AuctionVo successAuction(BE_AuctionVo ao,HttpSession session) {
+		BE_AuctionVo avo = pao.successAuction(ao);
+		return avo;
 	}
 	
 	@ResponseBody
